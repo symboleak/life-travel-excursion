@@ -1,0 +1,526 @@
+/**
+ * Styles spécifiques au tunnel de paiement Life Travel
+ * Optimisés pour la conversion, la sécurité perçue et l'expérience mobile
+ * 
+ * @package Life Travel Excursion
+ * @version 2.3.4
+ */
+
+/* Mise en page du tunnel de paiement */
+.life-travel-checkout-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (min-width: 768px) {
+    .life-travel-checkout-wrapper {
+        grid-template-columns: 60% 40%;
+    }
+}
+
+/* Étapes du processus de paiement */
+.checkout-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.checkout-steps::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: 1;
+}
+
+.checkout-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    text-align: center;
+}
+
+.checkout-step-number {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--color-dark);
+    transition: all 0.3s ease;
+}
+
+.checkout-step-label {
+    font-size: 12px;
+    color: var(--color-gray);
+    transition: all 0.3s ease;
+}
+
+.checkout-step.active .checkout-step-number {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.checkout-step.active .checkout-step-label {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.checkout-step.completed .checkout-step-number {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.checkout-step.completed .checkout-step-number::after {
+    content: '✓';
+    font-size: 14px;
+}
+
+/* Formulaire optimisé */
+.secure-form {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.secure-form-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.secure-form-icon {
+    margin-right: 10px;
+    color: var(--color-primary);
+}
+
+.secure-form-title {
+    flex: 1;
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--color-dark);
+}
+
+.secure-form-badge {
+    background-color: #f8f8f8;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--color-gray);
+    display: flex;
+    align-items: center;
+}
+
+.secure-form-badge svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+
+/* Champs de formulaire améliorés */
+.secure-form .form-row {
+    margin-bottom: 15px;
+}
+
+.secure-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--color-dark);
+}
+
+.secure-form input[type="text"],
+.secure-form input[type="email"],
+.secure-form input[type="tel"],
+.secure-form input[type="number"],
+.secure-form input[type="date"],
+.secure-form select,
+.secure-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 16px; /* Empêche le zoom sur iOS */
+    transition: border-color 0.3s ease;
+}
+
+.secure-form input:focus,
+.secure-form select:focus,
+.secure-form textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+}
+
+.secure-form .field-error {
+    border-color: var(--color-error);
+}
+
+.secure-form .error-message {
+    color: var(--color-error);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Passerelles de paiement */
+.payment-methods {
+    margin-bottom: 20px;
+}
+
+.payment-method-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method-item:hover {
+    border-color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.payment-method-item.selected {
+    border-color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.payment-method-radio {
+    margin-right: 15px;
+}
+
+.payment-method-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.payment-method-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+.payment-method-description {
+    font-size: 0.9em;
+    color: var(--color-gray);
+    margin-top: 5px;
+}
+
+/* Récapitulatif de commande */
+.order-summary {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.order-summary-title {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: var(--color-dark);
+}
+
+.order-items {
+    margin-bottom: 20px;
+}
+
+.order-item {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.order-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-right: 15px;
+}
+
+.order-item-details {
+    flex: 1;
+}
+
+.order-item-title {
+    font-weight: 500;
+    margin: 0 0 5px;
+    font-size: 0.95em;
+}
+
+.order-item-meta {
+    font-size: 0.85em;
+    color: var(--color-gray);
+}
+
+.order-item-price {
+    font-weight: 500;
+    text-align: right;
+}
+
+.order-totals .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.order-totals .row.grand-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-primary);
+}
+
+/* Bouton de soumission */
+.secure-form-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.secure-form-submit:hover {
+    background-color: var(--color-secondary-dark);
+}
+
+.secure-form-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Indicateurs de sécurité */
+.trust-indicators {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.trust-indicator {
+    display: flex;
+    align-items: center;
+    margin: 0 15px 10px;
+    font-size: 12px;
+    color: var(--color-gray);
+}
+
+.trust-indicator svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+/* Session timer pour créer un sentiment d'urgence */
+.session-timer {
+    background-color: #FFF3E0;
+    border: 1px solid #FFE0B2;
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: #E65100;
+}
+
+.session-timer-icon {
+    margin-right: 10px;
+}
+
+.session-timer-text {
+    flex: 1;
+}
+
+.session-timer-countdown {
+    font-weight: bold;
+}
+
+/* Formulaire en mode hors ligne */
+.form-offline {
+    position: relative;
+}
+
+.form-offline:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.offline-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    z-index: 11;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Indicateur de sauvegarde */
+.form-saving {
+    position: relative;
+}
+
+.form-saving:after {
+    content: 'Sauvegarde automatique...';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Adaptations mobile */
+@media (max-width: 767px) {
+    .checkout-step-label {
+        font-size: 10px;
+    }
+    
+    .order-item {
+        flex-wrap: wrap;
+    }
+    
+    .order-item-image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .order-item-price {
+        width: 100%;
+        text-align: left;
+        margin-top: 10px;
+        margin-left: 55px;
+    }
+    
+    .payment-method-item {
+        flex-wrap: wrap;
+    }
+    
+    .payment-method-logo {
+        order: -1;
+        margin-bottom: 10px;
+    }
+    
+    .payment-method-name {
+        width: 100%;
+    }
+    
+    .secure-form .form-row {
+        margin-bottom: 10px;
+    }
+    
+    .secure-form-badge {
+        display: none;
+    }
+}
+
+/* Support du mode sombre */
+@media (prefers-color-scheme: dark) {
+    .secure-form,
+    .order-summary {
+        background-color: #292929;
+        color: #e0e0e0;
+    }
+    
+    .secure-form-title,
+    .order-summary-title,
+    .secure-form label {
+        color: #e0e0e0;
+    }
+    
+    .secure-form-header,
+    .order-item,
+    .order-totals .row.grand-total {
+        border-color: #444;
+    }
+    
+    .secure-form input[type="text"],
+    .secure-form input[type="email"],
+    .secure-form input[type="tel"],
+    .secure-form input[type="number"],
+    .secure-form input[type="date"],
+    .secure-form select,
+    .secure-form textarea {
+        background-color: #333;
+        border-color: #555;
+        color: #e0e0e0;
+    }
+    
+    .payment-method-item {
+        background-color: #333;
+        border-color: #444;
+    }
+    
+    .payment-method-item:hover,
+    .payment-method-item.selected {
+        background-color: rgba(var(--color-primary-rgb), 0.2);
+    }
+    
+    .session-timer {
+        background-color: #3E2723;
+        border-color: #4E342E;
+        color: #FFCCBC;
+    }
+    
+    .trust-indicators {
+        border-color: #444;
+    }
+}

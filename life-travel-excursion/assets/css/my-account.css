@@ -1,0 +1,337 @@
+/**
+ * Styles pour la page Mon Compte personnalisée
+ * 
+ * @package Life_Travel_Excursion
+ */
+
+/* Style général de la page Mon Compte */
+.woocommerce-account .woocommerce {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation {
+    flex: 0 0 25%;
+    min-width: 220px;
+    padding-right: 30px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+    flex: 0 0 75%;
+    padding: 0 15px;
+}
+
+/* Navigation Mon Compte */
+.woocommerce-MyAccount-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.woocommerce-MyAccount-navigation ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.woocommerce-MyAccount-navigation ul li a {
+    display: block;
+    padding: 12px 15px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.woocommerce-MyAccount-navigation ul li:last-child a {
+    border-bottom: none;
+}
+
+.woocommerce-MyAccount-navigation ul li.is-active a {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+}
+
+.woocommerce-MyAccount-navigation ul li:not(.is-active) a:hover {
+    background-color: #f5f5f5;
+    color: #4CAF50;
+}
+
+/* Style spécifique pour l'onglet Mes Excursions */
+.lte-excursions-list {
+    margin-bottom: 30px;
+}
+
+.lte-excursion-card {
+    display: flex;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.lte-excursion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lte-excursion-image {
+    flex: 0 0 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.lte-excursion-details {
+    flex: 1;
+    padding: 15px;
+}
+
+.lte-excursion-title {
+    font-size: 18px;
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+.lte-excursion-meta {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.lte-excursion-meta-item {
+    flex: 0 0 50%;
+    margin-bottom: 5px;
+}
+
+.lte-excursion-meta-label {
+    font-weight: 500;
+    color: #777;
+}
+
+.lte-excursion-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.lte-excursion-status.upcoming {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+.lte-excursion-status.completed {
+    background-color: #E8F5E9;
+    color: #388E3C;
+}
+
+.lte-excursion-status.cancelled {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+}
+
+.lte-excursion-status.processing {
+    background-color: #FFF8E1;
+    color: #FFA000;
+}
+
+.lte-excursion-actions {
+    margin-top: 10px;
+}
+
+.lte-excursion-actions a.button {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+/* Style spécifique pour l'onglet Mes Points de Fidélité */
+.lte-loyalty-summary {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+}
+
+.lte-loyalty-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, #4CAF50, #8BC34A);
+}
+
+.lte-points-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #4CAF50;
+    margin: 10px 0;
+}
+
+.lte-points-label {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.lte-points-info {
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto 15px;
+}
+
+.lte-points-exchange {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.lte-loyalty-history {
+    margin-top: 30px;
+}
+
+.lte-loyalty-history h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.lte-loyalty-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 30px;
+}
+
+.lte-loyalty-table th,
+.lte-loyalty-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.lte-loyalty-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.lte-loyalty-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.lte-points-earned {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.lte-points-spent {
+    color: #F44336;
+    font-weight: 600;
+}
+
+/* Pagination */
+.lte-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.lte-pagination .page-numbers {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: 1px solid #e5e5e5;
+    color: #333;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.lte-pagination .page-numbers.current {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.lte-pagination .page-numbers:not(.current):hover {
+    background-color: #f5f5f5;
+}
+
+/* Section d'aide */
+.lte-help-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.lte-help-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.lte-faq-item {
+    margin-bottom: 15px;
+}
+
+.lte-faq-question {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.lte-faq-answer {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .woocommerce-account .woocommerce {
+        flex-direction: column;
+    }
+    
+    .woocommerce-account .woocommerce-MyAccount-navigation {
+        flex: 0 0 100%;
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .woocommerce-account .woocommerce-MyAccount-content {
+        flex: 0 0 100%;
+        padding: 0;
+    }
+    
+    .lte-excursion-card {
+        flex-direction: column;
+    }
+    
+    .lte-excursion-image {
+        flex: 0 0 120px;
+        width: 100%;
+    }
+    
+    .lte-excursion-meta-item {
+        flex: 0 0 100%;
+    }
+}

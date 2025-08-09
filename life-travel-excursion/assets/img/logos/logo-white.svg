@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320">
+  <g>
+    <!-- Élément humain stylisé -->
+    <circle cx="216" cy="106" r="24" fill="#ffffff"/>
+    <path d="M216 130c-40 10-120 95-120 95s40-10 80-25c40-15 70-40 70-40s-10-40-30-30z" fill="#ffffff"/>
+    <path d="M246 130s20 10 40 30c20 20 30 40 30 40s-40-10-70-20c-30-10-55-30-55-30s25-30 55-20z" fill="#ffffff" opacity="0.8"/>
+    
+    <!-- Texte "LIFE TRAVEL" -->
+    <text x="270" y="130" font-family="Arial, sans-serif" font-size="65" font-weight="bold" fill="#ffffff">LIFE TRAVEL</text>
+    
+    <!-- Slogan "VOYAGER C'EST EXISTER" -->
+    <text x="272" y="170" font-family="Arial, sans-serif" font-size="22" fill="#ffffff" opacity="0.9">VOYAGER C'EST EXISTER.</text>
+  </g>
+</svg>

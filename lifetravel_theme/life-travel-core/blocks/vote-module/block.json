@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "life-travel-core/vote-module",
+  "version": "1.0.0",
+  "title": "Module de Vote pour Excursions",
+  "category": "life-travel",
+  "icon": "thumbs-up",
+  "description": "Permet aux visiteurs de voter pour les excursions qu'ils aimeraient voir organisées",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "life-travel-core",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Votez pour votre prochaine excursion !"
+    },
+    "description": {
+      "type": "string",
+      "default": "Aidez-nous à choisir les excursions à organiser pour le mois prochain"
+    },
+    "options": {
+      "type": "array",
+      "default": []
+    },
+    "maxOptions": {
+      "type": "number",
+      "default": 4
+    },
+    "endDate": {
+      "type": "string",
+      "default": ""
+    },
+    "showResults": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#F7F3EB"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#3D2B1F"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#E19D4C"
+    }
+  },
+  "example": {
+    "attributes": {
+      "title": "Votez pour votre prochaine excursion !",
+      "description": "Aidez-nous à choisir les excursions à organiser pour le mois prochain",
+      "preview": true
+    }
+  }
+}

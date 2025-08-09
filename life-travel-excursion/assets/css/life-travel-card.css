@@ -1,0 +1,132 @@
+/**
+ * Life Travel Card Payment CSS
+ * Styles pour la passerelle de paiement par carte
+ */
+
+.life-travel-card-test-mode-notice {
+    margin-bottom: 20px;
+}
+
+#life-travel-card-form {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#life-travel-card-form .form-row {
+    margin-bottom: 15px;
+}
+
+.life-travel-card-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.life-travel-card-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.card-number-field {
+    position: relative;
+}
+
+.card-type-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.card-type-visa {
+    background-image: url('../img/visa.png');
+}
+
+.card-type-mastercard {
+    background-image: url('../img/mastercard.png');
+}
+
+.card-type-amex {
+    background-image: url('../img/amex.png');
+}
+
+.card-type-discover {
+    background-image: url('../img/discover.png');
+}
+
+.card-type-diners {
+    background-image: url('../img/diners.png');
+}
+
+.card-type-jcb {
+    background-image: url('../img/jcb.png');
+}
+
+.life-travel-card-errors {
+    color: #e74c3c;
+    background-color: #fae9e8;
+    padding: 10px;
+    border-left: 4px solid #e74c3c;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.life-travel-card-errors.visible {
+    display: block;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .form-row-first,
+    .form-row-last {
+        width: 100%;
+        float: none;
+    }
+    
+    #life-travel-card-form .form-row {
+        margin-bottom: 10px;
+    }
+    
+    .life-travel-card-input {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Animation pour le traitement du paiement */
+.processing-payment {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+}
+
+.processing-payment:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #3498db;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

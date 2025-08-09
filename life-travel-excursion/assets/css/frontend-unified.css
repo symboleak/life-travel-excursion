@@ -1,0 +1,568 @@
+/**
+ * Styles frontend unifiés pour Life Travel
+ * 
+ * Ce fichier centralise tous les styles CSS frontend pour le plugin Life Travel,
+ * remplaçant les fichiers fragmentés d'origine.
+ * 
+ * Optimisé pour les conditions de réseau variables au Cameroun.
+ * 
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* ======== STRUCTURE DE BASE ======== */
+
+/* Conteneurs principaux */
+.excursion-booking-container,
+.my-account-excursions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Mise en page flexible */
+.excursion-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+/* ======== GALERIES D'EXCURSIONS ======== */
+
+/* Galerie d'images */
+.excursion-gallery {
+    flex: 1 1 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: 300px;
+}
+
+.excursion-gallery .main-image {
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.excursion-gallery .main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.excursion-gallery .main-image:hover img {
+    transform: scale(1.02);
+}
+
+.excursion-gallery .thumbnail-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.excursion-gallery .thumbnail-images a {
+    display: block;
+    width: calc(20% - 8px);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.excursion-gallery .thumbnail-images a img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.excursion-gallery .thumbnail-images a:hover img {
+    transform: scale(1.05);
+}
+
+/* ======== FORMULAIRE DE RÉSERVATION ======== */
+
+/* Section de réservation */
+.excursion-reservation {
+    flex: 1 1 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: 300px;
+}
+
+.excursion-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.3;
+}
+
+.excursion-booking-form {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.excursion-booking-form:hover {
+    background-color: #f0f0f0;
+}
+
+.booking-section {
+    margin-bottom: 20px;
+}
+
+.booking-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+    color: #333;
+}
+
+.booking-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.booking-section input[type="text"],
+.booking-section input[type="number"],
+.booking-section input[type="date"],
+.booking-section input[type="time"],
+.booking-section select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.booking-section input[type="text"]:focus,
+.booking-section input[type="number"]:focus,
+.booking-section input[type="date"]:focus,
+.booking-section input[type="time"]:focus,
+.booking-section select:focus {
+    border-color: #0073aa;
+    outline: none;
+}
+
+/* Sélecteur de quantité */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    max-width: 150px;
+}
+
+.quantity-selector button {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-selector button:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-selector button:focus {
+    outline: none;
+}
+
+.quantity-selector input[type="number"] {
+    width: 60px;
+    text-align: center;
+    margin: 0 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Boutons de formulaire */
+.excursion-form-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.excursion-form-buttons button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.excursion-form-buttons button:hover {
+    background-color: #005a87;
+}
+
+.excursion-form-buttons button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* ======== EXTRAS ET ACTIVITÉS ======== */
+
+/* Section des extras */
+.extras-section {
+    margin-top: 20px;
+}
+
+.extra-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.extra-item:hover {
+    background-color: #f9f9f9;
+}
+
+.extra-item-header {
+    display: flex;
+    align-items: center;
+}
+
+.extra-item-header input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.extra-item-header label {
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.extra-item-price {
+    font-weight: 600;
+    color: #0073aa;
+}
+
+.extra-quantity {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #eee;
+}
+
+/* Section des activités */
+.activities-section {
+    margin-top: 20px;
+}
+
+.activity-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.activity-item:hover {
+    background-color: #f9f9f9;
+}
+
+.activity-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.activity-item-header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.activity-item-price {
+    font-weight: 600;
+    color: #0073aa;
+}
+
+.activity-quantity {
+    margin-top: 10px;
+}
+
+.activity-quantity input[type="number"] {
+    width: 60px;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ======== AFFICHAGE DES PRIX ======== */
+
+/* Conteneur de prix */
+.price-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.price-container.loading {
+    opacity: 0.7;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.price-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.price-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.price-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.total-price-row {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+    font-size: 18px;
+}
+
+.total-price-row .price-value {
+    color: #0073aa;
+    font-size: 20px;
+}
+
+/* ======== INDICATEURS ET MESSAGES ======== */
+
+/* Spinner de chargement */
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.loading-spinner::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #0073aa;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Messages d'erreur */
+.error-message {
+    display: none;
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+/* Indicateurs d'état */
+.availability-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.availability-indicator.available {
+    background-color: #28a745;
+}
+
+.availability-indicator.limited {
+    background-color: #ffc107;
+}
+
+.availability-indicator.unavailable {
+    background-color: #dc3545;
+}
+
+/* ======== STYLES RESPONSIFS ======== */
+
+@media screen and (max-width: 768px) {
+    .excursion-flex-container {
+        flex-direction: column;
+    }
+    
+    .excursion-gallery,
+    .excursion-reservation {
+        flex: 1 1 100%;
+    }
+    
+    .excursion-gallery .thumbnail-images a {
+        width: calc(25% - 8px);
+    }
+    
+    .excursion-title {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .excursion-gallery .thumbnail-images a {
+        width: calc(33.33% - 7px);
+    }
+    
+    .booking-section h3 {
+        font-size: 16px;
+    }
+    
+    .excursion-form-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .price-row {
+        flex-direction: column;
+    }
+}
+
+/* ======== ADAPTATIONS POUR CONNEXIONS LENTES ======== */
+
+/* Classes spécifiques au contexte de connexion lente */
+.slow-connection .excursion-gallery .main-image img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.slow-connection .excursion-gallery .thumbnail-images {
+    display: none; /* Masquer sur connexion lente pour réduire le chargement */
+}
+
+.slow-connection .price-container {
+    background-image: none;
+}
+
+.slow-connection .extra-item,
+.slow-connection .activity-item {
+    box-shadow: none;
+}
+
+/* Optimisations pour le Cameroun */
+.optimized-for-cameroon .excursion-gallery .main-image img {
+    max-height: 250px;
+}
+
+.optimized-for-cameroon .extras-section,
+.optimized-for-cameroon .activities-section {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.optimized-for-cameroon .excursion-booking-form {
+    padding: 15px;
+}
+
+.optimized-for-cameroon .booking-section input[type="text"],
+.optimized-for-cameroon .booking-section input[type="number"],
+.optimized-for-cameroon .booking-section input[type="date"],
+.optimized-for-cameroon .booking-section input[type="time"],
+.optimized-for-cameroon .booking-section select {
+    padding: 8px;
+}
+
+/* ======== THÈME LIFE TRAVEL ======== */
+
+/* Couleurs et accents spécifiques à Life Travel */
+.life-travel-theme {
+    --primary-color: #0073aa;
+    --secondary-color: #f9a826;
+    --accent-color: #28a745;
+    --text-color: #333;
+    --background-light: #f9f9f9;
+    --border-color: #ddd;
+}
+
+.life-travel-theme .excursion-form-buttons button {
+    background-color: var(--primary-color);
+}
+
+.life-travel-theme .excursion-form-buttons button:hover {
+    background-color: var(--accent-color);
+}
+
+.life-travel-theme .price-value,
+.life-travel-theme .extra-item-price,
+.life-travel-theme .activity-item-price {
+    color: var(--primary-color);
+}
+
+.life-travel-theme .total-price-row .price-value {
+    color: var(--secondary-color);
+}
+
+/* ======== STYLES D'IMPRESSION ======== */
+
+@media print {
+    .excursion-booking-container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .excursion-flex-container {
+        display: block;
+    }
+    
+    .excursion-gallery {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .excursion-gallery .thumbnail-images {
+        display: none;
+    }
+    
+    .excursion-booking-form {
+        background: none;
+        border: none;
+        padding: 0;
+    }
+    
+    .excursion-form-buttons {
+        display: none;
+    }
+    
+    .extra-item,
+    .activity-item {
+        border: 1px solid #ddd;
+    }
+}

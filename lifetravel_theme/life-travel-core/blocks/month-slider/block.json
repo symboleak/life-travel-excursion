@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "life-travel-core/month-slider",
+  "version": "1.0.0",
+  "title": "Slider Excursions du Mois",
+  "category": "life-travel",
+  "icon": "slides",
+  "description": "Affiche un slider avec les excursions du mois, optimisé pour mobile",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "life-travel-core",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Excursions du mois"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Découvrez nos excursions les plus populaires"
+    },
+    "excursionIds": {
+      "type": "array",
+      "default": []
+    },
+    "slidesToShow": {
+      "type": "number",
+      "default": 3
+    },
+    "slidesToShowMobile": {
+      "type": "number",
+      "default": 1.5
+    },
+    "style": {
+      "type": "string",
+      "default": "standard"
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Voir toutes nos excursions"
+    },
+    "ctaLink": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#F7F3EB"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#3D2B1F"
+    }
+  },
+  "example": {
+    "attributes": {
+      "title": "Excursions du mois",
+      "subtitle": "Découvrez nos excursions les plus populaires",
+      "excursionIds": [],
+      "preview": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- Fond avec un dégradé léger -->
+  <defs>
+    <linearGradient id="video-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#002C44"/>
+      <stop offset="100%" stop-color="#00487A"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rectangle de base -->
+  <rect width="1280" height="720" fill="url(#video-gradient)"/>
+  
+  <!-- Éléments visuels vectoriels légers -->
+  <circle cx="640" cy="360" r="240" fill="none" stroke="#0073B2" stroke-width="6" stroke-dasharray="15,10" opacity="0.4"/>
+  <circle cx="640" cy="360" r="180" fill="none" stroke="#8BC84B" stroke-width="4" stroke-dasharray="10,8" opacity="0.4"/>
+  
+  <!-- Icône de lecture -->
+  <circle cx="640" cy="360" r="90" fill="#0073B2" opacity="0.8"/>
+  <path d="M620,320 L680,360 L620,400 Z" fill="#ffffff"/>
+  
+  <!-- Texte indicatif -->
+  <text x="640" y="500" font-family="Arial, sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#ffffff">LIFE TRAVEL CAMEROUN</text>
+  <text x="640" y="550" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#ffffff">Chargement de la vidéo - Vidéo en cours de chargement</text>
+  <text x="640" y="590" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#8BC84B">Connexion lente détectée - Format optimisé</text>
+</svg>

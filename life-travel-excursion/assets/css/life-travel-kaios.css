@@ -1,0 +1,349 @@
+/**
+ * Life Travel - Styles spécifiques KaiOS
+ * 
+ * Cette feuille de style fournit des optimisations visuelles et d'interface
+ * pour les appareils KaiOS très populaires au Cameroun. Elle est conçue pour
+ * fonctionner sur des écrans de petite taille avec navigation au clavier.
+ * 
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* Base KaiOS - appliquer à tous les appareils identifiés */
+.lt-kaios {
+    /* Variables KaiOS */
+    --kaios-highlight-color: #ff4e17;
+    --kaios-text-size: 16px;
+    --kaios-line-height: 1.4;
+    --kaios-padding: 8px;
+    --kaios-focus-outline: 2px solid #0073B2;
+    --kaios-button-height: 28px;
+}
+
+/* Corps et texte */
+.lt-kaios body {
+    font-size: var(--kaios-text-size);
+    line-height: var(--kaios-line-height);
+    max-width: 100%;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+
+.lt-kaios p, 
+.lt-kaios li, 
+.lt-kaios td {
+    font-size: var(--kaios-text-size);
+    line-height: var(--kaios-line-height);
+}
+
+/* Optimisation pour écrans 240x320 (KaiOS standard) */
+.lt-kaios .entry-content,
+.lt-kaios .site-content {
+    padding: var(--kaios-padding);
+    margin: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Éléments focusables - optimisés pour navigation au clavier */
+.lt-kaios a:focus,
+.lt-kaios button:focus,
+.lt-kaios input:focus,
+.lt-kaios select:focus,
+.lt-kaios textarea:focus,
+.lt-kaios [tabindex]:focus,
+.lt-kaios .lt-focusable:focus {
+    outline: var(--kaios-focus-outline);
+    outline-offset: 2px;
+    text-decoration: none;
+    box-shadow: none;
+    color: var(--primary-color);
+    background-color: rgba(0, 115, 178, 0.05);
+}
+
+/* Zones cliquables plus grandes pour les touches physiques */
+.lt-kaios a,
+.lt-kaios button,
+.lt-kaios input[type="button"],
+.lt-kaios input[type="submit"],
+.lt-kaios [role="button"],
+.lt-kaios .lt-focusable {
+    min-height: var(--kaios-button-height);
+    padding: 6px 8px;
+    margin: 4px 0;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Optimisation des images */
+.lt-kaios img {
+    max-width: 100%;
+    height: auto;
+}
+
+.lt-kaios .lt-lazy-image {
+    background-color: #f0f0f0;
+    min-height: 30px;
+}
+
+/* Navigation pagination */
+.lt-kaios .lt-pagination-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 5px;
+    border-top: 1px solid #ddd;
+}
+
+.lt-kaios .lt-prev-page,
+.lt-kaios .lt-next-page {
+    min-width: 80px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.lt-kaios .lt-prev-page:disabled,
+.lt-kaios .lt-next-page:disabled {
+    background-color: #ccc;
+    color: #666;
+}
+
+.lt-kaios .lt-page-info {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Disposition de page simplifiée */
+.lt-kaios .site-header,
+.lt-kaios .main-navigation {
+    padding: var(--kaios-padding);
+}
+
+.lt-kaios .site-branding {
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+.lt-kaios #content {
+    padding: var(--kaios-padding);
+}
+
+/* Masquer les éléments trop compliqués pour KaiOS */
+.lt-kaios .slideshow, 
+.lt-kaios .slider,
+.lt-kaios .carousel,
+.lt-kaios video,
+.lt-kaios .woocommerce-product-gallery,
+.lt-kaios .wpcf7 {
+    display: block !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Formulaires optimisés */
+.lt-kaios input,
+.lt-kaios select,
+.lt-kaios textarea {
+    font-size: var(--kaios-text-size);
+    padding: 8px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 4px 0;
+}
+
+.lt-kaios label {
+    display: block;
+    margin: 6px 0 2px 0;
+    font-weight: bold;
+}
+
+/* Mode d'économie de mémoire */
+.lt-kaios-low-memory .lt-nonessential {
+    display: none !important;
+}
+
+.lt-kaios-low-memory .sidebar,
+.lt-kaios-low-memory .widget-area,
+.lt-kaios-low-memory .related-products,
+.lt-kaios-low-memory .comments-area {
+    display: none !important;
+}
+
+.lt-kaios-low-memory img:not(.lt-critical-image) {
+    max-height: 200px;
+}
+
+/* Navigation d'onglets optimisée pour KaiOS */
+.lt-kaios .lt-tabs {
+    display: block;
+    overflow: hidden;
+}
+
+.lt-kaios .lt-tab-navigation {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.lt-kaios .lt-tab {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+.lt-kaios .lt-tab.active {
+    border-bottom-color: var(--primary-color);
+    font-weight: bold;
+}
+
+.lt-kaios .lt-tab-content {
+    padding: 10px 0;
+}
+
+/* Indicateurs d'aide pour la navigation au clavier */
+.lt-kaios-2-5 .softkey {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background-color: #f1f1f1;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+}
+
+.lt-kaios-2-5 .softkey div {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
+    color: #333;
+    border-top: 1px solid #ddd;
+}
+
+/* Raccourcis clavier */
+.lt-kaios .keyboard-shortcuts {
+    background-color: #f5f5f5;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.lt-kaios .keyboard-shortcuts ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lt-kaios .keyboard-shortcuts li {
+    padding: 2px 0;
+}
+
+.lt-kaios .key {
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0 4px;
+    margin: 0 2px;
+    font-size: 11px;
+}
+
+/* Optimisations pour KaiOS 2.5+ */
+.lt-kaios-2-5 .navigation {
+    display: flex;
+    flex-direction: column;
+}
+
+.lt-kaios-2-5 .nav-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.lt-kaios-2-5 .nav-menu li {
+    margin: 2px 0;
+}
+
+/* Optimisations pour KaiOS 3.0+ */
+.lt-kaios-3-0 {
+    /* Designs plus modernes pour KaiOS 3.0+ */
+    --kaios-text-size: 18px;
+    --kaios-button-height: 32px;
+}
+
+/* Le lien actuellement focusé utilise les couleurs KaiOS */
+.lt-kaios-3-0 *:focus {
+    background-color: var(--kaios-highlight-color) !important;
+    color: white !important;
+    outline-color: var(--kaios-highlight-color) !important;
+}
+
+/* Ajustements pour les appareils spécifiques */
+@media screen and (max-width: 240px) {
+    /* KaiOS sur les plus petits écrans (Nokia 8110, Nokia 2720) */
+    .lt-kaios {
+        --kaios-text-size: 14px;
+        --kaios-padding: 5px;
+    }
+    
+    .lt-kaios h1 {
+        font-size: 18px;
+    }
+    
+    .lt-kaios h2 {
+        font-size: 16px;
+    }
+    
+    .lt-kaios h3, 
+    .lt-kaios h4, 
+    .lt-kaios h5, 
+    .lt-kaios h6 {
+        font-size: 15px;
+    }
+    
+    .lt-kaios .lt-tab {
+        padding: 5px;
+        font-size: 12px;
+    }
+}
+
+/* Simplification pour les appareils KaiOS à faible mémoire */
+.lt-kaios-low-memory {
+    --kaios-text-size: 14px;
+}
+
+.lt-kaios-low-memory .site-header {
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.lt-kaios-low-memory .wp-block-image,
+.lt-kaios-low-memory .wp-post-image {
+    max-height: 150px;
+    overflow: hidden;
+}
+
+/* Réduction des animations pour économiser batterie/performances */
+.lt-reduce-motion *,
+.lt-kaios-optimized * {
+    transition-duration: 0.1s !important;
+    animation-duration: 0.1s !important;
+    animation-iteration-count: 1 !important;
+}
+
+.lt-kaios-low-memory * {
+    transition: none !important;
+    animation: none !important;
+}

@@ -1,0 +1,8 @@
+# .gitignore
+node_modules/
+vendor/
+.phpunit.result.cache
+.vscode/
+*.log
+life-travel-excursion/vendor/
+life-travel-excursion/composer.lock

@@ -1,0 +1,311 @@
+/**
+ * Life Travel - Styles adaptatifs (Connexion LENTE)
+ * 
+ * Ce fichier contient les styles fortement optimisés pour les utilisateurs avec une 
+ * connexion lente ou limitée en données. Il supprime les animations, réduit les images
+ * et simplifie l'interface pour une expérience allégée mais fonctionnelle.
+ * Particulièrement adapté pour le contexte camerounais.
+ *
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* Variables CSS pour l'expérience minimale */
+:root {
+    --lt-transition-speed: 0s;
+    --lt-animation-speed: 0;
+    --lt-image-quality: 'low';
+    --lt-enable-effects: 0;
+    --lt-parallax-strength: 0;
+    --lt-video-quality: 'none';
+}
+
+/* Indicateur de connexion - visible uniquement en mode admin */
+.admin-bar .connection-indicator {
+    position: fixed;
+    top: 32px;
+    right: 10px;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 99999;
+}
+
+.admin-bar .connection-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background: #f44336;
+}
+
+/* Désactiver toutes les animations */
+.fade-in, .slide-in, .zoom-in, .animate__animated {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Désactiver tous les effets de survol */
+.card, .excursion-item, .gallery-item, .testimonial, .feature-box,
+.btn, .nav-link, a, button, .animated-icon, .image-overlay {
+    transition: none !important;
+}
+
+.card:hover, .excursion-item:hover, .gallery-item:hover, .testimonial:hover, .feature-box:hover,
+.btn:hover, .nav-link:hover, a:hover, button:hover, .animated-icon:hover, .image-overlay:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Mode texte élevé */
+.connection-slow {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Désactiver les arrière-plans parallax */
+.parallax-section {
+    background-attachment: scroll !important;
+    background-image: none !important;
+    background-color: #f5f5f5 !important;
+}
+
+/* Remplacer les images par des placeholders ou des versions basse qualité */
+img:not(.essential-image) {
+    filter: contrast(0.9) brightness(1.05); /* Légère correction pour les images basse qualité */
+}
+
+.background-image, .hero-background, .section-background {
+    background-image: none !important;
+    background-color: #f5f5f5 !important;
+}
+
+.image-overlay::before {
+    display: none;
+}
+
+/* Supprimer les vidéos d'arrière-plan */
+.background-video, video:not(.essential-video) {
+    display: none !important;
+}
+
+.background-video-fallback {
+    display: none !important;
+}
+
+.video-container {
+    background: #eee;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-container::before {
+    content: "Vidéo non chargée pour économiser les données";
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Simplifier la galerie au maximum */
+.gallery-grid, .gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+}
+
+.gallery-masonry {
+    column-count: 1; /* Une seule colonne pour masonry */
+}
+
+.gallery-grid img, .gallery-masonry img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+}
+
+/* Supprimer les transitions et animations */
+* {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Simplifier les équipes */
+.team-member .member-info {
+    position: static;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    transform: none !important;
+}
+
+/* Slider ultra-simplifié */
+.fullscreen-slider {
+    height: auto;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.fullscreen-slider video {
+    display: none;
+}
+
+.fullscreen-slider .slide-image {
+    display: block !important;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+/* Contenu de carte simplifié */
+.card-overlay .card-content {
+    position: static;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+}
+
+/* Désactiver lightbox */
+.lightbox-enabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Navigation simplifiée */
+.sticky-nav {
+    position: static;
+}
+
+/* Suppression complète des éléments décoratifs */
+.decorative-element, .decoration, .accent, .flourish {
+    display: none !important;
+}
+
+/* Loader minimal */
+.loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: none !important;
+}
+
+.loader::after {
+    content: "...";
+}
+
+/* Typographie réduite */
+body {
+    --lt-heading-scale: 0.9;
+    --lt-text-scale: 0.95;
+}
+
+h1 { font-size: calc(2rem * var(--lt-heading-scale)); } /* Réduction des tailles */
+h2 { font-size: calc(1.7rem * var(--lt-heading-scale)); }
+h3 { font-size: calc(1.5rem * var(--lt-heading-scale)); }
+h4 { font-size: calc(1.3rem * var(--lt-heading-scale)); }
+h5 { font-size: calc(1.1rem * var(--lt-heading-scale)); }
+h6 { font-size: calc(1rem * var(--lt-heading-scale)); }
+p, li, td, th, input, select, textarea { font-size: calc(1rem * var(--lt-text-scale)); }
+
+/* Message d'économie de données */
+.data-saver-message {
+    display: block;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.data-saver-message::before {
+    content: "📱 ";
+}
+
+/* Classes utilitaires pour l'interface utilisateur */
+.connection-slow .slow-only { display: block; }
+.connection-slow .fast-only,
+.connection-slow .medium-only,
+.connection-slow .offline-only { display: none; }
+
+.requires-connection-message {
+    display: block;
+    background: #fff3cd;
+    border: 1px solid #ffecb5;
+    color: #856404;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 3px;
+}
+
+.offline-notification { display: none; }
+.offline-alternative { display: none; }
+
+/* Optimisations pour réduire la bande passante */
+.carousel, .slider {
+    display: none;
+}
+
+.single-carousel-item {
+    display: block !important;
+}
+
+/* Ajuster la largeur maximale du conteneur principal */
+.container, .container-fluid {
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Espacement réduit */
+.section, .block, .widget, .feature {
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Réduire les marges et paddings */
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.col, [class*="col-"] {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Simplifier les ombres et bordures */
+.shadow, .card, .box {
+    box-shadow: none !important;
+    border: 1px solid #ddd;
+}
+
+/* Simplifier le rendu des formulaires */
+select, input, textarea, button {
+    border-radius: 3px;
+}
+
+/* Simplifier la mise en page des tables */
+table, td, th {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 5px;
+    border: 1px solid #ddd;
+}

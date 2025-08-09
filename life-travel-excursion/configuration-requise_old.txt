@@ -1,0 +1,478 @@
+===== ÉLÉMENTS DE CONFIGURATION REQUIS POUR LIFE TRAVEL EXCURSION =====
+
+Dernière mise à jour: 29/04/2025 (Version 2.3.6)
+
+==== 1. CONFIGURATION DES PASSERELLES IWOMIPAY ====
+
+Pour offrir à vos clients le choix entre MTN Mobile Money (MoMo) et Orange Money (OM), vous devez installer et configurer les deux plugins IwomiPay séparément:
+
+--- PLUGIN MTN MOBILE MONEY (MOMO) ---
+
+* Dossier d'installation: `payment-gateways/iwomipay-momo-woocommerce/`
+* Plugin WordPress à installer: Fichier ZIP `iwomipay-momo-woocommerce.zip`
+
+Configuration Mode Production:
+* Nom d'utilisateur IwomiPay: [AJOUT_IMPORTANT - Votre identifiant IwomiPay pour MTN MoMo]
+* Mot de passe IwomiPay: [AJOUT_IMPORTANT - Votre mot de passe IwomiPay pour MTN MoMo]
+* Clé d'identification (Credi Key): [AJOUT_IMPORTANT - Votre clé d'API pour MTN MoMo]
+* Secret d'identification (Credi Secret): [AJOUT_IMPORTANT - Votre secret d'API pour MTN MoMo]
+
+Configuration Mode Sandbox:
+* Nom d'utilisateur IwomiPay Sandbox: [AJOUT_IMPORTANT - Identifiant de test pour MTN MoMo]
+* Mot de passe IwomiPay Sandbox: [AJOUT_IMPORTANT - Mot de passe de test pour MTN MoMo]
+* Clé d'identification Sandbox: [AJOUT_IMPORTANT - Clé API de test pour MTN MoMo]
+* Secret d'identification Sandbox: [AJOUT_IMPORTANT - Secret API de test pour MTN MoMo]
+
+--- PLUGIN ORANGE MONEY (OM) ---
+* Le gateway Orange Money est maintenant intégré directement dans le plugin Life-Travel-Excursion
+* Icône de paiement : `/assets/img/orange-money.png` (modifiable via Customizer dans "Paiements")
+* Pour personnaliser les icônes de paiement (CB, MoMo, OM) : Customizer → Design → Upload d’icônes de paiement
+* Aucun dossier séparé n’est nécessaire désormais
+
+Configuration Mode Production:
+* Nom d'utilisateur IwomiPay: [AJOUT_IMPORTANT - Votre identifiant IwomiPay pour Orange Money]
+* Mot de passe IwomiPay: [AJOUT_IMPORTANT - Votre mot de passe IwomiPay pour Orange Money]
+* Clé d'identification (Credi Key): [AJOUT_IMPORTANT - Votre clé d'API pour Orange Money]
+* Secret d'identification (Credi Secret): [AJOUT_IMPORTANT - Votre secret d'API pour Orange Money]
+
+Configuration Mode Sandbox:
+* Nom d'utilisateur IwomiPay Sandbox: [AJOUT_IMPORTANT - Identifiant de test pour Orange Money]
+* Mot de passe IwomiPay Sandbox: [AJOUT_IMPORTANT - Mot de passe de test pour Orange Money]
+* Clé d'identification Sandbox: [AJOUT_IMPORTANT - Clé API de test pour Orange Money]
+* Secret d'identification Sandbox: [AJOUT_IMPORTANT - Secret API de test pour Orange Money]
+
+--- URLs API (communes aux deux passerelles) ---
+* URL de base de l'API (Production): [AJOUT_IMPORTANT - Généralement https://api.iwomipay.com/]
+* URL de base de l'API (Sandbox): [AJOUT_IMPORTANT - Généralement https://sandbox.iwomipay.com/]
+
+--- Environnement ---
+* Mode d'environnement: [AJOUT_IMPORTANT - "production" ou "sandbox" selon vos besoins]
+
+==== 2. CONFIGURATION TWILIO POUR NOTIFICATIONS SMS ET WHATSAPP ====
+
+Pour que Twilio fonctionne correctement, vous devez fournir:
+
+* Twilio Account SID: [AJOUT_IMPORTANT - Votre identifiant de compte Twilio]
+* Twilio Auth Token: [AJOUT_IMPORTANT - Votre jeton d'authentification Twilio]
+* Numéro de téléphone Twilio: [AJOUT_IMPORTANT - Votre numéro de téléphone Twilio avec indicatif pays (+237 etc.)]
+* Numéro WhatsApp Business: [AJOUT_IMPORTANT - Votre numéro WhatsApp Business activé chez Twilio]
+* Installation de la bibliothèque Twilio: [AJOUT_IMPORTANT - Exécutez "composer require twilio/sdk" dans le répertoire du plugin]
+
+--- Configuration de secours ---
+* Méthode de secours préférée: [Email, API REST ou Email-to-SMS]
+* Clé API (si méthode API REST): [AJOUT_IMPORTANT - Si vous utilisez une API alternative]
+* URL Endpoint API (si méthode API REST): [AJOUT_IMPORTANT - Si vous utilisez une API alternative]
+* Domaine Email2SMS (si méthode Email-to-SMS): [AJOUT_IMPORTANT - Le domaine de votre service Email-to-SMS]
+
+==== 3. DÉPENDANCES REQUISES ====
+
+Pour que le plugin fonctionne correctement, les éléments suivants sont nécessaires:
+
+* PHP 8.0 ou supérieur
+* WordPress 6.0 ou supérieur
+* WooCommerce 8.0 ou supérieur
+* Extension PHP curl activée
+* Extension PHP json activée
+* Composer (pour installer les bibliothèques externes)
+
+Dépendances optionnelles mais recommandées:
+* Extension PHP fileinfo (pour la détection des types MIME)
+* Extension PHP gd (pour la manipulation des images)
+* Extension PHP intl (pour la gestion avancée de l'internationalisation)
+
+Note: Si les extensions fileinfo et gd ne sont pas disponibles, le système utilisera automatiquement l'export CSV au lieu de l'export Excel pour les rapports.
+
+==== 4. INSTRUCTIONS D'ACTIVATION ====
+
+1. Assurez-vous que toutes les clés et identifiants sont configurés correctement avant d'activer les passerelles
+2. Testez d'abord en mode Sandbox avant de passer en production
+3. Vérifiez que les webhooks IwomiPay sont correctement configurés pour recevoir les notifications de paiement
+4. Pour Orange Money, assurez-vous d'avoir les identifiants spécifiques à ce service
+
+==== 5. AUTHENTIFICATION UTILISATEUR ====
+* Méthodes supportées via Customizer : Email (code à 6 chiffres), SMS (Twilio), Facebook OAuth
+* Paramétrage :
+  - Activer/désactiver email, SMS, Facebook dans Customizer → Design → Authentification
+  - Pour Email : WP Mail doit être configuré (SMTP plugin recommandé)
+  - Pour SMS : configurer Twilio (Account SID, Auth Token, téléphone) ou choisir le mode de secours Email-to-SMS
+  - Pour Facebook : renseigner Facebook App ID dans Customizer
+* Flux d'utilisation :
+  1. Saisie identifiant (email ou téléphone)
+  2. Envoi et réception du code
+  3. Validation du code et création/connexion de l'utilisateur
+* Intégration avec récupération des paniers abandonnés :
+  - Les paniers sont automatiquement associés à l'utilisateur après connexion
+  - L'historique des réservations est accessible dans "Mes excursions"
+
+==== 6. ASSET PIPELINE ET DÉPENDANCES FRONT-END ====
+* Node.js & npm (version 14+)
+* Exécuter `npm install` puis `npm run build` à la racine du plugin pour compiler JS/CSS via Webpack
+* Les images et icônes sont stockées dans `/assets/img/`, puis bundlées dans `/assets/dist`.
+
+==== 7. TESTS UNITAIRES ET INTÉGRATION ====
+* PHP 7.2+ requis
+* Installer Composer pour gérer PHPUnit : `composer install`
+* Exécuter `vendor/bin/phpunit` pour lancer la suite de tests du plugin
+
+==== 8. UI/UX AVANCÉE : CHECKOUT & MY ACCOUNT & CALCULATEUR DE PRIX ====
+
+Pour bénéficier des fonctionnalités d'amélioration du checkout et des comptes clients :
+
+--- Amélioration du Checkout ---
+* Fonctionnalités : étapes visuelles, validation avancée, récupération des paniers abandonnés
+* Activation : Activer dans Customizer → Checkout → Activer l'amélioration du checkout
+* Configuration :
+  - Couleurs : Customizer → Checkout → Thème et couleurs
+  - Étapes : Customizer → Checkout → Personnalisation des étapes
+  - Textes : Customizer → Checkout → Messages et libellés
+* Compatibilité : Tous les navigateurs modernes (Chrome, Firefox, Safari, Edge)
+* Version mobile : Pleinement compatible et optimisée pour les appareils mobiles
+
+--- Amélioration des comptes clients ---
+* Fonctionnalités : Onglets personnalisés "Mes excursions" et "Mes points de fidélité"
+* Configuration :
+  - Activer dans Customizer → Comptes clients → Activer l'amélioration My Account
+  - Personnaliser l'ordre des onglets dans Customizer → Comptes clients → Ordre des onglets
+  - Ajouter/supprimer des onglets dans Customizer → Comptes clients → Onglets disponibles
+
+--- Récupération des paniers abandonnés ---
+* Fonctionnalités : Sauvegarde automatique des paniers, récupération après déconnexion
+* Modes de stockage :
+  - Pour utilisateurs connectés : Base de données WordPress
+  - Pour utilisateurs anonymes : Cookies et LocalStorage
+* Robustesse améliorée :
+  - Validation et assainissement complets des données
+  - Gestion des connexions réseau intermittentes
+  - Contrôles de sécurité avancés (nonce CSRF, validation JSON)
+  - Journalisation sécurisée des erreurs
+  - Support de différents formats de données de panier
+* Configuration :
+  - Intervalle de sauvegarde : Customizer → Checkout → Intervalle de sauvegarde (30s par défaut)
+  - Durée de conservation : Customizer → Checkout → Durée de conservation (7 jours par défaut)
+  - Données à sauvegarder : Customizer → Checkout → Champs à sauvegarder
+
+--- Prérequis techniques ---
+* JavaScript activé côté client
+* Capacité localStorage du navigateur non désactivée
+* API REST WordPress accessible
+* Cookies autorisés pour fonctionnalités complètes
+* Compatibilité avec les serveurs de cache (si utilisés)
+
+--- Calculateur de prix dynamique ---
+* Fonctionnalités : Calcul en temps réel des prix en fonction des paramètres d'administration
+* Éléments pris en compte :
+  - Type d'excursion (privée/groupe)
+  - Nombre de participants et tranches tarifaires
+  - Extras et activités sélectionnés
+  - Prix saisonniers selon les dates
+  - Remises par groupe
+* Compatibilité :
+  - Appareils mobiles et desktop
+  - Responsive Design
+  - Compatibilité offline partielle
+* Intégration dans :
+  - Pages produit
+  - Widget de réservation rapide
+  - Shortcodes personnalisables
+
+--- Fichiers concernés ---
+* Templates : `/templates/checkout/`, `/templates/my-account/` et `/templates/booking-form/`
+* Assets JS : `/assets/js/checkout-enhancement.js`, `/assets/js/my-account.js` et `/assets/js/price-calculator.js`
+* Assets CSS : `/assets/css/checkout-enhancement.css`, `/assets/css/my-account.css` et `/assets/css/booking-form.css`
+* PHP : `/includes/frontend/checkout-enhancement.php`, `/includes/frontend/my-account-tabs.php`, `/includes/frontend/price-service.php` et `/includes/frontend/availability-manager.php`
+
+==== 9. SYSTÈME DE NOTIFICATIONS AVANCÉ ====
+
+--- Notifications administratives ---
+* Fonctionnalités : Notification des administrateurs pour nouvelles réservations et changements de statut
+* Canaux : Email, SMS, WhatsApp (via Twilio)
+* Export de données : Génération de fichiers CSV détaillés pour chaque réservation
+* Configuration :
+  - WooCommerce → Notifications → Configuration de base
+  - Liste des destinataires configurable (email et numéro de téléphone)
+  - Préférences par canal pour chaque destinataire
+
+--- Notifications utilisateur ---
+* Fonctionnalités : Notifications paramétrables par l'utilisateur
+* Types de notifications : Commandes, réservations, rappels d'excursion, compte, sécurité
+* Canaux : Email, SMS, WhatsApp selon les préférences utilisateur
+* Configuration :
+  - Nouvel onglet "Notifications" dans l'espace client
+  - Activation/désactivation par type et par canal
+
+==== 10. GESTION DES ÉLÉMENTS VISUELS ET MÉDIAS ====
+
+--- Gestionnaire de médias avancé ---
+* Fonctionnalités : Interface d'administration pour gérer les médias du site
+* Localisation : Apparence → Médias Life Travel
+* Options configurables :
+  - Logo du site (formats PNG/SVG supportés)
+  - Images d'arrière-plan principales
+  - Qualité des images (60-100%)
+  - Formats d'image supportés (JPEG, PNG, WebP, SVG)
+* Fichiers concernés :
+  - `/includes/media-manager.php`
+  - `/assets/js/admin-media.js`
+  - `/assets/css/admin-media.css`
+
+--- Structure des assets visuels ---
+* Organisation des dossiers :
+  - `/assets/img/logos/` : Logo principal et variations
+  - `/assets/img/backgrounds/` : Arrière-plans et grandes images
+  - `/assets/img/gallery/` : Images pour les galeries
+  - `/assets/img/icons/` : Icônes SVG
+  - `/assets/video/` : Fichiers vidéo
+* Formats préférés :
+  - Logos : PNG transparent ou SVG
+  - Icônes : SVG (pour performance optimale)
+  - Photos : WebP ou JPEG optimisé
+  - Vidéos : MP4 avec variantes de qualité
+
+--- Shortcodes pour éléments visuels ---
+* Galerie d'images : `[life_travel_gallery ids="1,2,3" columns="3" captions="true" animation="fade"]`
+* Logo : `[life_travel_logo version="color" width="240" link="yes"]`
+* Vidéo : `[life_travel_video youtube="ID_VIDEO" width="100%" height="450" poster="URL_IMAGE"]`
+* Icône : `[life_travel_icon name="culture" color="#0073B2" size="large"]`
+* Template d'exemple : `/templates/image-gallery-template.php`
+* Fichier principal : `/includes/shortcodes.php`
+
+--- Optimisation des images ---
+* Tailles d'images personnalisées :
+  - `life-travel-background` (1920×1080)
+  - `life-travel-excursion-card` (600×400)
+  - `life-travel-gallery` (800×600)
+  - `life-travel-thumbnail` (300×200)
+* Chargement différé (lazy loading) automatique
+* Compression d'images JPEG paramétrable
+* Support SVG natif dans WordPress
+
+==== 11. OPTIMISATIONS POUR CONNEXIONS LENTES (CAMEROUN) ====
+
+--- Détection de vitesse de connexion ---
+* Fonctionnalités : Détection automatique de la qualité de connexion
+* Types de connexion identifiés :
+  - Rapide (< 200ms)
+  - Moyenne (200-1000ms)
+  - Lente (> 1000ms)
+  - Hors-ligne
+* Adaptation automatique :
+  - Réduction de qualité d'image sur connexions lentes
+  - Remplacement des vidéos par des placeholders
+  - Désactivation des animations lourdes
+  - Prioritisation du contenu critique
+* Fichiers concernés :
+  - `/includes/network-optimization.php`
+  - `/assets/js/connection-manager.min.js`
+  - `/assets/css/slow-connection.css`
+
+--- Mode hors-ligne partiel ---
+* Fonctionnalités : Accessibilité maintenue lors de connexions intermittentes
+* Mécanismes :
+  - Stockage des informations essentielles en local
+  - Synchronisation intelligente lors du retour en ligne
+  - Indicateur visuel de statut de connexion
+  - Messages explicatifs pour l'utilisateur
+* Compatibilité : Tous navigateurs modernes (Chrome, Firefox, Safari, Edge)
+
+--- Optimisation des médias ---
+* Placeholders SVG vectoriels ultra-légers (< 2KB)
+* Chargement progressif des images
+* Compression GZIP automatique
+* Préchargement sélectif des ressources critiques
+* Adaptation automatique du niveau de qualité des images
+
+==== 12. ADAPTABILITÉ MOBILE AVANCÉE ====
+
+--- Support multi-appareils ---
+* Fonctionnalités : Détection et adaptation intelligente aux appareils
+* Types d'appareils supportés :
+  - Desktop (Windows, Mac, Linux)
+  - Tablette (iOS, Android)
+  - Mobile (iOS, Android)
+* Orientations supportées :
+  - Portrait (styles optimisés)
+  - Paysage (interface adaptée)
+
+--- Optimisations tactiles ---
+* Agrandissement automatique des zones tactiles (min 44px)
+* Espacements adaptés pour éviter les faux clics
+* Boutons plus larges sur interfaces tactiles
+* Adaptation des menus et de la navigation
+
+--- Responsive design ---
+* Grilles flexibles et adaptatives
+* Images responsives avec srcset et sizes
+* Typographie fluide (rem et viewport units)
+* Media queries optimisés pour les breakpoints clés :
+  - Mobile : < 480px
+  - Tablette : 481-768px
+  - Desktop : > 769px
+
+--- Performances mobile ---
+* Réduction de la consommation de batterie
+* Optimisation pour les réseaux 2G/3G
+* Réduction de l'utilisation de JavaScript côté client
+* Support du mode économie de données des navigateurs
+
+==== 13. INSTRUCTIONS D'INSTALLATION DES ÉLÉMENTS VISUELS ====
+
+1. Télécharger les fichiers de médias dans les répertoires appropriés :
+   - Logo principal : `/assets/img/logos/logo-main.png`
+   - Icônes : `/assets/img/icons/`
+   - Images de galerie : `/assets/img/gallery/`
+   - Arrière-plans : `/assets/img/backgrounds/`
+
+2. Activer et configurer les fonctionnalités via l'administration WordPress :
+   - Aller à "Apparence → Médias Life Travel"
+   - Configurer le logo du site et les images principales
+   - Régler la qualité d'image adaptée aux connexions cibles
+
+3. Utiliser les shortcodes dans vos pages et articles :
+   - Pour les galeries : `[life_travel_gallery]`
+   - Pour le logo : `[life_travel_logo]`
+   - Pour les vidéos : `[life_travel_video]`
+   - Pour les icônes : `[life_travel_icon]`
+
+4. Vérification et test :
+   - Tester sur différents appareils (desktop, tablette, mobile)
+   - Vérifier les performances sur connexions lentes
+   - Valider l'affichage en modes portrait et paysage
+   - Tester le mode hors-ligne
+  - Détection automatique des canaux disponibles
+
+--- Éditeur de modèles de notification ---
+* Fonctionnalités : Personnalisation des modèles de notification sans connaissance technique
+* Interface : WooCommerce → Modèles de notification
+* Fonctionnalités :
+  - Modèles distincts par canal (email, SMS, WhatsApp)
+  - Prévisualisation en temps réel
+  - Insertion de variables dynamiques
+  - Réinitialisation aux valeurs par défaut
+
+--- Configuration requise pour les notifications ---
+* Email : Serveur SMTP configuré (plugin SMTP recommandé)
+* SMS/WhatsApp : Compte Twilio avec numéro et token valides
+* Administration : Droits d'accès aux pages administratives WordPress
+* Espace client : Onglet "Notifications" dans Mon Compte
+
+==== 10. ADMINISTRATION UNIFIÉE DES EXCURSIONS ====
+
+--- Interface d'administration centralisée ---
+* Fonctionnalités : Configuration unifiée des excursions (privées et de groupe)
+* Accès : WooCommerce → Life Travel → Types d'excursions
+* Sections principales :
+  - Configuration globale
+  - Excursions de groupe
+  - Excursions privées
+  - Options de réservation
+  - Prix saisonniers
+  - Extras et activités
+
+--- Configuration globale des excursions ---
+* Paramètres communs à tous les types d'excursions :
+  - Devise et formatage des prix
+  - Limitations de participants (minimum, maximum)
+  - Délai minimum de réservation
+  - Jours disponibles et exclusions
+
+--- Configuration spécifique par type ---
+* Excursions de groupe :
+  - Taille minimale/maximale des groupes
+  - Seuils de remise par taille de groupe
+  - Pourcentages de remise configurables
+
+* Excursions privées :
+  - Niveaux de prix par tranches de participants
+  - Stratégie de tarification personnalisable
+  - Remises pour groupes privés
+
+--- Prix saisonniers et règles tarifaires ---
+* Création de périodes saisonnières avec dates de début/fin
+* Modificateurs de prix en pourcentage ou montant fixe
+* Application automatique selon le calendrier
+
+--- Extras et activités ---
+* Gestion des options complémentaires :
+  - Nombre maximum d'extras autorisés
+  - Nombre maximum d'activités autorisées
+  - Options obligatoires ou optionnelles
+
+--- Intégration avec le frontend ---
+* Les paramètres d'administration sont automatiquement répercutés dans :
+  - Calculateur de prix dynamique
+  - Vérifications de disponibilité
+  - Formulaires de réservation
+  - Paniers et checkout
+
+--- Fichiers et composants concernés ---
+* Administration : `/admin/tabs/excursions-tab*.php`
+* Frontend : `/includes/frontend/price-service.php`, `/includes/frontend/availability-manager.php`
+* Intégration : `/includes/integration-loader.php`
+
+--- Sécurité et robustesse ---
+* Validation complète des données côté client et serveur
+* Protection contre les attaques CSRF via nonces
+* Assainissement des entrées utilisateur
+* Journalisation des erreurs et problèmes
+* Synchronisation sécurisée entre admin et frontend
+
+==== 11. SUPPORT MULTILINGUE AVEC TRANSLATEPRESS ====
+
+--- Présentation générale ---
+* Fonctionnalités : Site bilingue français/anglais avec détection automatique de la langue
+* Plugin requis : TranslatePress (version gratuite)
+* Plugin complémentaire : TP LibreTranslate Connect (pour traduction automatique gratuite)
+* Fichiers principaux :
+  - `/assets/css/translatepress-compat.css` (styles d'intégration)
+  - `/assets/translation/excursion-dictionary.php` (dictionnaire spécialisé)
+  - `/includes/frontend/translatepress-cart-integration.php` (intégration panier)
+
+--- Installation et configuration ---
+* Étape 1 : Installer TranslatePress via Extensions > Ajouter
+* Étape 2 : Configuration initiale
+  - Réglages > TranslatePress > Onglet "Réglages"
+  - Langue par défaut : Français
+  - Ajouter l'anglais comme langue secondaire
+  - Activer la détection automatique de la langue du navigateur
+  - Configurer la structure d'URL : avec `/fr/` et `/en/`
+* Étape 3 : Installer TP LibreTranslate Connect pour la traduction automatique
+  - Configurer une URL LibreTranslate publique ou auto-hébergée
+  
+--- Intégration avec le thème et WooCommerce ---
+* Sélecteur de langue : Apparaitra automatiquement dans l'en-tête
+* Compatibilité WooCommerce :
+  - Traduction des produits et fiches d'excursion
+  - Support des champs personnalisés (métadonnées d'excursion)
+  - Traduction des messages de commande
+  - Intégration des paniers abandonnés multilingues
+  
+--- Maintenance du contenu multilingue ---
+* Dictionnaire personnalisé de termes d'excursion pré-configuré
+* Méthode de traduction :
+  - Traduction automatique initiale via LibreTranslate
+  - Edition manuelle des traductions importantes via l'interface visuelle
+  - Accès : Admin Bar > "Traduire la page" sur chaque page
+* Tests recommandés :
+  - Processus complet d'achat dans les deux langues
+  - Détection automatique de langue sur différents navigateurs
+  - Compatibilité mobile du sélecteur de langue
+
+--- Compatibilité avec les fonctionnalités existantes ---
+* Paniers abandonnés : Support complet en français et anglais
+* Emails de notification : Envoyés dans la langue du client
+* API REST : Détection automatique de la langue via paramètre 'lang'
+* Prix et devises : Affichés selon le format de la langue
+* Compatibilité complète avec le thème et le plugin Life Travel
+
+==== 12. RÉCAPITULATIF ENVIRONNEMENT ====
+* WordPress 6.0+ / WooCommerce 8.0+
+* PHP 8.0+
+* Extensions PHP : curl, json (fileinfo et gd recommandées)
+* Node.js & npm pour le front-end
+* Composer pour l'installation des dépendances
+* WP Mail (SMTP) pour envoi d'emails
+* Twilio SDK (via Composer) pour SMS et WhatsApp
+* WebPush SDK (via Composer) pour les notifications push
+* JavaScript activé côté client (obligatoire pour UX avancée)
+* LocalStorage autorisé pour récupération des paniers
+* TranslatePress pour le support multilingue

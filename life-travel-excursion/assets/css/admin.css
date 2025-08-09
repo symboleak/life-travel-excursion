@@ -1,0 +1,436 @@
+/**
+ * Styles du tableau de bord administrateur unifié Life Travel
+ *
+ * Ce fichier contient les styles CSS pour l'interface d'administration
+ * unifiée de Life Travel, conçue pour une utilisation dans un contexte
+ * de connexions variables (adapté au Cameroun).
+ *
+ * @package Life Travel Excursion
+ * @version 2.3.7
+ */
+
+/* Styles de base */
+.life-travel-admin-wrap {
+    margin: 20px 0;
+    max-width: 1200px;
+}
+
+/* Navigation par onglets */
+.life-travel-admin-tabs {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccd0d4;
+}
+
+.life-travel-admin-tabs ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.life-travel-admin-tabs li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.life-travel-admin-tabs a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #23282d;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-bottom: -1px;
+}
+
+.life-travel-admin-tabs li.active a {
+    border-color: #ccd0d4;
+    background: #fff;
+    border-bottom-color: #fff;
+}
+
+/* Sections */
+.life-travel-admin-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+}
+
+.life-travel-admin-intro {
+    margin-bottom: 25px;
+}
+
+.life-travel-admin-intro h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+/* Statistiques */
+.life-travel-admin-stats {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px 20px;
+}
+
+.life-travel-stat-box {
+    flex: 1 1 200px;
+    background: #f8f9fa;
+    border: 1px solid #e2e4e7;
+    padding: 15px;
+    margin: 0 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.life-travel-stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #0073aa;
+}
+
+.life-travel-stat-label {
+    display: block;
+    color: #555;
+}
+
+/* Champs de formulaire */
+.life-travel-admin-field-group {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.life-travel-admin-field-group h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.life-travel-admin-field {
+    margin-bottom: 20px;
+}
+
+.life-travel-admin-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* Tooltip */
+.life-travel-tooltip {
+    display: inline-block;
+    background: #f1f1f1;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 11px;
+    cursor: help;
+    position: relative;
+    margin-left: 5px;
+    color: #666;
+}
+
+.life-travel-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 10;
+    font-weight: normal;
+    min-width: 200px;
+    white-space: normal;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Sélecteurs de médias */
+.life-travel-media-field {
+    margin-top: 10px;
+}
+
+.life-travel-media-preview {
+    width: 150px;
+    height: 100px;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.life-travel-media-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.life-travel-favicon-preview {
+    width: 80px;
+    height: 80px;
+}
+
+.life-travel-no-image {
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+}
+
+.life-travel-media-buttons {
+    margin-bottom: 10px;
+}
+
+.life-travel-media-buttons button {
+    margin-right: 5px;
+}
+
+/* Curseurs de plage */
+.life-travel-range-field {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+}
+
+.life-travel-range-field input[type="range"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.life-travel-range-value {
+    width: 40px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Commutateurs */
+.life-travel-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.life-travel-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.life-travel-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.life-travel-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.life-travel-toggle input:checked + .life-travel-toggle-slider {
+    background-color: #0073aa;
+}
+
+.life-travel-toggle input:focus + .life-travel-toggle-slider {
+    box-shadow: 0 0 1px #0073aa;
+}
+
+.life-travel-toggle input:checked + .life-travel-toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.life-travel-toggle-field {
+    display: flex;
+    align-items: center;
+}
+
+.life-travel-toggle-label {
+    font-weight: normal;
+}
+
+/* Boîtes d'information */
+.life-travel-admin-info-box {
+    background: #f8f9fa;
+    border-left: 4px solid #00a0d2;
+    padding: 15px;
+    margin: 20px 0;
+    display: flex;
+}
+
+.life-travel-admin-info-icon {
+    margin-right: 15px;
+    font-size: 24px;
+    color: #00a0d2;
+}
+
+.life-travel-admin-info-content h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.life-travel-admin-info-content ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* Conseils */
+.life-travel-admin-tips {
+    background: #fef8ee;
+    border: 1px solid #f0e2c9;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.life-travel-admin-tips h4 {
+    margin-top: 0;
+    color: #804a00;
+    margin-bottom: 10px;
+}
+
+.life-travel-admin-tips ul {
+    margin-bottom: 0;
+}
+
+/* Sélecteurs de mois */
+.life-travel-month-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+}
+
+.life-travel-month-checkbox {
+    margin: 0 5px 10px;
+    flex: 0 0 calc(25% - 10px);
+}
+
+/* Désactivé */
+.life-travel-admin-field-group.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .life-travel-admin-stats {
+        margin: 0 0 20px;
+    }
+    
+    .life-travel-stat-box {
+        flex: 1 1 100%;
+        margin: 0 0 10px;
+    }
+    
+    .life-travel-month-checkbox {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+/* Optimisations pour connexions lentes */
+@media (prefers-reduced-data: reduce) {
+    .life-travel-admin-wrap * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Visualisation des galeries */
+.life-travel-gallery-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.life-travel-gallery-style {
+    flex: 1 1 calc(33.33% - 20px);
+    margin: 0 10px 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.life-travel-gallery-style h5 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.life-travel-gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.life-travel-gallery-grid .preview-box {
+    flex: 0 0 calc(50% - 5px);
+    height: 60px;
+    background: #eee;
+    margin: 0 5px 5px 0;
+}
+
+.life-travel-gallery-masonry .preview-box {
+    width: 100%;
+    height: 40px;
+    background: #eee;
+    margin-bottom: 5px;
+}
+
+.life-travel-gallery-masonry .preview-tall {
+    height: 80px;
+}
+
+.life-travel-gallery-masonry .preview-wide {
+    height: 30px;
+}
+
+.life-travel-gallery-carousel .preview-carousel {
+    position: relative;
+}
+
+.life-travel-gallery-carousel .preview-box {
+    width: 100%;
+    height: 100px;
+    background: #eee;
+}
+
+.life-travel-gallery-carousel .preview-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 10px 2px 0;
+}
+
+.life-travel-gallery-carousel .preview-dot.active {
+    background: #0073aa;
+}

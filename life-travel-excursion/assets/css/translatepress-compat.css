@@ -1,0 +1,174 @@
+/**
+ * Life Travel - Styles de compatibilité TranslatePress
+ * Version: 1.0.0
+ * 
+ * Styles pour améliorer l'intégration de TranslatePress
+ * avec le thème Life Travel et le plugin d'excursions
+ */
+
+/* Styles du sélecteur de langue TranslatePress */
+.trp-language-switcher {
+    position: relative;
+    z-index: 1000; /* S'assurer que le sélecteur est au-dessus d'autres éléments */
+    margin: 0 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Style du sélecteur actuel */
+.trp-ls-shortcode-current-language {
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    min-width: 60px;
+}
+
+.trp-ls-shortcode-current-language:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Style de la liste déroulante */
+.trp-ls-shortcode-language {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-width: 150px;
+    z-index: 100;
+    display: none;
+    padding: 0;
+    margin-top: 1px;
+}
+
+.trp-language-switcher:hover .trp-ls-shortcode-language {
+    display: block;
+}
+
+/* Style des éléments de la liste */
+.trp-ls-shortcode-language a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.trp-ls-shortcode-language a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Style des drapeaux */
+.trp-flag-image {
+    margin-right: 8px;
+    width: 18px;
+    height: 12px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Compatibilité mobile */
+@media (max-width: 768px) {
+    /* Positionnement spécial sur mobile pour le sélecteur */
+    .site-header .trp-language-switcher {
+        position: absolute;
+        top: 15px;
+        right: 70px; /* Laisser de l'espace pour le bouton de menu */
+    }
+    
+    /* Style plus compact sur mobile */
+    .trp-ls-shortcode-current-language {
+        padding: 4px 8px;
+        min-width: auto;
+    }
+    
+    /* Dropdown sur mobile, aligné à droite */
+    .trp-ls-shortcode-language {
+        right: 0;
+        left: auto;
+        min-width: 120px;
+    }
+}
+
+/* Compatibilité avec l'éditeur TranslatePress */
+body.trp-editor-body .trp-language-switcher {
+    z-index: 99; /* Réduire le z-index dans l'éditeur */
+}
+
+/* Compatibilité avec la barre d'administration WordPress */
+.admin-bar .trp-language-switcher {
+    margin-top: 32px;
+}
+@media (max-width: 782px) {
+    .admin-bar .trp-language-switcher {
+        margin-top: 46px;
+    }
+}
+
+/* Corrections spécifiques pour WooCommerce */
+.woocommerce-page .trp-language-switcher {
+    z-index: 999; /* S'assurer qu'il est au-dessus des éléments WooCommerce */
+}
+
+/* Améliorations pour le sélecteur flottant (si utilisé) */
+.trp-floater-ls-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    padding: 5px;
+}
+
+.trp-floater-ls-current-language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.trp-floater-ls-container .trp-floater-ls-flags {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adaptation aux couleurs du thème Life Travel */
+.trp-language-switcher {
+    --life-travel-primary: #1F4D36;   /* Vert Forêt */
+    --life-travel-secondary: #E19D4C; /* Ocre Doré */
+    --life-travel-light: #F7F3EB;     /* Sable Clair */
+    --life-travel-dark: #3D2B1F;      /* Brun Terre */
+    --life-travel-accent: #C53D13;    /* Rouge Kayak */
+}
+
+/* Style spécifique Life Travel */
+.trp-language-switcher.trp-language-switcher-life-travel .trp-ls-shortcode-current-language {
+    background-color: var(--life-travel-light);
+    color: var(--life-travel-dark);
+    border: 1px solid var(--life-travel-primary);
+}
+
+.trp-language-switcher.trp-language-switcher-life-travel .trp-ls-shortcode-language {
+    border: 1px solid var(--life-travel-primary);
+    background-color: var(--life-travel-light);
+}
+
+.trp-language-switcher.trp-language-switcher-life-travel .trp-ls-shortcode-language a:hover {
+    background-color: rgba(31, 77, 54, 0.1); /* Vert Forêt transparent */
+}
+
+/* Style actif */
+.trp-language-switcher.trp-language-switcher-life-travel .trp-ls-shortcode-current-language:hover,
+.trp-language-switcher.trp-language-switcher-life-travel .trp-ls-shortcode-language a.trp-ls-shortcode-disabled-language:hover {
+    background-color: rgba(225, 157, 76, 0.1); /* Ocre Doré transparent */
+}

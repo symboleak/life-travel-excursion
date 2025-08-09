@@ -1,0 +1,11 @@
+# Configuration pour uploads volumineux
+php_value upload_max_filesize 200M
+php_value post_max_size 250M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+# Protection supplémentaire
+<IfModule mod_security.c>
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>

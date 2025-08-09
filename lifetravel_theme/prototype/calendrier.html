@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier des Excursions - Life Travel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="site-branding">
+                <h1 class="site-title">Life Travel</h1>
+                <p class="site-description">Excursions et aventures au Cameroun</p>
+            </div>
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <span class="menu-toggle-icon"></span>
+                <span class="screen-reader-text">Menu</span>
+            </button>
+            <nav class="site-navigation">
+                <ul class="menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="excursions.html">Excursions</a></li>
+                    <li><a href="sur-mesure.html">Sur Mesure</a></li>
+                    <li><a href="calendrier.html" class="active">Calendrier</a></li>
+                    <li><a href="carnet-voyages.html">Carnet de Voyages</a></li>
+                    <li><a href="a-propos.html">À Propos</a></li>
+                    <li><a href="contact.html" class="cta-button">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="search-container">
+                <button class="search-toggle" aria-label="Rechercher">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <form class="search-form" action="#" method="get">
+                    <input type="search" name="s" placeholder="Rechercher..." aria-label="Rechercher">
+                    <button type="submit" aria-label="Lancer la recherche">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner" style="background-image: url('img/calendrier-banner.jpg');">
+            <div class="container">
+                <h1 class="page-title">Calendrier des Excursions</h1>
+                <p class="page-description">Planifiez votre prochaine aventure avec nous</p>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section class="calendar-section">
+            <div class="container">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="month-selector">
+                            <button class="prev-month">&lt;</button>
+                            <h3>Avril 2025</h3>
+                            <button class="next-month">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-names">
+                            <div>Lu</div>
+                            <div>Ma</div>
+                            <div>Me</div>
+                            <div>Je</div>
+                            <div>Ve</div>
+                            <div>Sa</div>
+                            <div>Di</div>
+                        </div>
+                        <div class="calendar-days">
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day">1</div>
+                            <div class="calendar-day">2</div>
+                            <div class="calendar-day">3</div>
+                            <div class="calendar-day">4</div>
+                            <div class="calendar-day has-event">
+                                5
+                                <div class="event-indicator">
+                                    <img src="img/mini-mont-cameroun.jpg" alt="Mont Cameroun">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                6
+                                <div class="event-indicator">
+                                    <img src="img/mini-mont-cameroun.jpg" alt="Mont Cameroun">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                7
+                                <div class="event-indicator">
+                                    <img src="img/mini-mont-cameroun.jpg" alt="Mont Cameroun">
+                                </div>
+                            </div>
+                            <div class="calendar-day">8</div>
+                            <div class="calendar-day">9</div>
+                            <div class="calendar-day">10</div>
+                            <div class="calendar-day">11</div>
+                            <div class="calendar-day has-event">
+                                12
+                                <div class="event-indicator">
+                                    <img src="img/mini-lobe.jpg" alt="Chutes de la Lobé">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                13
+                                <div class="event-indicator">
+                                    <img src="img/mini-lobe.jpg" alt="Chutes de la Lobé">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                14
+                                <div class="event-indicator">
+                                    <img src="img/mini-lobe.jpg" alt="Chutes de la Lobé">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                15
+                                <div class="event-indicator">
+                                    <img src="img/mini-lobe.jpg" alt="Chutes de la Lobé">
+                                </div>
+                            </div>
+                            <div class="calendar-day">16</div>
+                            <div class="calendar-day">17</div>
+                            <div class="calendar-day">18</div>
+                            <div class="calendar-day">19</div>
+                            <div class="calendar-day">20</div>
+                            <div class="calendar-day has-event">
+                                21
+                                <div class="event-indicator">
+                                    <img src="img/mini-kribi.jpg" alt="Kribi">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                22
+                                <div class="event-indicator">
+                                    <img src="img/mini-dja.jpg" alt="Réserve du Dja">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                23
+                                <div class="event-indicator">
+                                    <img src="img/mini-dja.jpg" alt="Réserve du Dja">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                24
+                                <div class="event-indicator">
+                                    <img src="img/mini-dja.jpg" alt="Réserve du Dja">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                25
+                                <div class="event-indicator">
+                                    <img src="img/mini-dja.jpg" alt="Réserve du Dja">
+                                </div>
+                            </div>
+                            <div class="calendar-day has-event">
+                                26
+                                <div class="event-indicator">
+                                    <img src="img/mini-dja.jpg" alt="Réserve du Dja">
+                                </div>
+                            </div>
+                            <div class="calendar-day">27</div>
+                            <div class="calendar-day">28</div>
+                            <div class="calendar-day">29</div>
+                            <div class="calendar-day">30</div>
+                        </div>
+                    </div>
+                    <div class="calendar-events">
+                        <h3>Excursions du mois</h3>
+                        <div class="event-items">
+                            <div class="event-item">
+                                <div class="event-date">5 - 7 Avril</div>
+                                <h4 class="event-title">Mont Cameroun</h4>
+                                <div class="event-details">
+                                    <p>Ascension du plus haut sommet d'Afrique de l'Ouest</p>
+                                    <div class="event-meta">
+                                        <span class="difficulty">Modéré</span>
+                                        <span class="price">85.000 FCFA</span>
+                                        <span class="spots">3 places restantes</span>
+                                    </div>
+                                    <div class="event-actions">
+                                        <a href="excursion-detail-mont-cameroun.html" class="button-outline">Détails</a>
+                                        <a href="#" class="button">Réserver</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">12 - 15 Avril</div>
+                                <h4 class="event-title">Chutes de la Lobé</h4>
+                                <div class="event-details">
+                                    <p>Découverte des chutes qui se jettent directement dans l'océan</p>
+                                    <div class="event-meta">
+                                        <span class="difficulty">Facile</span>
+                                        <span class="price">65.000 FCFA</span>
+                                        <span class="spots">8 places restantes</span>
+                                    </div>
+                                    <div class="event-actions">
+                                        <a href="excursion-detail-lobe.html" class="button-outline">Détails</a>
+                                        <a href="#" class="button">Réserver</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">21 Avril</div>
+                                <h4 class="event-title">Kribi Weekend</h4>
+                                <div class="event-details">
+                                    <p>Journée détente sur les plages de sable fin de Kribi</p>
+                                    <div class="event-meta">
+                                        <span class="difficulty">Facile</span>
+                                        <span class="price">15.000 FCFA</span>
+                                        <span class="spots">12 places restantes</span>
+                                    </div>
+                                    <div class="event-actions">
+                                        <a href="excursion-detail-kribi.html" class="button-outline">Détails</a>
+                                        <a href="#" class="button">Réserver</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">22 - 26 Avril</div>
+                                <h4 class="event-title">Réserve du Dja</h4>
+                                <div class="event-details">
+                                    <p>Exploration de la réserve de biosphère, patrimoine mondial UNESCO</p>
+                                    <div class="event-meta">
+                                        <span class="difficulty">Difficile</span>
+                                        <span class="price">120.000 FCFA</span>
+                                        <span class="spots">5 places restantes</span>
+                                    </div>
+                                    <div class="event-actions">
+                                        <a href="excursion-detail-dja.html" class="button-outline">Détails</a>
+                                        <a href="#" class="button">Réserver</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vote Module Section -->
+        <section class="vote-module-section">
+            <div class="container">
+                <h2 class="section-title">Votez pour les prochaines destinations</h2>
+                <p class="section-description">Aidez-nous à choisir les destinations des prochains mois. Votre avis compte !</p>
+                
+                <div class="vote-options">
+                    <div class="vote-option">
+                        <h3>Parc National de Waza</h3>
+                        <p>Safari et observation de la faune dans le plus grand parc du Nord</p>
+                        <div class="vote-progress">
+                            <div class="progress-bar" style="width: 45%;"></div>
+                        </div>
+                        <div class="vote-meta">
+                            <span class="vote-count">45%</span>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vote-option">
+                        <h3>Plages de Kribi</h3>
+                        <p>Weekend détente sur les plages paradisiaques du Sud</p>
+                        <div class="vote-progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <div class="vote-meta">
+                            <span class="vote-count">30%</span>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vote-option">
+                        <h3>Chutes de Mami Wata</h3>
+                        <p>Randonnée dans la forêt jusqu'aux chutes légendaires</p>
+                        <div class="vote-progress">
+                            <div class="progress-bar" style="width: 25%;"></div>
+                        </div>
+                        <div class="vote-meta">
+                            <span class="vote-count">25%</span>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vote-info">
+                    <p>Le vote se termine dans: <span class="countdown">5 jours</span></p>
+                    <p>La destination gagnante sera programmée en Juin 2025</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-widgets">
+                <div class="footer-widget">
+                    <h3 class="widget-title">Life Travel</h3>
+                    <p>Votre partenaire d'aventures au Cameroun depuis 2015.</p>
+                    <p>Quartier Bonapriso<br>Douala, Cameroun</p>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Contact</h3>
+                    <ul class="contact-info">
+                        <li><a href="tel:+237600000000">+237 600 000 000</a></li>
+                        <li><a href="mailto:info@life-travel.org">info@life-travel.org</a></li>
+                        <li><a href="https://wa.me/237600000000" class="whatsapp-link" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Liens rapides</h3>
+                    <ul class="footer-menu">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="excursions.html">Excursions</a></li>
+                        <li><a href="sur-mesure.html">Sur Mesure</a></li>
+                        <li><a href="calendrier.html">Calendrier</a></li>
+                        <li><a href="carnet-voyages.html">Carnet de Voyages</a></li>
+                        <li><a href="a-propos.html">À Propos</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" class="social-link">Facebook</a>
+                        <a href="#" target="_blank" class="social-link">Instagram</a>
+                        <a href="#" target="_blank" class="social-link">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Life Travel. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <a href="cgv.html">CGV</a>
+                    <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/237600000000?text=Bonjour%20Life%20Travel,%20je%20souhaite%20des%20informations%20sur%20vos%20excursions." class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+            <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.196-.57-.345m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+    
+    <script src="js/main.js"></script>
+    <script src="js/image-handler.js"></script>
+    <script src="js/meta-pixel.js"></script>
+</body>
+</html>

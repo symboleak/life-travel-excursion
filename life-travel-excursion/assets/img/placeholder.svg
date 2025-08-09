@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f0f0f0"/>
+  <g fill="#0073B2" opacity="0.5">
+    <path d="M370 230 l-120 170 h240 z"/>
+    <circle cx="480" cy="190" r="30"/>
+  </g>
+  <path d="M160 130 L640 130 L640 470 L160 470 Z" stroke="#0073B2" fill="none" stroke-width="6" stroke-dasharray="20,10"/>
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="#0073B2">Life Travel</text>
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#666">Image en cours de chargement</text>
+</svg>

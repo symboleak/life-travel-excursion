@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Excursions - Life Travel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="img/logo.svg" alt="Life Travel" class="site-logo">
+                </a>
+                <p class="site-description">Excursions et aventures au Cameroun</p>
+            </div>
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <span class="menu-toggle-icon"></span>
+                <span class="screen-reader-text">Menu</span>
+            </button>
+            <nav class="site-navigation">
+                <ul class="menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="excursions.html" class="active">Excursions</a></li>
+                    <li><a href="sur-mesure.html">Sur Mesure</a></li>
+                    <li><a href="calendrier.html">Calendrier</a></li>
+                    <li><a href="carnet-voyages.html">Carnet de Voyages</a></li>
+                    <li><a href="a-propos.html">À Propos</a></li>
+                    <li><a href="contact.html" class="cta-button">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="search-container">
+                <button class="search-toggle" aria-label="Rechercher">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <form class="search-form" action="#" method="get">
+                    <input type="search" name="s" placeholder="Rechercher..." aria-label="Rechercher">
+                    <button type="submit" aria-label="Lancer la recherche">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner" style="background-image: url('img/excursions-banner.jpg');">
+            <div class="container">
+                <h1 class="page-title">Nos Excursions</h1>
+                <p class="page-description">Découvrez toutes nos aventures au Cameroun</p>
+                
+                <!-- Barre de recherche WooCommerce améliorée -->
+                <div class="woocommerce-search-container">
+                    <form class="woocommerce-search-form" action="#" method="get">
+                        <input type="search" name="product-search" placeholder="Rechercher une excursion..." aria-label="Rechercher une excursion">
+                        <button type="submit" aria-label="Lancer la recherche">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Rechercher
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explorer les excursions avec filtres visuels -->
+        <section class="explore-excursions">
+            <div class="container">
+                <h2 class="section-title">Explorer les excursions</h2>
+                <p class="section-description">Utilisez nos filtres pour trouver l'excursion parfaite selon vos préférences</p>
+                
+                <div class="excursion-filters">
+                    <!-- Filtre par destination -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Destination</h3>
+                        <div class="visual-filter destination-filter">
+                            <div class="filter-option" data-filter="destination" data-value="all">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M12 8v8"></path>
+                                        <path d="M8 12h8"></path>
+                                    </svg>
+                                </div>
+                                <span>Toutes</span>
+                            </div>
+                            <div class="filter-option" data-filter="destination" data-value="ouest">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                    </svg>
+                                </div>
+                                <span>Ouest</span>
+                            </div>
+                            <div class="filter-option" data-filter="destination" data-value="sud">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                                    </svg>
+                                </div>
+                                <span>Sud</span>
+                            </div>
+                            <div class="filter-option" data-filter="destination" data-value="littoral">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L8 12l-4.3 4.3c-.5.5-.5 1.3 0 1.8l.2.2c.5.5 1.3.5 1.8 0L10 14l3.6 3.6c.3.3.8.4 1.3.3l.5-.5c.4-.2.6-.6.5-1.1z"></path>
+                                    </svg>
+                                </div>
+                                <span>Littoral</span>
+                            </div>
+                            <div class="filter-option" data-filter="destination" data-value="est">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <span>Est</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtre par type d'activité -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Type</h3>
+                        <div class="visual-filter type-filter">
+                            <div class="filter-option active" data-filter="type" data-value="all">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                        <polyline points="2 17 12 22 22 17"></polyline>
+                                        <polyline points="2 12 12 17 22 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span>Tous</span>
+                            </div>
+                            <div class="filter-option" data-filter="type" data-value="montagne">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M8 3v3a2 2 0 0 1-2 2H3"></path>
+                                        <path d="M21 8h-3a2 2 0 0 1-2-2V3"></path>
+                                        <polygon points="14 3 14 8 9 8 9 3"></polygon>
+                                        <rect x="3" y="13" width="5" height="5" rx="1"></rect>
+                                        <rect x="16" y="13" width="5" height="5" rx="1"></rect>
+                                        <path d="M3 8h18v5H3z"></path>
+                                    </svg>
+                                </div>
+                                <span>Montagne</span>
+                            </div>
+                            <div class="filter-option" data-filter="type" data-value="foret">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 22v-1a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v1"></path>
+                                        <path d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                        <path d="M19 9v2"></path>
+                                        <path d="M5 9v2"></path>
+                                        <path d="M3 5v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5a2 2 0 0 0-2 2Z"></path>
+                                    </svg>
+                                </div>
+                                <span>Forêt</span>
+                            </div>
+                            <div class="filter-option" data-filter="type" data-value="plage">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 22h20"></path>
+                                        <path d="M20 22V9.5C20 4 14 3 12 3 10 3 4 4 4 9.5V22"></path>
+                                        <path d="M12 3v7"></path>
+                                        <path d="M12 10c-2 1-4 1-6 0"></path>
+                                        <path d="M12 10c2 1 4 1 6 0"></path>
+                                    </svg>
+                                </div>
+                                <span>Plage</span>
+                            </div>
+                            <div class="filter-option" data-filter="type" data-value="village">
+                                <div class="filter-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    </svg>
+                                </div>
+                                <span>Villages</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtre par durée -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Durée</h3>
+                        <div class="range-filter">
+                            <div class="range-labels">
+                                <span>1 jour</span>
+                                <span>7+ jours</span>
+                            </div>
+                            <input type="range" min="1" max="7" value="7" class="range-input" id="duration-filter">
+                            <div class="range-value">
+                                <span id="duration-value">7+ jours</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtre par prix -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Budget (FCFA)</h3>
+                        <div class="range-filter">
+                            <div class="range-labels">
+                                <span>15 000</span>
+                                <span>150 000+</span>
+                            </div>
+                            <input type="range" min="15000" max="150000" step="5000" value="150000" class="range-input" id="price-filter">
+                            <div class="range-value">
+                                <span id="price-value">150 000+ FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Actions des filtres -->
+                    <div class="filter-actions">
+                        <button id="reset-filters" class="button-outline">Réinitialiser</button>
+                        <button id="apply-filters" class="button">Appliquer</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Excursion Categories -->
+        <section class="category-filter">
+            <div class="container">
+                <div class="category-buttons">
+                    <button class="category-button active" data-category="all">Toutes</button>
+                    <button class="category-button" data-category="weekend">Week-end</button>
+                    <button class="category-button" data-category="nature">Nature</button>
+                    <button class="category-button" data-category="culture">Culture</button>
+                    <button class="category-button" data-category="aventure">Aventure</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Excursions -->
+        <section class="all-excursions">
+            <div class="container">
+                <div class="excursions-grid">
+                    <!-- Mont Cameroun -->
+                    <div class="excursion-card" data-category="aventure nature">
+                        <div class="excursion-image">
+                            <img src="img/mont-cameroun.jpg" alt="Mont Cameroun">
+                            <div class="excursion-badge">Bestseller</div>
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Mont Cameroun</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Sud-Ouest</span>
+                                <span class="difficulty">Modéré</span>
+                                <span class="duration">3 jours</span>
+                            </div>
+                            <p>Ascension du plus haut sommet d'Afrique de l'Ouest avec des guides expérimentés.</p>
+                            <div class="excursion-footer">
+                                <span class="price">85.000 FCFA</span>
+                                <a href="excursion-detail-mont-cameroun.html" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chutes de la Lobé -->
+                    <div class="excursion-card" data-category="weekend nature">
+                        <div class="excursion-image">
+                            <img src="img/chutes-lobe.jpg" alt="Chutes de la Lobé">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Chutes de la Lobé</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Sud</span>
+                                <span class="difficulty">Facile</span>
+                                <span class="duration">4 jours</span>
+                            </div>
+                            <p>Découverte des chutes uniques au monde qui se jettent directement dans l'océan.</p>
+                            <div class="excursion-footer">
+                                <span class="price">65.000 FCFA</span>
+                                <a href="excursion-detail-lobe.html" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réserve du Dja -->
+                    <div class="excursion-card" data-category="nature aventure">
+                        <div class="excursion-image">
+                            <img src="img/reserve-dja.jpg" alt="Réserve du Dja">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Réserve du Dja</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Est</span>
+                                <span class="difficulty">Difficile</span>
+                                <span class="duration">5 jours</span>
+                            </div>
+                            <p>Explorez la forêt dense et sa biodiversité exceptionnelle dans cette réserve UNESCO.</p>
+                            <div class="excursion-footer">
+                                <span class="price">120.000 FCFA</span>
+                                <a href="excursion-detail-dja.html" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kribi et ses plages -->
+                    <div class="excursion-card" data-category="weekend culture">
+                        <div class="excursion-image">
+                            <img src="img/kribi.jpg" alt="Kribi">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Kribi et ses plages</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Sud</span>
+                                <span class="difficulty">Facile</span>
+                                <span class="duration">2 jours</span>
+                            </div>
+                            <p>Week-end détente sur les plus belles plages du Cameroun, dégustation de fruits de mer.</p>
+                            <div class="excursion-footer">
+                                <span class="price">45.000 FCFA</span>
+                                <a href="excursion-detail-kribi.html" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chefferie Bafoussam -->
+                    <div class="excursion-card" data-category="culture">
+                        <div class="excursion-image">
+                            <img src="img/chefferie.jpg" alt="Chefferie Bafoussam">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Chefferies de l'Ouest</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Ouest</span>
+                                <span class="difficulty">Facile</span>
+                                <span class="duration">3 jours</span>
+                            </div>
+                            <p>Immersion dans la culture Bamiléké avec visite des chefferies traditionnelles.</p>
+                            <div class="excursion-footer">
+                                <span class="price">55.000 FCFA</span>
+                                <a href="excursion-detail-chefferie.html" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Yaoundé découverte -->
+                    <div class="excursion-card" data-category="culture weekend">
+                        <div class="excursion-image">
+                            <img src="img/yaounde.jpg" alt="Yaoundé">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Yaoundé Découverte</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Centre</span>
+                                <span class="difficulty">Facile</span>
+                                <span class="duration">1 jour</span>
+                            </div>
+                            <p>Circuit guidé dans la capitale : musée national, monuments et gastronomie locale.</p>
+                            <div class="excursion-footer">
+                                <span class="price">15.000 FCFA</span>
+                                <a href="excursion-detail-yaounde.html" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Vous ne trouvez pas l'excursion de vos rêves ?</h2>
+                    <p>Nous pouvons créer une expérience personnalisée selon vos envies et votre budget.</p>
+                    <a href="sur-mesure.html" class="cta-button">Excursion sur mesure</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-widgets">
+                <div class="footer-widget">
+                    <h3 class="widget-title">Life Travel</h3>
+                    <p>Votre partenaire d'aventures au Cameroun depuis 2015.</p>
+                    <p>Quartier Bonapriso<br>Douala, Cameroun</p>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Contact</h3>
+                    <ul class="contact-info">
+                        <li><a href="tel:+237600000000">+237 600 000 000</a></li>
+                        <li><a href="mailto:info@life-travel.org">info@life-travel.org</a></li>
+                        <li><a href="https://wa.me/237600000000" class="whatsapp-link" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Liens rapides</h3>
+                    <ul class="footer-menu">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="excursions.html">Excursions</a></li>
+                        <li><a href="sur-mesure.html">Sur Mesure</a></li>
+                        <li><a href="calendrier.html">Calendrier</a></li>
+                        <li><a href="carnet-voyages.html">Carnet de Voyages</a></li>
+                        <li><a href="a-propos.html">À Propos</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" class="social-link">Facebook</a>
+                        <a href="#" target="_blank" class="social-link">Instagram</a>
+                        <a href="#" target="_blank" class="social-link">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Life Travel. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <a href="cgv.html">CGV</a>
+                    <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/237600000000?text=Bonjour%20Life%20Travel,%20je%20souhaite%20des%20informations%20sur%20vos%20excursions." class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+            <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.196-.57-.345m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+    
+    <script src="js/main.js"></script>
+    <script src="js/image-handler.js"></script>
+    
+    <script>
+        // Category filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-button');
+            const excursionCards = document.querySelectorAll('.excursion-card');
+            
+            // Ajouter les attributs data-* pour le tracking Meta Pixel
+            if (excursionCards) {
+                excursionCards.forEach(card => {
+                    // Trouver le titre et le prix
+                    const title = card.querySelector('.excursion-title')?.textContent || 'Excursion';
+                    const price = card.querySelector('.price')?.textContent.replace(/[^0-9]/g, '') || '0';
+                    
+                    // Ajouter les attributs de suivi
+                    const bookingBtn = card.querySelector('.booking-button');
+                    if (bookingBtn) {
+                        bookingBtn.setAttribute('data-product-name', title);
+                        bookingBtn.setAttribute('data-product-value', price);
+                    }
+                });
+            }
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show all excursions if "All" category is selected
+                    if (category === 'all') {
+                        excursionCards.forEach(card => {
+                            card.style.display = 'block';
+                        });
+                    } else {
+                        // Otherwise, filter by category
+                        excursionCards.forEach(card => {
+                            if (card.getAttribute('data-category').includes(category)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Suivi des clics sur les boutons de réservation pour Meta Pixel
+            document.querySelectorAll('.booking-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Si Meta Pixel est chargé
+                    if (typeof fbq === 'function') {
+                        const productName = this.getAttribute('data-product-name') || 'Excursion';
+                        const productValue = this.getAttribute('data-product-value') || '0';
+                        
+                        fbq('track', 'InitiateCheckout', {
+                            content_name: productName,
+                            value: productValue,
+                            currency: 'XAF'
+                        });
+                        
+                        console.log('Conversion Facebook: InitiateCheckout', productName, productValue);
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Meta Pixel Code - À activer avec votre ID Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    // Remplacer VOTRE_PIXEL_ID par l'ID réel lors de l'intégration
+    fbq('init', 'VOTRE_PIXEL_ID'); 
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+</body>
+</html>

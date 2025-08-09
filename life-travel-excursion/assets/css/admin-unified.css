@@ -1,0 +1,434 @@
+/**
+ * Styles d'administration unifiés pour Life Travel
+ * 
+ * Ce fichier centralise tous les styles CSS pour l'interface d'administration
+ * de Life Travel, remplaçant les fichiers fragmentés d'origine.
+ * 
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* ======== TABLEAU DE BORD PRINCIPAL ======== */
+
+/* Styles de base */
+.life-travel-admin-wrap {
+    margin: 20px 0;
+    max-width: 1200px;
+}
+
+/* Navigation par onglets */
+.life-travel-admin-tabs {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccd0d4;
+}
+
+.life-travel-admin-tabs ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.life-travel-admin-tabs li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.life-travel-admin-tabs a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #23282d;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-bottom: -1px;
+    transition: all 0.2s ease;
+}
+
+.life-travel-admin-tabs a:hover {
+    background-color: #f0f0f1;
+    color: #2271b1;
+}
+
+.life-travel-admin-tabs li.active a {
+    border-color: #ccd0d4;
+    background: #fff;
+    border-bottom-color: #fff;
+    color: #2271b1;
+}
+
+/* Sections de contenu */
+.life-travel-admin-content {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-top: none;
+    padding: 20px;
+}
+
+.life-travel-admin-section {
+    display: none;
+}
+
+.life-travel-admin-section.active {
+    display: block;
+}
+
+/* Cartes d'informations */
+.life-travel-card {
+    background-color: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.life-travel-card-header {
+    border-bottom: 1px solid #ccd0d4;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.life-travel-card-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.life-travel-card-content {
+    padding: 15px;
+}
+
+.life-travel-card-footer {
+    border-top: 1px solid #ccd0d4;
+    padding: 15px;
+    background-color: #f8f9fa;
+}
+
+/* ======== TABLEAU DE BORD - STATISTIQUES ======== */
+
+.life-travel-dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.life-travel-stat-card {
+    background-color: #fff;
+    border: 1px solid #e2e4e7;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 20px;
+    text-align: center;
+}
+
+.life-travel-stat-card.status-good {
+    border-left: 4px solid #00a32a;
+}
+
+.life-travel-stat-card.status-warning {
+    border-left: 4px solid #dba617;
+}
+
+.life-travel-stat-card.status-critical {
+    border-left: 4px solid #d63638;
+}
+
+.life-travel-stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #1d2327;
+}
+
+.life-travel-stat-label {
+    font-size: 14px;
+    color: #50575e;
+}
+
+.life-travel-stat-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* ======== PANIERS ABANDONNÉS ======== */
+
+/* Tableau des paniers abandonnés */
+.life-travel-abandoned-cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.life-travel-abandoned-cart-table th,
+.life-travel-abandoned-cart-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.life-travel-abandoned-cart-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.life-travel-abandoned-cart-table tr:hover {
+    background-color: #f6f7f7;
+}
+
+.life-travel-abandoned-cart-table .recovery-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.life-travel-abandoned-cart-table .status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.life-travel-abandoned-cart-table .status-indicator.active {
+    background-color: #00a32a;
+}
+
+.life-travel-abandoned-cart-table .status-indicator.expired {
+    background-color: #d63638;
+}
+
+.life-travel-abandoned-cart-table .status-indicator.pending {
+    background-color: #dba617;
+}
+
+/* ======== GESTION DES MÉDIAS ======== */
+
+/* Sélecteur de média avec aperçu */
+.life-travel-media-selector {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.life-travel-media-preview {
+    max-width: 300px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background-color: #f9f9f9;
+}
+
+.life-travel-media-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.life-travel-media-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Section de galerie */
+.life-travel-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.life-travel-gallery-item {
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background-color: #f9f9f9;
+}
+
+.life-travel-gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.life-travel-gallery-item .remove-item {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #d63638;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* ======== GESTION DES EXCURSIONS ======== */
+
+/* Tableau des excursions */
+.life-travel-excursions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.life-travel-excursions-table th,
+.life-travel-excursions-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.life-travel-excursions-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.life-travel-excursions-table tr:hover {
+    background-color: #f6f7f7;
+}
+
+/* Champs spécifiques aux excursions */
+.excursion-field-group {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.excursion-field-group h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.excursion-field {
+    margin-bottom: 15px;
+}
+
+.excursion-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.excursion-field input[type="text"],
+.excursion-field input[type="number"],
+.excursion-field input[type="date"],
+.excursion-field select,
+.excursion-field textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+/* Styles pour les rangées de paliers de prix, extras et activités */
+.tier_row,
+.extra_row,
+.activity_row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 3px;
+    align-items: center;
+}
+
+.tier_row input,
+.extra_row input,
+.activity_row input,
+.tier_row select,
+.extra_row select,
+.activity_row select {
+    flex: 1;
+}
+
+.tier_row button,
+.extra_row button,
+.activity_row button {
+    flex: 0 0 auto;
+}
+
+/* ======== STYLES RESPONSIFS ======== */
+
+@media screen and (max-width: 782px) {
+    .life-travel-dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .life-travel-admin-tabs ul {
+        flex-direction: column;
+    }
+    
+    .tier_row,
+    .extra_row,
+    .activity_row {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .tier_row input,
+    .extra_row input,
+    .activity_row input,
+    .tier_row select,
+    .extra_row select,
+    .activity_row select {
+        width: 100%;
+    }
+    
+    .life-travel-gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+/* ======== ADAPTATIONS POUR CONNEXIONS LENTES ======== */
+
+.slow-connection .life-travel-admin-wrap {
+    max-width: 100%;
+}
+
+.slow-connection .life-travel-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.slow-connection .life-travel-admin-tabs a {
+    padding: 8px 12px;
+}
+
+.slow-connection .life-travel-dashboard-stats {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* Optimisations pour le Cameroun */
+.optimized-for-cameroon .life-travel-admin-content {
+    background-image: none;
+}
+
+.optimized-for-cameroon .life-travel-card {
+    box-shadow: none;
+}
+
+.optimized-for-cameroon .life-travel-abandoned-cart-table th,
+.optimized-for-cameroon .life-travel-abandoned-cart-table td {
+    padding: 8px 10px;
+}
+
+.optimized-for-cameroon .life-travel-admin-tabs ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}

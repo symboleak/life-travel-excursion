@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr" data-connection="unknown">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Travel - Mode Hors Ligne</title>
+    <meta name="description" content="Mode hors ligne de Life Travel - Des voyages sans stress même sans connexion">
+    <meta name="theme-color" content="#e67e22">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="assets/css/offline.css">
+    <link rel="icon" href="../assets/img/logos/logo-main.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/img/logos/logo-main.png">
+    <!-- Précharge des assets critiques pour le contexte camerounais -->
+    <link rel="preload" href="../assets/sprite.svg" as="image" type="image/svg+xml" fetchpriority="high">
+    <link rel="preload" href="assets/js/offline.js" as="script">
+</head>
+<body class="offline-mode">
+    <header class="offline-header">
+        <div class="logo-container">
+            <img src="assets/img/logo-offline.svg" alt="Life Travel Cameroun" class="offline-logo">
+            <div class="connection-indicator" data-lt-icon="offline"></div>
+        </div>
+        <h1 class="offline-title">Mode Hors-Ligne</h1>
+        <p class="offline-subtitle">Nous vous permettons de consulter vos informations même sans connexion internet</p>
+    </header>
+    
+    <div class="offline-status">
+        <div class="status-icon" data-lt-icon="offline" data-lt-color="#E74C3C"></div>
+        <div class="status-content">
+            <strong>Vous n'êtes pas connecté à Internet</strong>
+            <p>Adapté au contexte camerounais : les fonctionnalités essentielles restent disponibles</p>
+        </div>
+        <button id="retry-connection" class="offline-button primary">
+            <span data-lt-icon="refresh"></span> Vérifier la connexion
+        </button>
+    </div>
+    
+    <div class="connection-quality hidden" id="connection-quality">
+        <div class="quality-indicator">
+            <div class="quality-icon" data-lt-icon="wifi"></div>
+            <div class="quality-level" id="connection-level">Connexion moyenne</div>
+        </div>
+        <div class="quality-actions">
+            <label class="save-data-toggle">
+                <input type="checkbox" id="save-data-mode">
+                <span class="toggle-label">Mode économie de données</span>
+            </label>
+        </div>
+    </div>
+    
+    <section class="offline-section cached-pages-section">
+        <div class="section-header">
+            <div class="section-icon" data-lt-icon="map" data-lt-color="#16A085"></div>
+            <h2>Contenu disponible sans connexion</h2>
+        </div>
+        <p class="cameroon-context">Pour vous permettre de consulter Life Travel même avec une connexion instable :</p>
+        <div class="cached-content">
+            <div class="cached-list-container">
+                <h3>Pages mises en cache</h3>
+                <ul class="cached-links" id="cached-pages">
+                    <li class="loading-item">Chargement des pages disponibles...</li>
+                </ul>
+            </div>
+            <div class="offline-actions">
+                <button id="update-cached-pages" class="offline-button secondary">
+                    <span data-lt-icon="sync"></span> Actualiser le cache
+                </button>
+                <p class="tip">Les pages visitées précédemment sont disponibles hors ligne</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="offline-section features-section">
+        <div class="section-header">
+            <div class="section-icon" data-lt-icon="cart" data-lt-color="#3498DB"></div>
+            <h2>Fonctionnalités adaptées au Cameroun</h2>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <h3>Réservations en attente</h3>
+                <p>Vos réservations sont enregistrées localement et seront synchronisées quand vous serez reconnecté</p>
+                <div class="feature-status" id="pending-bookings">Aucune</div>
+            </div>
+            
+            <div class="feature">
+                <h3>Images et cartes allégées</h3>
+                <p>Versions optimisées des images pour réduire la consommation de données</p>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-images" checked>
+                    <span class="slider"></span>
+                    <span class="label">Images légères</span>
+                </label>
+            </div>
+            
+            <div class="feature">
+                <h3>Mode économie de données</h3>
+                <p>Réduit la consommation de données de 70% sur les réseaux mobiles limités</p>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-data-saver">
+                    <span class="slider"></span>
+                    <span class="label">Économie de données</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="sync-status">
+            <h3>Statut de synchronisation</h3>
+            <div class="sync-indicator" id="sync-status">
+                <span class="sync-icon" data-lt-icon="sync" data-lt-color="#9B59B6"></span>
+                <span class="sync-message">Prêt à synchroniser</span>
+            </div>
+            <button id="force-sync" class="offline-button secondary">
+                Forcer la synchronisation
+            </button>
+        </div>
+    </section>
+    
+    <section class="offline-section tips-section">
+        <div class="section-header">
+            <h2>Conseils pour le Cameroun</h2>
+        </div>
+        
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h3>MTN & Orange</h3>
+                <p>Utilisez les réseaux 4G entre 22h et 6h pour des transferts plus rapides et économiques</p>
+            </div>
+            
+            <div class="tip-card">
+                <p>Dans les zones à couverture limitée, activez le <strong>mode économie de données</strong> pour optimiser votre expérience</p>
+            </div>
+            
+            <div class="tip-card">
+                <h3>Gérer les coupures</h3>
+                <p>Life Travel conserve vos réservations même en cas de coupure de connexion</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="offline-footer">
+        <div class="footer-info">
+            <span class="copyright">&copy; Life Travel Cameroun</span>
+            <div class="version-info">Version 2.5.0</div>
+        </div>
+        <button class="retry-button" id="bottom-retry-connection">
+            <span data-lt-icon="refresh"></span> Réessayer la connexion
+        </button>
+    </footer>
+    
+    <!-- Configuration initiale avant chargement des scripts -->
+    <script>
+    window.LIFE_TRAVEL_CONFIG = window.LIFE_TRAVEL_CONFIG || {};
+    // Chemin du sprite SVG unifié (relatif au plugin)
+    window.LIFE_TRAVEL_CONFIG.svgSpritePath = '../assets/sprite.svg';
+    // Nom de cache par défaut
+    window.LIFE_TRAVEL_CONFIG.cacheName = 'life-travel-cache-v2';
+    </script>
+
+    <!-- Chargement séquentiel des scripts optimisés pour le contexte camerounais -->
+    <script src="../assets/js/life-travel-icons.js"></script>
+    <script src="assets/js/offline.js"></script>
+    
+    <script>
+    // Précharge du sprite SVG pour un accès immédiat même hors ligne
+    if (window.LifeTravelIcons) {
+        window.LifeTravelIcons.preload();
+    }
+    
+    // Configuration spécifique au Cameroun
+    window.LIFE_TRAVEL_CONFIG = window.LIFE_TRAVEL_CONFIG || {};
+    // Timeouts adaptés aux réseaux camerounais
+    window.LIFE_TRAVEL_CONFIG.connectionCheckTimeout = 5000;
+    window.LIFE_TRAVEL_CONFIG.syncAttemptInterval = 30000;
+    // Points d'extrémité alternatifs pour vérification de connexion (réseaux locaux)
+    window.LIFE_TRAVEL_CONFIG.connectionEndpoints = [
+        'https://www.google.com',
+        'https://www.camtel.cm',
+        'https://www.orange.cm',
+        'https://www.mtn.cm'
+    ];
+    // Données locales persistantes même sans IndexedDB
+    window.LIFE_TRAVEL_CONFIG.fallbackToLocalStorage = true;
+    
+    // Activer le bouton de vérification de connexion en bas de page 
+    document.getElementById('bottom-retry-connection').addEventListener('click', function() {
+        if (window.retryConnection) {
+            window.retryConnection();
+        }
+    });
+    </script>
+</body>
+</html>

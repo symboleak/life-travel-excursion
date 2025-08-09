@@ -1,0 +1,163 @@
+/**
+ * Styles spécifiques pour le template de galerie Life Travel
+ * @package Life Travel
+ * @version 1.0.0
+ */
+
+/* Section de galerie */
+.life-travel-gallery-section {
+    margin: 50px 0;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.life-travel-gallery-section:last-child {
+    border-bottom: none;
+}
+
+.gallery-title {
+    color: var(--life-travel-primary);
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.gallery-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: var(--life-travel-secondary);
+}
+
+.gallery-description {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+/* Section vidéo */
+.life-travel-video-section {
+    margin: 50px 0;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.life-travel-video-section h2 {
+    color: var(--life-travel-primary);
+    margin-bottom: 15px;
+}
+
+.video-info {
+    margin-top: 30px;
+}
+
+.video-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature h4 {
+    margin: 15px 0 10px;
+    color: var(--life-travel-primary);
+}
+
+.feature p {
+    color: #666;
+    margin: 0;
+}
+
+/* Showcase de la marque */
+.brand-showcase {
+    margin: 50px 0;
+    padding: 30px 0;
+}
+
+.logo-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.logo-variant {
+    flex: 1;
+    min-width: 300px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.logo-variant.dark-bg {
+    background-color: #333;
+    color: #fff;
+}
+
+.logo-variant h3 {
+    margin-bottom: 20px;
+}
+
+/* Adaptations pour mobile */
+@media (max-width: 768px) {
+    .video-features {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .logo-showcase {
+        flex-direction: column;
+    }
+    
+    .life-travel-video-section,
+    .feature,
+    .logo-variant {
+        padding: 15px;
+    }
+}
+
+/* Support du mode sombre */
+@media (prefers-color-scheme: dark) {
+    .life-travel-gallery-section {
+        border-bottom-color: #444;
+    }
+    
+    .gallery-description {
+        color: #bbb;
+    }
+    
+    .life-travel-video-section {
+        background-color: #2a2a2a;
+    }
+    
+    .feature {
+        background-color: #333;
+    }
+    
+    .feature p {
+        color: #bbb;
+    }
+    
+    .logo-variant:not(.dark-bg) {
+        background-color: #2a2a2a;
+    }
+}

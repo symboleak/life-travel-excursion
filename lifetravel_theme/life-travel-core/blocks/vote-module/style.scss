@@ -1,0 +1,261 @@
+/**
+ * Vote Module Block Styles
+ * 
+ * @package Life_Travel_Core
+ */
+
+.vote-module {
+  margin: 2rem 0;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+  position: relative;
+  --accent-color: #E19D4C;
+
+  /* Header styles */
+  &-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .vote-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .vote-description {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vote-end-date {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 1rem;
+    opacity: 0.8;
+  }
+
+  /* Options container */
+  .vote-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    &-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+    }
+  }
+
+  /* Individual option */
+  .vote-option {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Option content area */
+    .option-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Option image */
+    .option-image {
+      height: 180px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Option details */
+    .option-details {
+      padding: 1.25rem;
+      flex: 1;
+    }
+
+    .option-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .option-description {
+      font-size: 0.95rem;
+      color: rgba(0, 0, 0, 0.7);
+      margin-bottom: 0;
+    }
+
+    /* Votes bar */
+    .option-votes {
+      padding: 0.75rem 1.25rem 1.25rem;
+      position: relative;
+
+      .votes-bar {
+        height: 8px;
+        background-color: var(--accent-color);
+        border-radius: 4px;
+        margin-top: 0.5rem;
+      }
+
+      .votes-percentage {
+        position: absolute;
+        top: 0.75rem;
+        right: 1.25rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .votes-count {
+        font-size: 0.8rem;
+        color: rgba(0, 0, 0, 0.6);
+        margin-top: 0.5rem;
+        display: inline-block;
+      }
+    }
+
+    /* Voting radio button */
+    .option-vote-input {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        input[type="radio"] {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  /* Vote button container */
+  .vote-action {
+    text-align: center;
+    margin-top: 1.5rem;
+
+    .vote-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: darken(#E19D4C, 10%);
+        transform: translateY(-2px);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(225, 157, 76, 0.4);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+
+    .vote-status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      min-height: 1.5rem;
+
+      &.success {
+        color: #2e7d32;
+      }
+
+      &.error {
+        color: #c62828;
+      }
+    }
+  }
+
+  /* Add option button */
+  .add-option-button-container {
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    padding: 1.5rem 0.75rem;
+
+    .vote-title {
+      font-size: 1.5rem;
+    }
+
+    .vote-description {
+      font-size: 1rem;
+    }
+
+    .vote-options {
+      grid-template-columns: 1fr;
+    }
+
+    .vote-option {
+      .option-image {
+        height: 150px;
+      }
+
+      .option-title {
+        font-size: 1.1rem;
+      }
+
+      .option-details {
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+/* Placeholder style */
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #888;
+  
+  &::after {
+    content: "Image";
+  }
+}

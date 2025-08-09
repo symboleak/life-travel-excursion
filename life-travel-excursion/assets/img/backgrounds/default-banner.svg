@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="600" viewBox="0 0 1920 600">
+  <!-- Fond dégradé optimisé pour le web -->
+  <defs>
+    <linearGradient id="banner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0073B2" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#8BC84B" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rectangle de base -->
+  <rect width="1920" height="600" fill="url(#banner-gradient)"/>
+  
+  <!-- Motif en grille pour texture -->
+  <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.1"/>
+  </pattern>
+  <rect width="1920" height="600" fill="url(#grid-pattern)"/>
+  
+  <!-- Silhouette de montagne, vectorielle donc légère -->
+  <path d="M0,600 L480,320 L640,450 L960,180 L1280,380 L1600,250 L1920,400 L1920,600 Z" fill="#005E90" opacity="0.6"/>
+  <path d="M0,600 L240,480 L480,520 L720,440 L960,550 L1200,480 L1440,550 L1680,500 L1920,520 L1920,600 Z" fill="#72A93C" opacity="0.7"/>
+  
+  <!-- Texte indicatif -->
+  <text x="960" y="250" font-family="Arial, sans-serif" font-size="60" font-weight="bold" text-anchor="middle" fill="#ffffff">CAMEROUN</text>
+  <text x="960" y="330" font-family="Arial, sans-serif" font-size="40" text-anchor="middle" fill="#ffffff">Aventures et découvertes</text>
+</svg>

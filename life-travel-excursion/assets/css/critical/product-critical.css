@@ -1,0 +1,217 @@
+/**
+ * CSS critique pour les pages de produit d'excursion
+ * Optimisé pour le premier affichage
+ */
+
+/* Structure de base du produit */
+.woocommerce-product-gallery,
+.summary.entry-summary {
+  margin-bottom: 2em;
+}
+
+@media (min-width: 768px) {
+  .woocommerce div.product {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .woocommerce div.product .woocommerce-product-gallery {
+    width: 48%;
+    float: left;
+    margin-right: 2%;
+  }
+  
+  .woocommerce div.product .summary.entry-summary {
+    width: 48%;
+    float: right;
+  }
+}
+
+/* Galerie d'images */
+.woocommerce-product-gallery {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.woocommerce-product-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* Titre et prix */
+.product_title {
+  font-size: 24px;
+  margin: 0 0 10px;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.woocommerce div.product p.price {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4CAF50;
+  margin: 15px 0;
+}
+
+/* Description courte */
+.woocommerce-product-details__short-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Formulaire d'excursion */
+.life-travel-excursion-booking-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.life-travel-excursion-booking-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.life-travel-excursion-booking-form input[type="date"],
+.life-travel-excursion-booking-form input[type="number"],
+.life-travel-excursion-booking-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 15px;
+}
+
+.life-travel-excursion-booking-form input[type="date"]:focus,
+.life-travel-excursion-booking-form input[type="number"]:focus,
+.life-travel-excursion-booking-form select:focus {
+  border-color: #999;
+  outline: none;
+}
+
+/* Bouton d'ajout au panier */
+.life-travel-excursion-booking-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.life-travel-excursion-booking-form button:hover {
+  background-color: #45a049;
+}
+
+/* Conteneur de prix dynamique */
+.life-travel-price-container {
+  background-color: #f0f8f0;
+  border-left: 4px solid #4CAF50;
+  padding: 15px;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Icônes d'informations */
+.life-travel-info-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Messages d'alerte */
+.life-travel-alert {
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.life-travel-alert-info {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196F3;
+  color: #0b5ed7;
+}
+
+.life-travel-alert-warning {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  color: #664d03;
+}
+
+/* État de chargement */
+.life-travel-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #4CAF50;
+  animation: life-travel-spin 1s linear infinite;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+@keyframes life-travel-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Mode sombre basique */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+    color: #f0f0f0;
+  }
+  
+  .woocommerce div.product p.price {
+    color: #6dbb6d;
+  }
+  
+  .life-travel-excursion-booking-form {
+    background: #333;
+  }
+  
+  .life-travel-excursion-booking-form input[type="date"],
+  .life-travel-excursion-booking-form input[type="number"],
+  .life-travel-excursion-booking-form select {
+    background-color: #444;
+    border-color: #555;
+    color: #f0f0f0;
+  }
+  
+  .life-travel-price-container {
+    background-color: #2f4136;
+    border-left-color: #6dbb6d;
+    color: #f0f0f0;
+  }
+  
+  .life-travel-alert-info {
+    background-color: #193652;
+    border-left-color: #4a93c5;
+    color: #b3d7ff;
+  }
+  
+  .life-travel-alert-warning {
+    background-color: #483e23;
+    border-left-color: #b9a057;
+    color: #ffe69c;
+  }
+  
+  .life-travel-loading {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-top-color: #6dbb6d;
+  }
+}

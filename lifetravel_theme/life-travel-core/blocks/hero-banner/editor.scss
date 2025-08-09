@@ -1,0 +1,65 @@
+/**
+ * Hero Banner Block Editor Styles
+ * 
+ * @package Life_Travel_Core
+ */
+
+.wp-block-life-travel-core-hero-banner {
+  /* Editor-specific styles */
+  border: 1px dashed #ddd;
+  min-height: 300px;
+
+  /* Highlight buttons in the editor */
+  .hero-buttons {
+    .hero-cta-primary,
+    .hero-cta-secondary {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: text;
+      margin: 0 0.5rem 0.5rem 0;
+    }
+    
+    .hero-cta-primary {
+      background-color: #E19D4C;
+      color: #fff;
+    }
+    
+    .hero-cta-secondary {
+      border: 2px solid #fff;
+      background-color: transparent;
+    }
+  }
+
+  /* Make overlay visible in editor */
+  .hero-overlay {
+    pointer-events: none;
+  }
+
+  /* Make content editable area clearer */
+  .hero-content {
+    pointer-events: auto;
+    padding: 2rem;
+    
+    /* Improve text contrast in editor */
+    .hero-title,
+    .hero-subtitle,
+    .hero-description {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  /* Mobile preview indication */
+  .is-mobile-preview & {
+    max-width: 375px;
+    margin: 0 auto;
+    
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+  }
+}

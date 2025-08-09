@@ -1,0 +1,289 @@
+/**
+ * Life Travel - Styles adaptatifs (Connexion MOYENNE)
+ * 
+ * Ce fichier contient les styles optimisés pour les utilisateurs avec une 
+ * connexion moyenne. Il réduit certaines animations et effets visuels
+ * tout en préservant l'aspect général du site.
+ *
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* Variables CSS pour l'expérience optimisée */
+:root {
+    --lt-transition-speed: 0.2s;
+    --lt-animation-speed: 0.7;
+    --lt-image-quality: 'medium';
+    --lt-enable-effects: 0.7;
+    --lt-parallax-strength: 0.3;
+    --lt-video-quality: 'medium';
+}
+
+/* Indicateur de connexion - visible uniquement en mode admin */
+.admin-bar .connection-indicator {
+    position: fixed;
+    top: 32px;
+    right: 10px;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 99999;
+}
+
+.admin-bar .connection-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background: #ff9800;
+}
+
+/* Animations réduites */
+.fade-in, .slide-in, .zoom-in {
+    animation-duration: calc(var(--lt-animation-speed) * 1.2s);
+    animation-delay: 0s !important; /* Pas de délais */
+}
+
+.fade-in {
+    animation-name: fadeIn;
+}
+
+.slide-in {
+    animation-name: slideIn;
+}
+
+.zoom-in {
+    animation-name: zoomIn;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.97); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Effets de hover simplifiés */
+.card, .excursion-item, .gallery-item, .testimonial, .feature-box {
+    transition: transform var(--lt-transition-speed), box-shadow var(--lt-transition-speed);
+}
+
+.card:hover, .excursion-item:hover, .gallery-item:hover, .testimonial:hover, .feature-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Désactiver le parallax pour les arrière-plans */
+.parallax-section {
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Images de qualité moyenne et effets réduits */
+.high-quality-image {
+    filter: contrast(0.95) brightness(1.02); /* Légère amélioration de contraste */
+}
+
+.image-overlay {
+    position: relative;
+}
+
+.image-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+    transition: none; /* Pas de transition */
+}
+
+.image-overlay:hover::before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); /* Même état, pas de changement */
+}
+
+/* Vidéos d'arrière-plan - remplacement par image */
+.background-video {
+    display: none;
+}
+
+.background-video-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+    display: block !important;
+}
+
+/* Mode galerie simplifié */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 15px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: none; /* Pas de transition */
+}
+
+.gallery-grid a:hover img {
+    transform: none; /* Pas d'effet de survol */
+}
+
+/* Masonry layout simplifié */
+.gallery-masonry {
+    column-count: 2; /* Réduction du nombre de colonnes */
+    column-gap: 15px;
+}
+
+.gallery-masonry .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .gallery-masonry {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-masonry {
+        column-count: 1;
+    }
+}
+
+/* Simplification des effets d'équipe */
+.team-member {
+    position: relative;
+    overflow: hidden;
+}
+
+.team-member .member-info {
+    position: relative;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 10px;
+    transform: none; /* Toujours visible */
+}
+
+/* Désactivation des animations d'icônes */
+.animated-icon {
+    transition: none;
+}
+
+.animated-icon:hover {
+    transform: none;
+}
+
+/* Slider standard sans vidéo */
+.fullscreen-slider {
+    height: 70vh; /* Hauteur réduite */
+    position: relative;
+}
+
+.fullscreen-slider video {
+    display: none;
+}
+
+.fullscreen-slider .slide-image {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cartes avec contenu toujours visible */
+.card-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-overlay .card-content {
+    position: relative;
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+}
+
+/* Lightbox pour les images - version simplifiée */
+.lightbox-enabled {
+    cursor: pointer;
+}
+
+/* Navigation sticky simplifiée */
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: none;
+}
+
+/* Éléments décoratifs réduits */
+.decorative-element {
+    display: none;
+}
+
+/* Loader simplifié */
+.loader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Support des variables pour la typographie fluide */
+body {
+    --lt-heading-scale: 1;
+    --lt-text-scale: 1;
+}
+
+h1 { font-size: calc(2.5rem * var(--lt-heading-scale)); }
+h2 { font-size: calc(2rem * var(--lt-heading-scale)); }
+h3 { font-size: calc(1.75rem * var(--lt-heading-scale)); }
+h4 { font-size: calc(1.5rem * var(--lt-heading-scale)); }
+h5 { font-size: calc(1.25rem * var(--lt-heading-scale)); }
+h6 { font-size: calc(1rem * var(--lt-heading-scale)); }
+p, li, td, th, input, select, textarea { font-size: calc(1rem * var(--lt-text-scale)); }
+
+/* Classes utilitaires pour l'interface utilisateur */
+.connection-medium .medium-only { display: block; }
+.connection-medium .fast-only,
+.connection-medium .slow-only,
+.connection-medium .offline-only { display: none; }
+
+.offline-notification,
+.requires-connection-message { display: none; }
+
+.offline-alternative { display: none; }

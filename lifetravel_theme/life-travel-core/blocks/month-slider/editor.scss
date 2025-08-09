@@ -1,0 +1,67 @@
+/**
+ * Month Slider Block Editor Styles
+ * 
+ * @package Life_Travel_Core
+ */
+
+.wp-block-life-travel-core-month-slider {
+  /* Editor-specific styles */
+  border: 1px dashed #ddd;
+  padding: 1rem;
+
+  /* Product selection interface */
+  .product-selection {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      button {
+        margin: 0.25rem;
+      }
+    }
+  }
+
+  /* Editor loading placeholder */
+  .placeholder-image {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    color: #888;
+    text-align: center;
+    
+    &::before {
+      content: "Image d'excursion";
+      font-size: 14px;
+    }
+  }
+
+  /* Style for selected buttons */
+  .components-button.is-secondary {
+    background-color: #e0f0e0;
+    border-color: #60a060;
+  }
+
+  /* Mobile preview indication */
+  .is-mobile-preview & {
+    max-width: 375px;
+    margin: 0 auto;
+    
+    .month-slider-item {
+      flex: 0 0 calc(100% - 1rem);
+    }
+  }
+}

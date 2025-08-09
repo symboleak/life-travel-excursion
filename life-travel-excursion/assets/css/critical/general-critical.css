@@ -1,0 +1,413 @@
+/**
+ * CSS critique pour les pages générales
+ * Contient les styles essentiels pour les éléments communs
+ */
+
+/* Reset et base */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* En-tête */
+.site-header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  position: relative;
+  z-index: 100;
+}
+
+.site-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.site-title a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* Navigation principale */
+.main-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.main-navigation ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-navigation li {
+  position: relative;
+  margin: 0 10px;
+}
+
+.main-navigation a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-navigation a:hover {
+  color: #4CAF50;
+}
+
+/* Bouton de menu mobile */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Conteneur principal */
+.site-content {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Pied de page */
+.site-footer {
+  background-color: #f8f9fa;
+  padding: 40px 0;
+  margin-top: 40px;
+  border-top: 1px solid #e9ecef;
+}
+
+.site-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-widget {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+.footer-widget h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-widget li {
+  margin-bottom: 8px;
+}
+
+.footer-widget a {
+  color: #666;
+  text-decoration: none;
+}
+
+.footer-widget a:hover {
+  color: #4CAF50;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #e9ecef;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Style de base pour les notifications */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  list-style: none;
+}
+
+.woocommerce-message {
+  background-color: #f0f8f0;
+  border-left: 4px solid #4CAF50;
+}
+
+.woocommerce-info {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196F3;
+}
+
+.woocommerce-error {
+  background-color: #fff8f8;
+  border-left: 4px solid #f44336;
+}
+
+/* Styles généraux pour les titres et textes */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 15px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #333;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  margin: 0 0 15px;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Grille pour les produits */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product {
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product .woocommerce-loop-product__title {
+  font-size: 18px;
+  padding: 15px 15px 5px;
+  margin: 0;
+}
+
+.product .price {
+  padding: 0 15px 15px;
+  font-weight: 600;
+  color: #4CAF50;
+}
+
+.product .button {
+  display: block;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 0;
+  border: none;
+  border-radius: 0 0 6px 6px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.product .button:hover {
+  background-color: #45a049;
+  text-decoration: none;
+}
+
+/* Pagination */
+.woocommerce-pagination {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.woocommerce-pagination ul {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.woocommerce-pagination li {
+  margin: 0 5px;
+}
+
+.woocommerce-pagination a,
+.woocommerce-pagination span {
+  display: block;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  color: #333;
+  text-decoration: none;
+}
+
+.woocommerce-pagination span.current {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.woocommerce-pagination a:hover {
+  background-color: #e9ecef;
+  text-decoration: none;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 767px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .main-navigation ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-navigation.toggled ul {
+    display: flex;
+  }
+  
+  .main-navigation li {
+    margin: 0;
+    width: 100%;
+  }
+  
+  .main-navigation a {
+    padding: 12px 20px;
+  }
+  
+  .site-footer-inner {
+    flex-direction: column;
+  }
+  
+  .footer-widget {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+/* Mode sombre basique */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+    color: #f0f0f0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #f0f0f0;
+  }
+  
+  .site-header {
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .site-title a,
+  .main-navigation a {
+    color: #f0f0f0;
+  }
+  
+  .site-footer {
+    background-color: #333;
+    border-top-color: #444;
+  }
+  
+  .footer-widget a {
+    color: #ccc;
+  }
+  
+  .footer-bottom {
+    color: #aaa;
+    border-top-color: #444;
+  }
+  
+  .product {
+    background-color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .woocommerce-pagination a,
+  .woocommerce-pagination span {
+    background-color: #333;
+    color: #f0f0f0;
+  }
+  
+  .woocommerce-pagination a:hover {
+    background-color: #444;
+  }
+}

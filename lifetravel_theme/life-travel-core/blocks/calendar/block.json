@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "life-travel-core/calendar",
+  "version": "1.0.0",
+  "title": "Calendrier d'Excursions",
+  "category": "life-travel",
+  "icon": "calendar-alt",
+  "description": "Affiche un calendrier des excursions programmées avec une présentation esthétique et visuelle",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "life-travel-core",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Calendrier des Excursions"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Planifiez votre prochaine aventure"
+    },
+    "showMonthsAhead": {
+      "type": "number",
+      "default": 3
+    },
+    "showMonthsBack": {
+      "type": "number",
+      "default": 1
+    },
+    "includeCategories": {
+      "type": "array",
+      "default": []
+    },
+    "showVotingForEmptyDays": {
+      "type": "boolean",
+      "default": true
+    },
+    "votingTitle": {
+      "type": "string",
+      "default": "Votez pour votre prochaine excursion !"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#F7F3EB"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#3D2B1F"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#E19D4C"
+    }
+  },
+  "example": {
+    "attributes": {
+      "title": "Calendrier des Excursions",
+      "subtitle": "Planifiez votre prochaine aventure",
+      "preview": true
+    }
+  }
+}

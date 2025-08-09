@@ -1,0 +1,291 @@
+/**
+ * Life Travel - Styles adaptatifs (Connexion RAPIDE)
+ * 
+ * Ce fichier contient les styles optimisés pour les utilisateurs avec une 
+ * connexion rapide. Il inclut toutes les fonctionnalités visuelles, animations
+ * et éléments enrichis.
+ *
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* Variables CSS pour l'expérience complète */
+:root {
+    --lt-transition-speed: 0.3s;
+    --lt-animation-speed: 1;
+    --lt-image-quality: 'high';
+    --lt-enable-effects: 1;
+    --lt-parallax-strength: 1;
+    --lt-video-quality: 'high';
+}
+
+/* Indicateur de connexion - visible uniquement en mode admin */
+.admin-bar .connection-indicator {
+    position: fixed;
+    top: 32px;
+    right: 10px;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 99999;
+}
+
+.admin-bar .connection-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background: #4caf50;
+}
+
+/* Animations et transitions complètes */
+.fade-in, .slide-in, .zoom-in {
+    animation-duration: calc(var(--lt-animation-speed) * 1s);
+}
+
+.fade-in {
+    animation-name: fadeIn;
+}
+
+.slide-in {
+    animation-name: slideIn;
+}
+
+.zoom-in {
+    animation-name: zoomIn;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Effets de hover enrichis */
+.card, .excursion-item, .gallery-item, .testimonial, .feature-box {
+    transition: transform var(--lt-transition-speed), box-shadow var(--lt-transition-speed);
+}
+
+.card:hover, .excursion-item:hover, .gallery-item:hover, .testimonial:hover, .feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Parallax pour les arrière-plans */
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Images de haute qualité et effets */
+.high-quality-image {
+    filter: none;
+}
+
+.image-overlay {
+    position: relative;
+}
+
+.image-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+    transition: background var(--lt-transition-speed);
+}
+
+.image-overlay:hover::before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+}
+
+/* Vidéos d'arrière-plan */
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Mode galerie enrichi */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--lt-transition-speed);
+}
+
+.gallery-grid a:hover img {
+    transform: scale(1.05);
+}
+
+/* Masonry layout pour gallery */
+.gallery-masonry {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+.gallery-masonry .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .gallery-masonry {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-masonry {
+        column-count: 1;
+    }
+}
+
+/* Effets de survol pour les équipes */
+.team-member {
+    position: relative;
+    overflow: hidden;
+}
+
+.team-member .member-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform var(--lt-transition-speed);
+}
+
+.team-member:hover .member-info {
+    transform: translateY(0);
+}
+
+/* Animations pour les icônes */
+.animated-icon {
+    transition: transform var(--lt-transition-speed);
+}
+
+.animated-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Slider plein écran avec vidéo */
+.fullscreen-slider {
+    height: 100vh;
+    position: relative;
+}
+
+.fullscreen-slider video {
+    display: block;
+}
+
+/* Cartes avec superposition d'informations */
+.card-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-overlay .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    color: #fff;
+}
+
+/* Lightbox pour les images */
+.lightbox-enabled {
+    cursor: pointer;
+}
+
+/* Navigation sticky avec animation */
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    animation: slideDown 0.5s;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+/* Éléments décoratifs et flourishes */
+.decorative-element {
+    display: block;
+}
+
+/* Indicateurs de chargement élaborés */
+.loader {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Support des variables pour la typographie fluide */
+body {
+    --lt-heading-scale: 1;
+    --lt-text-scale: 1;
+}
+
+h1 { font-size: calc(2.5rem * var(--lt-heading-scale)); }
+h2 { font-size: calc(2rem * var(--lt-heading-scale)); }
+h3 { font-size: calc(1.75rem * var(--lt-heading-scale)); }
+h4 { font-size: calc(1.5rem * var(--lt-heading-scale)); }
+h5 { font-size: calc(1.25rem * var(--lt-heading-scale)); }
+h6 { font-size: calc(1rem * var(--lt-heading-scale)); }
+p, li, td, th, input, select, textarea { font-size: calc(1rem * var(--lt-text-scale)); }
+
+/* Classes utilitaires pour l'interface utilisateur */
+.connection-fast .fast-only { display: block; }
+.connection-fast .medium-only,
+.connection-fast .slow-only,
+.connection-fast .offline-only { display: none; }
+
+.offline-notification,
+.requires-connection-message { display: none; }
+
+.offline-alternative { display: none; }

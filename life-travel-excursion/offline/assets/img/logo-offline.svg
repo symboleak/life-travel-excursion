@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0073B2"/>
+      <stop offset="100%" stop-color="#005d8f"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="15" width="180" height="30" rx="5" fill="url(#logo-gradient)"/>
+  <text x="100" y="37" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">LIFE TRAVEL</text>
+  <path d="M170 30 L180 30 L175 22 Z" fill="#FF9E00"/>
+  <text x="100" y="50" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#666666">Mode Hors Ligne</text>
+</svg>

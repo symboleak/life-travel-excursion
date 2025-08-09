@@ -1,0 +1,250 @@
+/**
+ * Optimisations CSS cross-plateforme pour Life Travel Excursion
+ * 
+ * Ce fichier contient des correctifs et optimisations pour garantir 
+ * une expérience utilisateur cohérente sur toutes les plateformes
+ * (desktop, iOS, Android) et tous les navigateurs modernes.
+ */
+
+/* ========== CORRECTIFS GLOBAUX ========== */
+
+/* Assurer que box-sizing est cohérent partout */
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; /* Empêcher le zoom automatique du texte sur iOS */
+  -webkit-font-smoothing: antialiased; /* Meilleur rendu des polices sur WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Meilleur rendu des polices sur macOS */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Empêcher les débordements sur mobile */
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Faire en sorte que les images soient responsives par défaut */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ajustements d'entrée pour les appareils tactiles */
+input, select, textarea, button {
+  font-size: 16px; /* Empêche le zoom automatique sur iOS */
+  -webkit-appearance: none; /* Supprime les styles natifs sur iOS */
+  appearance: none; /* Standard */
+  border-radius: 0; /* Cohérence visuelle sur iOS */
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+
+/* Annuler les styles d'autofill disgracieux */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Correctif pour les boutons sur iOS */
+button {
+  cursor: pointer; 
+  -webkit-touch-callout: none; /* Désactiver menu contextuel sur iOS */
+}
+
+/* ========== CORRECTIFS FLEXBOX ========== */
+
+/* Assurez-vous que Flexbox fonctionne correctement sur IE 11 et Safari */
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.flex-wrap {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* ========== CORRECTIFS GRID ========== */
+
+.grid-container {
+  display: -ms-grid;
+  display: grid;
+}
+
+/* ========== CORRECTION DE SCROLLING MOBILE ========== */
+
+/* Rendre le défilement fluide sur iOS */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ========== CORRECTIFS SPÉCIFIQUES FORMULAIRES ========== */
+
+/* Styles de focus cohérents pour tous les navigateurs */
+input:focus, select:focus, textarea:focus, button:focus, a:focus {
+  outline: 2px solid rgba(76, 175, 80, 0.5); /* Couleur principale Life Travel */
+  outline-offset: 2px;
+}
+
+/* Support tactile amélioré pour les éléments interactifs */
+button, .button, a, input[type="submit"], input[type="button"], input[type="reset"] {
+  touch-action: manipulation; /* Optimisation pour le tactile */
+}
+
+/* ========== CORRECTIFS SPÉCIFIQUES AUX FONCTIONNALITÉS ========== */
+
+/* Checkout - Corrections responsive */
+@media screen and (max-width: 768px) {
+  .woocommerce-checkout .woocommerce-billing-fields,
+  .woocommerce-checkout .woocommerce-shipping-fields,
+  .woocommerce-checkout .woocommerce-additional-fields {
+    padding: 15px;
+  }
+  
+  .woocommerce-checkout .form-row {
+    margin-bottom: 10px;
+  }
+  
+  /* Plus grand champ pour éviter les erreurs de frappe sur mobile */
+  .woocommerce-checkout input, 
+  .woocommerce-checkout select {
+    min-height: 44px; /* Taille tactile recommandée */
+    margin-bottom: 10px;
+  }
+}
+
+/* Correctifs pour l'authentification sur mobile */
+@media screen and (max-width: 480px) {
+  .lte-auth-container {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .lte-auth-tabs {
+    flex-direction: column;
+  }
+  
+  .lte-auth-tab {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Boutons plus grands sur mobile */
+  .lte-auth-button {
+    min-height: 44px;
+    width: 100%;
+  }
+}
+
+/* Correctifs pour les notifications sur mobile */
+@media screen and (max-width: 576px) {
+  .lte-notification-channel,
+  .lte-notification-type {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .lte-notification-channel label,
+  .lte-notification-type label {
+    margin-bottom: 5px;
+  }
+}
+
+/* ========== CORRECTIFS SAFARI ET IOS ========== */
+
+/* Corriger l'apparence des inputs date sur Safari/iOS */
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"] {
+  -webkit-appearance: textfield; /* Supprime l'apparence native */
+  appearance: textfield; /* Standard */
+}
+
+/* Correctif pour le débordement dans les flexbox Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+  .product-container,
+  .checkout-container,
+  .cart-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Fix pour les grilles sur Safari mobile */
+  .grid-gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .grid-gallery > * {
+    width: calc(50% - 10px);
+    margin: 5px;
+  }
+}
+
+/* ========== ANIMATION ET TRANSITION OPTIMISÉES ========== */
+
+/* Utiliser uniquement les propriétés optimisées pour les animations */
+.optimized-animation {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform, opacity; /* Prévient le GPU que ces propriétés vont changer */
+  backface-visibility: hidden; /* Empêche certains problèmes d'affichage */
+  transform: translateZ(0); /* Force l'accélération matérielle si disponible */
+}
+
+/* Désactiver les animations complexes sur les appareils à faible puissance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+/* ========== GESTION DES POLICES ========== */
+
+/* Garantir une taille de texte minimale lisible sur mobile */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  h1 { font-size: 24px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  h5, h6 { font-size: 16px; }
+}
+
+/* ========== THÈMES SOMBRES ========== */
+
+/* Support basique pour le mode sombre du système */
+@media (prefers-color-scheme: dark) {
+  .respects-dark-mode {
+    --bg-color: #222;
+    --text-color: #eee;
+    --border-color: #444;
+    
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+  }
+}

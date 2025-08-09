@@ -1,0 +1,328 @@
+/**
+ * Styles Life Travel Excursion
+ * Compatible avec le design du site Life Travel
+ * Optimisé pour les performances et l'accessibilité
+ * @version 2.3.4
+ */
+
+/* Variables de couleurs (identiques au site principal) */
+:root {
+    /* Couleurs principales */
+    --color-primary: #0073B2; /* Bleu Life Travel */
+    --color-primary-rgb: 0, 115, 178;
+    --color-primary-dark: #005E90;
+    --color-secondary: #8BC84B; /* Vert Life Travel */
+    --color-secondary-rgb: 139, 200, 75;
+    --color-secondary-dark: #72A93C;
+    
+    /* Couleurs du système */
+    --color-light: #FFFFFF;
+    --color-dark: #333333;
+    --color-accent: #0073B2;
+    --color-gray: #666666;
+    --color-light-gray: #f7f7f7;
+    --color-error: #e74c3c;
+    --color-success: #2ecc71;
+    --color-warning: #f39c12;
+    
+    /* Typographie */
+    --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    
+    /* Mise en page */
+    --border-radius: 4px;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+    
+    /* Points de rupture réactifs */
+    --mobile-width: 480px;
+    --tablet-width: 768px;
+    --desktop-width: 1024px;
+}
+
+/* Formulaire de réservation d'excursion */
+.life-travel-excursion-form {
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.life-travel-excursion-form h3 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+.life-travel-excursion-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-dark);
+}
+
+.life-travel-excursion-form input[type="text"],
+.life-travel-excursion-form input[type="number"],
+.life-travel-excursion-form input[type="date"],
+.life-travel-excursion-form select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    font-family: var(--font-body);
+    font-size: 16px;
+}
+
+.life-travel-excursion-form input[type="submit"],
+.life-travel-excursion-form button {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.life-travel-excursion-form input[type="submit"]:hover,
+.life-travel-excursion-form button:hover {
+    background-color: var(--color-secondary-dark);
+}
+
+/* Information des prix */
+.price-breakdown {
+    background-color: var(--color-light-gray);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.price-breakdown h4 {
+    color: var(--color-primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.price-breakdown table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-breakdown th, 
+.price-breakdown td {
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.price-breakdown th {
+    font-weight: 600;
+}
+
+.price-total {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Extras & Options */
+.excursion-extras {
+    margin-top: 25px;
+}
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.extra-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.extra-item:hover {
+    border-color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.extra-item input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Options de véhicules */
+.vehicle-options {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.vehicle-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.vehicle-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: var(--color-primary);
+}
+
+/* Méthodes de paiement */
+.payment-methods {
+    margin-top: 30px;
+}
+
+.payment-method-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.payment-method-item img {
+    max-height: 40px;
+    margin-right: 15px;
+}
+
+.payment-method-item.selected {
+    border-color: var(--color-secondary);
+    background-color: rgba(var(--color-secondary-rgb), 0.05);
+}
+
+/* Informations de réservation (dans le panier) */
+.excursion-booking-info {
+    background-color: var(--color-light-gray);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+}
+
+.excursion-booking-info h4 {
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.booking-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.booking-meta-item {
+    display: flex;
+    align-items: center;
+}
+
+.booking-meta-item svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    color: var(--color-primary);
+}
+
+/* Adaptations mobile et optimisations de performance */
+@media (max-width: 768px) {
+    .extras-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Tableaux plus lisibles sur mobile */
+    .price-breakdown table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Permettre de scroller horizontalement */
+        -webkit-overflow-scrolling: touch; /* Défilement fluide sur iOS */
+    }
+    
+    .price-breakdown td, 
+    .price-breakdown th {
+        padding: 6px 8px;
+        font-size: 0.9em;
+        white-space: nowrap; /* Éviter la coupure du texte */
+    }
+    
+    /* Formulaire plus ergonomique sur mobile */
+    .life-travel-excursion-form {
+        padding: 15px;
+    }
+    
+    /* Boutons plus faciles à toucher */
+    .life-travel-excursion-form input[type="submit"],
+    .life-travel-excursion-form button {
+        display: block;
+        width: 100%;
+        padding: 15px 20px; /* Plus grand pour faciliter le toucher */
+        margin-top: 10px;
+        font-size: 1.1em;
+    }
+    
+    /* Simplifier les éléments d'interface sur mobile */
+    .payment-method-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .payment-method-item img {
+        margin: 0 auto 10px auto;
+    }
+}
+
+/* Optimisations de performance pour toutes les tailles d'écran */
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Support du mode sombre automatique */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-light: #1a1a1a;
+        --color-dark: #f8f8f8;
+        --color-light-gray: #333333;
+        --color-gray: #bbbbbb;
+    }
+    
+    body {
+        background-color: var(--color-light);
+        color: var(--color-dark);
+    }
+    
+    .life-travel-excursion-form,
+    .price-breakdown,
+    .extra-item,
+    .payment-method-item {
+        background-color: #252525;
+        border-color: #444444;
+    }
+    
+    /* Inverser les icônes si nécessaire */
+    .vehicle-icon {
+        filter: invert(1);
+    }
+}
+

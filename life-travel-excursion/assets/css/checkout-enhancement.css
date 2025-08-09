@@ -1,0 +1,345 @@
+/**
+ * Styles pour l'amélioration du checkout
+ * Optimisé pour compatibilité iOS, Android et desktop
+ * 
+ * @package Life_Travel_Excursion
+ */
+
+/* Structure principale */
+.lte-checkout-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin: 0 -15px;
+    max-width: 100vw; /* Évite les débordements sur mobile */
+}
+
+.woocommerce-checkout .col2-set {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    min-width: 290px;
+    padding: 0 15px;
+    width: 100%; /* Assure un comportement prévisible sur iOS */
+}
+
+.lte-order-review {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 38%;
+            flex: 0 0 38%;
+    min-width: 290px;
+    padding: 0 15px;
+}
+
+/* Ajustement pour petits écrans */
+@media screen and (max-width: 768px) {
+    .lte-order-review {
+        -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1;
+        margin-bottom: 20px;
+    }
+    
+    .woocommerce-checkout .col2-set {
+        -webkit-box-ordinal-group: 3;
+            -ms-flex-order: 2;
+                order: 2;
+    }
+}
+
+/* Étapes du checkout */
+.lte-checkout-steps {
+    margin-bottom: 30px;
+}
+
+.lte-checkout-steps ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: auto; /* Permet le défilement sur petits écrans */
+    -webkit-overflow-scrolling: touch; /* Défilement fluide sur iOS */
+    padding-bottom: 5px; /* Espace pour scrollbar */
+}
+
+.lte-checkout-steps ul::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background-color: #e5e5e5;
+    z-index: 1;
+}
+
+.lte-checkout-steps .step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.lte-checkout-steps .step-number {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 10px;
+    background-color: #f5f5f5;
+    color: #777;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 2px solid #ddd;
+    font-weight: 600;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Supprime le flash bleu sur iOS */
+}
+
+.lte-checkout-steps .step.active .step-number {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.lte-checkout-steps .step.completed .step-number {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.lte-checkout-steps .step.completed .step-number::after {
+    content: '✓';
+    font-size: 20px;
+}
+
+.lte-checkout-steps .step-title {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    font-weight: 500;
+}
+
+.lte-checkout-steps .step.active .step-title,
+.lte-checkout-steps .step.completed .step-title {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+/* Formulaire de checkout */
+.lte-checkout-container .form-row {
+    margin-bottom: 16px;
+}
+
+.lte-checkout-container .form-row label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.lte-checkout-container .form-row input, 
+.lte-checkout-container .form-row select, 
+.lte-checkout-container .form-row textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    background-color: #f9f9f9;
+    -webkit-transition: border-color 0.3s ease, background-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    font-size: 16px; /* Empêche le zoom automatique sur iOS */
+    -webkit-appearance: none; /* Supprime les styles natifs sur iOS */
+    appearance: none; /* Standard */
+    max-width: 100%; /* Évite les débordements */
+}
+
+.lte-checkout-container .form-row input:focus, 
+.lte-checkout-container .form-row select:focus, 
+.lte-checkout-container .form-row textarea:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+    outline: none;
+}
+
+.lte-checkout-container .form-row input.input-error,
+.lte-checkout-container .form-row select.input-error,
+.lte-checkout-container .form-row textarea.input-error {
+    border-color: #f44336;
+    background-color: #fff8f8;
+}
+
+.lte-checkout-container .form-row .description {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Résumé de commande */
+.lte-order-review {
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.lte-order-review h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Style des notifications */
+.woocommerce-checkout .woocommerce-NoticeGroup,
+.woocommerce-checkout .woocommerce-notices-wrapper {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    width: 100%;
+    word-wrap: break-word; /* Empêche les longs textes de déborder */
+}
+
+/* Message de récupération de panier */
+.lte-abandoned-cart-notice {
+    background-color: #ebf7eb;
+    border: 1px solid #4CAF50;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    position: relative;
+    word-wrap: break-word; /* Gestion des longs textes */
+}
+
+.lte-abandoned-cart-notice p {
+    margin: 0;
+    padding-right: 30px;
+}
+
+.lte-abandoned-cart-notice .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    color: #777;
+}
+
+.lte-abandoned-cart-notice .close:hover {
+    color: #333;
+}
+
+/* Champs spécifiques aux excursions */
+.excursion-fields {
+    background-color: #f0f7f0;
+    border: 1px solid #d4e5d4;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    padding: 15px;
+    overflow: hidden; /* Gère les débordements */
+
+/* Ajustements spécifiques pour mobile */
+@media screen and (max-width: 767px) {
+    /* Améliorer l'accessibilité tactile */
+    .lte-checkout-container input[type="radio"],
+    .lte-checkout-container input[type="checkbox"] {
+        min-width: 20px;
+        min-height: 20px;
+        margin-right: 8px;
+    }
+
+    /* Agrandir les boutons sur mobile */
+    .lte-checkout-container button,
+    .lte-checkout-container .button {
+        min-height: 44px; /* Taille minimale recommandée pour tactile */
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Espacement vertical amélioré sur mobile */
+    .lte-checkout-container .form-row {
+        margin-bottom: 20px;
+    }
+
+    /* Rendre les étapes plus visibles sur mobile */
+    .lte-checkout-steps .step-title {
+        font-size: 12px;
+    }
+
+    /* Empêcher le zoom indésirable sur iOS */
+    .lte-checkout-container select {
+        font-size: 16px;
+        background-position: calc(100% - 10px) center;
+    }
+}
+    margin-bottom: 20px;
+}
+
+.excursion-fields h3 {
+    margin-top: 0;
+    color: #2E7D32;
+    font-size: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d4e5d4;
+}
+
+/* Orange Money customization */
+.payment_method_orange_money img {
+    max-height: 32px !important;
+    vertical-align: middle;
+}
+
+.om-sandbox-notice {
+    background-color: #FFF3E0;
+    border: 1px solid #FFB74D;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lte-checkout-container {
+        flex-direction: column;
+    }
+    
+    .lte-checkout-steps ul::before {
+        left: 20px;
+        right: 20px;
+    }
+    
+    .lte-checkout-steps .step-title {
+        font-size: 12px;
+    }
+    
+    .lte-checkout-steps .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+}

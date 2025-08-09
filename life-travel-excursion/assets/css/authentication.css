@@ -1,0 +1,585 @@
+/**
+ * Styles pour le système d'authentification fluide
+ * 
+ * @package Life_Travel_Excursion
+ */
+
+/* Conteneur principal d'authentification */
+.lte-auth-container {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    position: relative;
+}
+
+/* Onglets de méthode d'authentification */
+.lte-auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.lte-auth-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px 10px;
+    color: #666;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.lte-auth-tab:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.lte-auth-tab.active {
+    color: #4CAF50;
+}
+
+.lte-auth-tab.active:after {
+    background-color: #4CAF50;
+}
+
+/* Contenu des méthodes d'authentification */
+.lte-auth-method {
+    display: none;
+}
+
+.lte-auth-method.active {
+    display: block;
+}
+
+/* Formulaires d'authentification */
+.lte-auth-form {
+    margin: 0;
+}
+
+.lte-form-step {
+    display: none;
+}
+
+.lte-form-step.active {
+    display: block;
+}
+
+.lte-form-group {
+    margin-bottom: 20px;
+}
+
+.lte-form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.lte-form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.lte-form-group input:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.lte-form-group input.error {
+    border-color: #F44336;
+    background-color: #FFF8F8;
+}
+
+.lte-form-error {
+    color: #F44336;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Style spécial pour le champ de code */
+.lte-form-group input[name="code"] {
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Actions du formulaire */
+.lte-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lte-form-actions button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lte-form-actions button:hover {
+    background-color: #388E3C;
+}
+
+.lte-form-actions button.lte-secondary-btn {
+    background-color: transparent;
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.lte-form-actions button.lte-secondary-btn:hover {
+    color: #388E3C;
+    background-color: transparent;
+}
+
+.lte-form-actions button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.lte-resend-code-btn {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Message d'erreur et feedback */
+.lte-auth-message {
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.lte-auth-message.error {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+    border: 1px solid #FFCDD2;
+}
+
+.lte-auth-message.success {
+    background-color: #E8F5E9;
+    color: #388E3C;
+    border: 1px solid #C8E6C9;
+}
+
+.lte-auth-message.info {
+    background-color: #E3F2FD;
+    color: #1976D2;
+    border: 1px solid #BBDEFB;
+}
+
+/* Liens sous le formulaire */
+.lte-auth-links {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.lte-auth-links a {
+    margin: 0 10px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.lte-auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Connexion Facebook */
+.lte-facebook-login {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.lte-facebook-login p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.lte-facebook-btn {
+    background-color: #1877F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s ease;
+}
+
+.lte-facebook-btn:hover {
+    background-color: #166FE5;
+}
+
+.lte-facebook-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('../images/facebook-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+/* Récupération de panier */
+.lte-auth-cart-recovery {
+    margin-top: 25px;
+    background-color: #FFF8E1;
+    border: 1px solid #FFE082;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+}
+
+.lte-auth-cart-recovery p {
+    margin-bottom: 15px;
+    color: #FF8F00;
+    font-weight: 500;
+}
+
+.lte-recover-cart-btn, 
+.lte-ignore-cart-btn {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lte-recover-cart-btn {
+    background-color: #FF8F00;
+    color: white;
+    border: none;
+}
+
+.lte-recover-cart-btn:hover {
+    background-color: #F57C00;
+}
+
+.lte-ignore-cart-btn {
+    background-color: transparent;
+    color: #FF8F00;
+    border: 1px solid #FF8F00;
+}
+
+.lte-ignore-cart-btn:hover {
+    background-color: rgba(255, 143, 0, 0.08);
+}
+
+/* Badges de confiance */
+.lte-auth-trust {
+    margin-top: 25px;
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.lte-auth-trust p {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.lte-auth-trust-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lte-trust-badge {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #777;
+}
+
+.lte-trust-badge img {
+    height: 20px;
+    margin-right: 5px;
+}
+
+/* Icônes par défaut pour les badges */
+.lte-trust-badge.lte-secure::before,
+.lte-trust-badge.lte-privacy::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lte-trust-badge.lte-secure::before {
+    background-image: url('../images/lock-icon.svg');
+}
+
+.lte-trust-badge.lte-privacy::before {
+    background-image: url('../images/shield-icon.svg');
+}
+
+/* Animations pour les éléments d'UI */
+.lte-loader {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: lte-spin 1s infinite linear;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+@keyframes lte-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Adaptation mobile */
+@media (max-width: 767px) {
+    .lte-auth-container {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        box-shadow: none;
+        border: 1px solid #eee;
+    }
+    
+    .lte-auth-tab {
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+    
+    .lte-form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .lte-form-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .lte-facebook-btn {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    
+    .lte-auth-links a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+/* Styles pour la 2FA administrateur */
+.lte-admin-2fa-form input[type="text"] {
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Animations de transition entre les étapes */
+.lte-form-step {
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    height: auto;
+}
+
+.lte-form-step:not(.active) {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.lte-auth-links a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.lte-auth-links a:hover {
+    color: #388E3C;
+    text-decoration: underline;
+}
+
+/* Style spécifique pour le bouton Facebook */
+.lte-facebook-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+}
+
+.lte-facebook-btn:hover {
+    background-color: #2d4373;
+}
+
+.lte-facebook-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="white" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-right: 10px;
+}
+
+/* Message utilisateur connecté */
+.lte-logged-in-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #E8F5E9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.lte-logged-in-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Message de blocage */
+.lte-lockout-message {
+    padding: 20px;
+    background-color: #FFEBEE;
+    color: #D32F2F;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Loader pour les actions asynchrones */
+.lte-loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: lte-spin 1s ease infinite;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+@keyframes lte-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Style pour 2FA de l'administrateur */
+.lte-admin-2fa-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.lte-admin-2fa-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.lte-admin-2fa-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.lte-admin-2fa-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lte-auth-container {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .lte-auth-tab {
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+    
+    .lte-form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .lte-form-actions button {
+        margin-bottom: 10px;
+    }
+    
+    .lte-auth-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

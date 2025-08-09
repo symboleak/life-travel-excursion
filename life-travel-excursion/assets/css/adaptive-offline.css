@@ -1,0 +1,324 @@
+/**
+ * Life Travel - Styles adaptatifs (Mode HORS-LIGNE)
+ * 
+ * Ce fichier contient les styles ultra-légers pour les utilisateurs en mode hors-ligne.
+ * Il supprime tous les éléments nécessitant une connexion, simplifie radicalement l'interface
+ * et affiche des notifications claires sur les fonctionnalités non disponibles.
+ * Spécialement conçu pour le contexte camerounais avec des connexions intermittentes.
+ *
+ * @package Life Travel Excursion
+ * @version 2.4.0
+ */
+
+/* Variables CSS pour l'expérience hors-ligne */
+:root {
+    --lt-transition-speed: 0s;
+    --lt-animation-speed: 0;
+    --lt-image-quality: 'minimal';
+    --lt-enable-effects: 0;
+    --lt-parallax-strength: 0;
+    --lt-video-quality: 'none';
+}
+
+/* Indicateur de connexion - visible uniquement en mode admin */
+.admin-bar .connection-indicator {
+    position: fixed;
+    top: 32px;
+    right: 10px;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 99999;
+}
+
+.admin-bar .connection-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background: #9e9e9e;
+}
+
+/* Mode hors-ligne: Grande bannière de notification */
+.offline-notification {
+    display: block !important;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #424242;
+    color: #fff;
+    padding: 10px 15px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.offline-notification strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.offline-notification p {
+    margin: 0 0 10px;
+    font-size: 14px;
+}
+
+.retry-connection {
+    display: inline-block;
+    background: #fff;
+    color: #424242;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.retry-connection:hover {
+    background: #f5f5f5;
+}
+
+.retry-connection:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+/* Désactiver toutes les animations et transitions */
+* {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+}
+
+.fade-in, .slide-in, .zoom-in, .animate__animated {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Mode noir et blanc pour économiser la batterie */
+html {
+    filter: grayscale(30%);
+}
+
+/* Masquer tous les éléments qui nécessitent une connexion */
+.requires-connection,
+.online-only,
+[data-requires-connection="true"],
+iframe,
+video,
+audio,
+.map-container,
+.live-chat,
+.payment-form,
+.booking-widget:not(.offline-booking),
+.social-feed,
+.weather-widget,
+.currency-converter,
+.newsletter-form,
+.rating-widget,
+.sharing-buttons {
+    display: none !important;
+}
+
+/* Afficher les alternatives hors-ligne */
+.offline-alternative {
+    display: block !important;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 3px;
+}
+
+/* Désactiver les images de fond */
+.background-image, 
+.hero-background, 
+.section-background,
+.parallax-section,
+[style*="background-image"] {
+    background-image: none !important;
+    background-color: #f5f5f5 !important;
+}
+
+/* Remplacer les images par des placeholders minimaux */
+img:not(.cached-image):not(.essential-image) {
+    display: none;
+}
+
+.img-placeholder {
+    display: block;
+    background: #eee;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 13px;
+    text-align: center;
+    border: 1px dashed #ccc;
+}
+
+.img-placeholder::before {
+    content: "Image non disponible en mode hors-ligne";
+}
+
+/* Formulaires en mode lecture seule */
+form:not(.offline-enabled-form) {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
+}
+
+form:not(.offline-enabled-form)::before {
+    content: "Ce formulaire n'est pas disponible en mode hors-ligne";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* Éléments spéciaux pour mode hors-ligne */
+.offline-message {
+    display: block !important;
+    background: #fff3cd;
+    border: 1px solid #ffecb5;
+    color: #856404;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.cached-content-notice {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.cached-content-notice::before {
+    content: "📋 ";
+}
+
+/* Galerie ultra-simplifiée */
+.gallery-grid, 
+.gallery-masonry {
+    display: block;
+}
+
+.gallery-grid img, 
+.gallery-masonry img {
+    display: none;
+}
+
+.gallery-grid .img-placeholder, 
+.gallery-masonry .img-placeholder {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+/* Menu simplifié */
+.main-menu .dropdown-menu,
+.main-menu .megamenu {
+    display: none !important;
+}
+
+/* Typographie minimaliste */
+body {
+    --lt-heading-scale: 0.8;
+    --lt-text-scale: 0.9;
+    line-height: 1.4;
+}
+
+h1 { font-size: calc(1.8rem * var(--lt-heading-scale)); }
+h2 { font-size: calc(1.5rem * var(--lt-heading-scale)); }
+h3 { font-size: calc(1.3rem * var(--lt-heading-scale)); }
+h4 { font-size: calc(1.2rem * var(--lt-heading-scale)); }
+h5 { font-size: calc(1.1rem * var(--lt-heading-scale)); }
+h6 { font-size: calc(1rem * var(--lt-heading-scale)); }
+p, li, td, th, input, select, textarea { font-size: calc(0.95rem * var(--lt-text-scale)); }
+
+/* Classes utilitaires pour l'interface utilisateur */
+.connection-offline .offline-only { display: block !important; }
+.connection-offline .fast-only,
+.connection-offline .medium-only,
+.connection-offline .slow-only { display: none !important; }
+
+/* Éléments en cache */
+.cached-item {
+    position: relative;
+}
+
+.cached-item::after {
+    content: "📱";
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Message d'informations mises en cache */
+.connection-offline .cache-notice {
+    display: block;
+    background: #e8f4f8;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+    padding: 10px 15px;
+    margin: 0 0 20px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.connection-offline .cache-notice strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Conteneur principal */
+.container, .container-fluid {
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Espacement réduit */
+.section, .block, .widget, .feature {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* Simplifier les marges et paddings */
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.col, [class*="col-"] {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Supprimer les ombres et les bordures complexes */
+.shadow, .card, .box {
+    box-shadow: none !important;
+    border: 1px solid #ddd;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Travel - Connexion perdue</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        .info {
+            background-color: #f1f9ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="assets/img/logo.svg" alt="Life Travel Logo" class="logo" onerror="this.style.display='none'">
+        <div class="icon">📶</div>
+        <h1>Oups, vous êtes hors ligne !</h1>
+        <p>Nous ne pouvons pas accéder au serveur actuellement car votre connexion internet semble interrompue.</p>
+        <p>Vos informations de réservation ont été sauvegardées localement et seront synchronisées dès que votre connexion sera rétablie.</p>
+        
+        <a href="javascript:window.location.reload()" class="btn">Réessayer</a>
+        
+        <div class="info">
+            <p><strong>Astuce :</strong> Si vous êtes dans une zone à connectivité limitée, essayez de vous déplacer ou de trouver un réseau Wi-Fi.</p>
+        </div>
+    </div>
+
+    <script>
+        // Vérifier la connexion périodiquement
+        function checkConnection() {
+            if (navigator.onLine) {
+                document.querySelector('.icon').innerHTML = '✅';
+                document.querySelector('h1').innerHTML = 'Connexion rétablie !';
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            }
+        }
+
+        // Vérifier la connexion toutes les 5 secondes
+        setInterval(checkConnection, 5000);
+
+        // Écouter les événements de connexion
+        window.addEventListener('online', checkConnection);
+    </script>
+</body>
+</html>

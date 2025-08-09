@@ -1,0 +1,213 @@
+/**
+ * Life Travel - Notifications pour mode hors ligne
+ * 
+ * Styles pour les notifications affichées aux utilisateurs
+ * lorsqu'ils tentent d'effectuer des actions en mode hors ligne.
+ */
+
+.life-travel-offline-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 90%;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.life-travel-offline-notification.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.life-travel-offline-notification-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.life-travel-offline-notification-icon {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.life-travel-offline-notification-icon .dashicons {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+    color: #FF7D3B; /* Couleur orange Life Travel */
+}
+
+.life-travel-offline-notification-icon.icon-calendar .dashicons:before {
+    content: "\f145";
+}
+
+.life-travel-offline-notification-icon.icon-credit-card .dashicons:before {
+    content: "\f481";
+}
+
+.life-travel-offline-notification-icon.icon-email .dashicons:before {
+    content: "\f465";
+}
+
+.life-travel-offline-notification-icon.icon-cart .dashicons:before {
+    content: "\f174";
+}
+
+.life-travel-offline-notification-icon.icon-update .dashicons:before {
+    content: "\f463";
+}
+
+.life-travel-offline-notification-icon.icon-wifi-off .dashicons:before {
+    content: "\f230";
+}
+
+.life-travel-offline-notification-content {
+    color: #333;
+}
+
+.life-travel-offline-notification-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 15px;
+    text-align: center;
+    color: #2D354C; /* Couleur principale Life Travel */
+}
+
+.life-travel-offline-notification-message {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.life-travel-offline-notification-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.life-travel-offline-notification-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #FF7D3B;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 16px;
+}
+
+.life-travel-offline-notification-button:hover {
+    background-color: #E86A28;
+}
+
+.life-travel-offline-notification-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #999;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.life-travel-offline-notification-close:hover {
+    opacity: 1;
+}
+
+/* Overlay */
+.life-travel-offline-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.life-travel-offline-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Adaptations mobiles */
+@media (max-width: 768px) {
+    .life-travel-offline-notification {
+        width: 95%;
+        max-width: 450px;
+    }
+    
+    .life-travel-offline-notification-icon .dashicons {
+        width: 50px;
+        height: 50px;
+        font-size: 50px;
+    }
+    
+    .life-travel-offline-notification-title {
+        font-size: 20px;
+    }
+    
+    .life-travel-offline-notification-message {
+        font-size: 14px;
+    }
+}
+
+/* Compatibilité avec le mode de connexion lente */
+.connection-slow .life-travel-offline-notification,
+.connection-slow .life-travel-offline-overlay {
+    transition: none;
+}
+
+/* Animations (désactivées en mode connexion lente) */
+@keyframes notification-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.connection-fast .life-travel-offline-notification.visible {
+    animation: notification-in 0.3s forwards;
+}
+
+/* Styles spéciaux pour le mode foncé si activé */
+.dark-mode .life-travel-offline-notification {
+    background-color: #2D354C;
+}
+
+.dark-mode .life-travel-offline-notification-content {
+    color: #EFEFEF;
+}
+
+.dark-mode .life-travel-offline-notification-title {
+    color: #fff;
+}
+
+.dark-mode .life-travel-offline-notification-close {
+    color: #ddd;
+}

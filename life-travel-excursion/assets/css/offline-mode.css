@@ -1,0 +1,380 @@
+/**
+ * Life Travel Offline Mode CSS
+ *
+ * Styles pour les indicateurs visuels du mode hors-ligne
+ * et des fonctionnalités adaptées aux connexions lentes
+ *
+ * @package Life Travel Excursion
+ * @version 2.5.0
+ */
+
+/* Indicateur de statut réseau */
+#life-travel-offline-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+}
+
+#life-travel-offline-indicator .status-icon {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#life-travel-offline-indicator .status-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* États de connexion */
+#life-travel-offline-indicator.online {
+    background-color: #2ecc71;
+    color: #fff;
+    border-left: 4px solid #27ae60;
+}
+
+#life-travel-offline-indicator.offline {
+    background-color: #e74c3c;
+    color: #fff;
+    border-left: 4px solid #c0392b;
+}
+
+#life-travel-offline-indicator.slow {
+    background-color: #f39c12;
+    color: #fff;
+    border-left: 4px solid #e67e22;
+}
+
+#life-travel-offline-indicator.very-slow {
+    background-color: #f1c40f;
+    color: #fff;
+    border-left: 4px solid #f39c12;
+}
+
+#life-travel-offline-indicator.unknown {
+    background-color: #95a5a6;
+    color: #fff;
+    border-left: 4px solid #7f8c8d;
+}
+
+/* Bouton de synchronisation */
+#life-travel-sync-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#life-travel-sync-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+#life-travel-sync-button.syncing {
+    animation: rotate 2s linear infinite;
+    background-color: #2980b9;
+}
+
+#life-travel-sync-button .sync-icon {
+    font-size: 24px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Notifications */
+#life-travel-notifications {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    width: 300px;
+    max-width: 90%;
+}
+
+.life-travel-notification {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.life-travel-notification .notification-message {
+    flex: 1;
+    font-size: 14px;
+}
+
+.life-travel-notification .notification-close {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    opacity: 0.5;
+}
+
+.life-travel-notification .notification-close:hover {
+    opacity: 1;
+}
+
+/* Types de notifications */
+.life-travel-notification-info {
+    border-left: 4px solid #3498db;
+}
+
+.life-travel-notification-success {
+    border-left: 4px solid #2ecc71;
+}
+
+.life-travel-notification-warning {
+    border-left: 4px solid #f39c12;
+}
+
+.life-travel-notification-error {
+    border-left: 4px solid #e74c3c;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Adaptations globales pour différents états de connexion */
+body.lt-offline .life-travel-online-only {
+    display: none !important;
+}
+
+body.lt-offline .life-travel-offline-only {
+    display: block !important;
+}
+
+body.lt-offline .life-travel-excursion-price-calculator {
+    opacity: 0.7;
+}
+
+body.lt-offline .life-travel-excursion-price-calculator:after {
+    content: "Mode hors-ligne actif - Prix approximatif";
+    display: block;
+    text-align: center;
+    background-color: #f1c40f;
+    color: #333;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Adaptations pour connexions lentes */
+body.lt-very-slow img:not(.lt-critical-image) {
+    opacity: 0.1;
+    transition: opacity 0.5s ease;
+}
+
+body.lt-very-slow img:not(.lt-critical-image):hover {
+    opacity: 1;
+}
+
+body.lt-very-slow .lt-high-bandwidth-content {
+    display: none !important;
+}
+
+body.lt-very-slow .lt-low-bandwidth-content {
+    display: block !important;
+}
+
+body.lt-very-slow video, 
+body.lt-very-slow iframe,
+body.lt-very-slow .wp-block-embed {
+    display: none !important;
+}
+
+/* Élément de remplacement pour le contenu haute-bande passante */
+.lt-low-bandwidth-placeholder {
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.lt-low-bandwidth-placeholder .placeholder-icon {
+    font-size: 24px;
+    color: #95a5a6;
+    margin-bottom: 10px;
+}
+
+.lt-low-bandwidth-placeholder .placeholder-text {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Placeholder pour les images non chargées */
+.lt-image-placeholder {
+    background-color: #eee;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.lt-image-placeholder:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Modifications responsives */
+@media (max-width: 768px) {
+    #life-travel-offline-indicator {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    #life-travel-sync-button {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    #life-travel-notifications {
+        bottom: 15px;
+        left: 15px;
+        width: calc(100% - 30px);
+    }
+}
+
+/* Styles pour les formulaires compatibles hors-ligne */
+.life-travel-offline-compatible {
+    position: relative;
+}
+
+body.lt-offline .life-travel-offline-compatible:after {
+    content: "Ce formulaire sera synchronisé lorsque la connexion sera rétablie";
+    display: block;
+    background-color: #f1c40f;
+    color: #333;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+}
+
+body.lt-offline .life-travel-form:not(.life-travel-offline-compatible):after {
+    content: "Ce formulaire n'est pas disponible en mode hors-ligne";
+    display: block;
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Styles pour les boutons adaptés au mode hors-ligne */
+.life-travel-btn.lt-offline-friendly {
+    position: relative;
+}
+
+body.lt-offline .life-travel-btn:not(.lt-offline-friendly) {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Animations de chargement adaptatives */
+.lt-loading-indicator {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.lt-loading-indicator:after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 3px solid;
+    border-color: #3498db transparent #3498db transparent;
+    animation: lt-loading-animation 1.2s linear infinite;
+}
+
+body.lt-very-slow .lt-loading-indicator:after,
+body.lt-slow .lt-loading-indicator:after {
+    animation-duration: 2.5s;
+}
+
+@keyframes lt-loading-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

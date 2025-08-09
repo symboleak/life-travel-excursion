@@ -1,0 +1,205 @@
+/**
+ * Optimisations CSS pour les connexions lentes (comme au Cameroun)
+ * @package Life Travel
+ * @version 1.0.0
+ */
+
+/* Classes pour les images basse résolution sur connexions lentes */
+.low-bandwidth-mode img:not(.critical-image) {
+    filter: blur(0);
+    transition: filter 0.3s ease;
+}
+
+.low-bandwidth-mode .lazy-image {
+    opacity: 0.8;
+    transition: opacity 0.5s ease;
+}
+
+.low-bandwidth-mode .lazy-image.loaded {
+    opacity: 1;
+}
+
+/* Désactiver les animations coûteuses en ressources */
+.low-bandwidth-mode .animation-heavy {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Optimisations pour le chargement progressif des images */
+.progressive-image-container {
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.progressive-image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px);
+    transform: scale(1.05);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.progressive-image {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.progressive-image.loaded {
+    opacity: 1;
+}
+
+.progressive-image.loaded ~ .progressive-image-placeholder {
+    opacity: 0;
+}
+
+/* Texte alternatif plus visible pendant le chargement des images */
+.image-alt-visible {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0073B2;
+    font-weight: bold;
+    text-align: center;
+    z-index: 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+}
+
+/* États de connexion */
+.connection-status {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.connection-status:hover {
+    opacity: 1;
+}
+
+.connection-status.online {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.connection-status.offline {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.connection-status.slow {
+    background-color: #f39c12;
+    color: white;
+}
+
+/* Mode hors ligne */
+.offline-mode .online-only {
+    display: none !important;
+}
+
+.offline-mode .offline-message {
+    display: block !important;
+}
+
+.offline-message {
+    display: none;
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Fallbacks pour les polices web */
+.low-bandwidth-mode {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+.low-bandwidth-mode h1,
+.low-bandwidth-mode h2,
+.low-bandwidth-mode h3,
+.low-bandwidth-mode h4,
+.low-bandwidth-mode h5,
+.low-bandwidth-mode h6 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+/* Adaptations pour les écrans mobiles - optimisations générales */
+@media (max-width: 768px) {
+    .mobile-stack {
+        flex-direction: column !important;
+    }
+    
+    .mobile-full-width {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .mobile-center {
+        text-align: center !important;
+    }
+    
+    .mobile-hidden {
+        display: none !important;
+    }
+    
+    .mobile-visible {
+        display: block !important;
+    }
+}
+
+/* Adaptations pour le mode portrait sur mobile */
+@media (max-width: 768px) and (orientation: portrait) {
+    .banner-text {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    .portrait-compact {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .portrait-stack > * {
+        margin-bottom: 15px !important;
+    }
+}
+
+/* Adaptations pour le mode paysage sur mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .landscape-row {
+        flex-direction: row !important;
+    }
+    
+    .landscape-compact {
+        padding: 10px !important;
+    }
+    
+    .landscape-side-by-side {
+        display: flex !important;
+        justify-content: space-between !important;
+    }
+    
+    .landscape-side-by-side > * {
+        width: 48% !important;
+    }
+}

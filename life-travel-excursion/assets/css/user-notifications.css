@@ -1,0 +1,245 @@
+/**
+ * Styles pour la gestion des préférences de notification utilisateur
+ * Optimisé pour compatibilité iOS, Android et desktop
+ */
+
+.lte-notification-preferences {
+    margin-bottom: 30px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.lte-notification-channels,
+.lte-notification-types,
+.lte-notification-contact {
+    margin-bottom: 30px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.lte-notification-channel,
+.lte-notification-type {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+.lte-notification-channel:last-child,
+.lte-notification-type:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.lte-notification-group {
+    margin-bottom: 20px;
+}
+
+.lte-notification-group h4 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #4CAF50;
+}
+
+.channel-icon {
+    margin-right: 8px;
+    color: #4CAF50;
+}
+
+.channel-name,
+.type-name {
+    font-weight: 600;
+}
+
+.channel-unavailable,
+.type-required {
+    color: #999;
+    font-style: italic;
+    margin-left: 8px;
+    font-size: 0.9em;
+}
+
+.description {
+    margin: 5px 0 5px 25px;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.lte-notification-channel.disabled,
+.lte-notification-type.disabled {
+    opacity: 0.7;
+}
+
+.lte-contact-info {
+    padding: 15px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    word-break: break-word; /* Empêche les débordements sur mobile */
+}
+
+.lte-notification-preferences h3 {
+    color: #4CAF50;
+    margin-top: 0;
+}
+
+/* Ajustements spécifiques pour les appareils mobiles */
+@media screen and (max-width: 767px) {
+    .lte-notification-channels,
+    .lte-notification-types,
+    .lte-notification-contact {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .description {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .lte-notification-channel label,
+    .lte-notification-type label {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        width: 100%;
+    }
+    
+    .lte-notification-channel input[type="checkbox"],
+    .lte-notification-type input[type="checkbox"] {
+        -webkit-transform: scale(1.2); /* Plus grands sur mobile */
+                transform: scale(1.2);
+        margin-right: 10px;
+        min-width: 20px; /* Zone tactile minimale */
+        min-height: 20px;
+    }
+    
+    .channel-icon {
+        margin-right: 6px;
+    }
+    
+    /* Ajuster la taille des boutons pour meilleure expérience tactile */
+    .woocommerce-Button.button {
+        min-height: 44px;
+        width: 100%;
+        font-size: 16px;
+        touch-action: manipulation; /* Meilleure réponse tactile */
+    }
+    
+    /* Fix pour iOS Safari */
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none; /* Propriété standard */
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        display: inline-block;
+        position: relative;
+        margin-right: 10px;
+    }
+    
+    input[type="checkbox"]:checked {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+    }
+    
+    input[type="checkbox"]:checked:after {
+        content: '\2714';
+        font-size: 12px;
+        position: absolute;
+        top: 0;
+        left: 2px;
+        color: #fff;
+    }
+}
+
+/* États spéciaux */
+.lte-notification-channel.required label,
+.lte-notification-type.required label {
+    color: #4CAF50;
+}
+
+/* Animation de notification */
+@-webkit-keyframes highlight {
+    0% { background-color: #ffe2e2; }
+    50% { background-color: #fff; }
+    100% { background-color: #ffe2e2; }
+}
+
+@keyframes highlight {
+    0% { background-color: #ffe2e2; }
+    50% { background-color: #fff; }
+    100% { background-color: #ffe2e2; }
+}
+
+.lte-notification-highlight {
+    -webkit-animation: highlight 2s ease infinite;
+            animation: highlight 2s ease infinite;
+}
+
+/* Désactiver les animations si préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+    .lte-notification-highlight {
+        -webkit-animation: none;
+                animation: none;
+        background-color: #fff5f5; /* Alternative statique */
+    }
+}
+
+/* Optimisations supplémentaires pour iOS/Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+    /* Fix pour formulaires et boutons sur iOS */
+    input, select, textarea, button {
+        font-size: 16px; /* Empêche le zoom automatique sur iOS */
+    }
+    
+    .lte-notification-channels,
+    .lte-notification-types,
+    .lte-notification-contact {
+        -webkit-tap-highlight-color: rgba(0,0,0,0); /* Supprime le flash bleu iOS */
+    }
+}
+
+/* Fix pour Dark Mode système */
+@media (prefers-color-scheme: dark) {
+    .lte-notification-preferences.respects-dark-mode .lte-notification-channels,
+    .lte-notification-preferences.respects-dark-mode .lte-notification-types,
+    .lte-notification-preferences.respects-dark-mode .lte-notification-contact {
+        background: #333;
+        border-color: #555;
+    }
+    
+    .lte-notification-preferences.respects-dark-mode .description {
+        color: #aaa;
+    }
+    
+    .lte-notification-preferences.respects-dark-mode .lte-contact-info {
+        background: #222;
+        border-color: #444;
+    }
+}

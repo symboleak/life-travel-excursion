@@ -1,0 +1,250 @@
+/* style.css: Styles pour le plugin Life Travel Excursion */
+
+/* Container principal */
+.excursion-booking-container,
+.my-account-excursions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Galerie d'excursions (si applicable) */
+.excursion-gallery {
+    flex: 1 1 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.excursion-gallery .main-image img {
+    width: 100%;
+    height: auto;
+}
+.excursion-gallery .thumbnail-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.excursion-gallery .thumbnail-images a img {
+    width: 80px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.excursion-gallery .thumbnail-images a img:hover {
+    transform: scale(1.05);
+}
+
+/* Section de réservation */
+.excursion-reservation {
+    flex: 1 1 50%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.excursion-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.excursion-booking-form {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+.excursion-booking-form:hover {
+    background-color: #f0f0f0;
+}
+.booking-section {
+    margin-bottom: 20px;
+}
+.booking-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.booking-section input[type="text"],
+.booking-section input[type="number"],
+.booking-section input[type="time"],
+.booking-section select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+.booking-section input[type="text"]:focus,
+.booking-section input[type="number"]:focus,
+.booking-section input[type="time"]:focus,
+.booking-section select:focus {
+    border-color: #0073aa;
+}
+
+/* Sélecteur de quantité */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    max-width: 150px;
+}
+.quantity-selector button {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.quantity-selector button:hover {
+    background-color: #e0e0e0;
+}
+.quantity-selector input[type="number"] {
+    width: 60px;
+    text-align: center;
+    margin: 0 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+/* Extras et Activités Section */
+.extras-section, 
+.activities-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+}
+.extras-section h3,
+.activities-section h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.extra-item,
+.activity-item {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+.extra-item label,
+.activity-item label {
+    cursor: pointer;
+}
+.extra-quantity,
+.activity-quantity {
+    margin-top: 5px;
+}
+.extra-quantity input,
+.activity-quantity input {
+    width: 60px;
+}
+
+/* Tarification Section */
+.pricing-section {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.pricing-summary {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.pricing-summary p {
+    margin: 10px 0;
+}
+#pricing_details {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+#pricing_details p {
+    margin: 5px 0;
+}
+
+/* Boutons */
+.add-to-cart-section {
+    text-align: center;
+}
+.add-to-cart-section .button {
+    background-color: #0073aa;
+    border: none;
+    color: #fff;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+.add-to-cart-section .button:hover {
+    background-color: #005177;
+}
+
+/* Partage social */
+.social-share-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+.social-share-buttons a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0073aa;
+    padding: 10px 15px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+.social-share-buttons a:hover {
+    background-color: #005177;
+}
+
+/* Points de fidélité */
+.reward-points {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #2e7d32;
+}
+
+/* My Account Excursions */
+.my-account-excursions-container h3 {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+.my_account_orders {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.my_account_orders th, 
+.my_account_orders td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.my_account_orders th {
+    background-color: #f1f1f1;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .excursion-booking-container,
+    .my-account-excursions-container {
+        padding: 10px;
+    }
+    .excursion-gallery,
+    .excursion-reservation {
+        flex: 1 1 100%;
+    }
+    .excursion-gallery .thumbnail-images {
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 480px) {
+    .excursion-booking-form {
+        padding: 10px;
+    }
+    .excursion-gallery .thumbnail-images a img {
+        width: 60px;
+    }
+    .quantity-selector input[type="number"] {
+        width: 50px;
+    }
+    .quantity-selector button {
+        padding: 5px 10px;
+    }
+}

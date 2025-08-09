@@ -1,0 +1,55 @@
+/**
+ * Calendar Block Editor Styles
+ * 
+ * @package Life_Travel_Core
+ */
+
+.wp-block-life-travel-core-calendar {
+  /* Editor-specific styles */
+  border: 1px dashed #ddd;
+  padding: 1rem;
+
+  /* Make sure days are clearly visible in editor */
+  .calendar-days-grid {
+    .calendar-day {
+      outline: 1px solid rgba(0, 0, 0, 0.1);
+      
+      /* Make sure empty days are visible */
+      &.empty {
+        min-height: 100px;
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+
+  /* Ensure voting options are properly aligned in editor */
+  .voting-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* Style placeholders in the editor */
+  .placeholder-image {
+    background-color: #f0f0f0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.8rem;
+  }
+
+  /* Mobile preview indication */
+  .is-mobile-preview & {
+    max-width: 375px;
+    margin: 0 auto;
+    
+    .calendar-days-grid {
+      gap: 2px;
+      
+      .calendar-day {
+        min-height: 70px;
+      }
+    }
+  }
+}

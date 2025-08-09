@@ -1,0 +1,57 @@
+/**
+ * Vote Module Block Editor Styles
+ * 
+ * @package Life_Travel_Core
+ */
+
+.wp-block-life-travel-core-vote-module {
+  /* Editor-specific styles */
+  border: 1px dashed #ddd;
+  padding: 1rem;
+
+  /* Option editing mode */
+  .vote-option.is-editing {
+    background-color: #f7f7f7;
+    padding: 1rem;
+    
+    .option-edit-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      
+      .edit-option-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  /* Edit button for options */
+  .edit-option-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    z-index: 5;
+    
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  /* Mobile preview indication */
+  .is-mobile-preview & {
+    max-width: 375px;
+    margin: 0 auto;
+    
+    .vote-options {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="{{language_code}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if_language_is_fr}}Life Travel - Excursions au Cameroun{{else}}Life Travel - Tours in Cameroon{{/if_language_is_fr}}</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Style spécifique pour le sélecteur de langue -->
+    <style>
+        /* Sélecteur de langue */
+        .language-switcher {
+            position: relative;
+            margin-left: 15px;
+            margin-right: 15px;
+            z-index: 100;
+        }
+        .current-language {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+        .current-language:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .language-flag {
+            margin-right: 5px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+        .language-flag.fr {
+            background: linear-gradient(to right, #0055A4 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #EF4135 66.6%);
+            color: transparent;
+        }
+        .language-flag.en {
+            background: linear-gradient(to bottom, #00247D 50%, #CF142B 50%);
+            background-repeat: no-repeat;
+            color: transparent;
+            position: relative;
+        }
+        .language-flag.en::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, transparent calc(50% - 1px), #FFFFFF, transparent calc(50% + 1px)),
+                       linear-gradient(to bottom left, transparent calc(50% - 1px), #FFFFFF, transparent calc(50% + 1px));
+        }
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 0 0;
+            min-width: 150px;
+            display: none;
+        }
+        .language-switcher:hover .language-dropdown {
+            display: block;
+        }
+        .language-dropdown li {
+            margin: 0;
+            padding: 0;
+        }
+        .language-dropdown a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .language-dropdown a:hover, .language-dropdown a.active {
+            background-color: #f5f5f5;
+        }
+        .language-dropdown .language-flag {
+            margin-right: 10px;
+        }
+        
+        /* Version mobile */
+        @media (max-width: 768px) {
+            .language-switcher {
+                margin: 0;
+                position: absolute;
+                top: 15px;
+                right: 60px;
+            }
+            .current-language {
+                padding: 3px 6px;
+            }
+            .language-flag {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+            .language-dropdown {
+                right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="img/logo.svg" alt="Life Travel" class="site-logo">
+                </a>
+                <p class="site-description">Excursions et aventures au Cameroun</p>
+            </div>
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <span class="menu-toggle-icon"></span>
+                <span class="screen-reader-text">Menu</span>
+            </button>
+            <nav class="site-navigation">
+                <ul class="menu">
+                    <li><a href="#accueil" class="active">Accueil</a></li>
+                    <li><a href="#excursions">Excursions</a></li>
+                    <li><a href="#sur-mesure">Sur Mesure</a></li>
+                    <li><a href="#carnet">Carnet de Voyages</a></li>
+                    <li><a href="#a-propos">À Propos</a></li>
+                    <li><a href="#contact" class="cta-button">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Sélecteur de langue -->
+            <div class="language-switcher">
+                <div class="current-language">
+                    <span class="language-flag fr active">FR</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <ul class="language-dropdown">
+                    <li><a href="#" data-lang="fr" class="active"><span class="language-flag fr">FR</span> Français</a></li>
+                    <li><a href="#" data-lang="en"><span class="language-flag en">EN</span> English</a></li>
+                </ul>
+            </div>
+            
+            <div class="search-container">
+                <button class="search-toggle" aria-label="Rechercher">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <form class="search-form" action="#" method="get">
+                    <input type="search" name="s" placeholder="Rechercher..." aria-label="Rechercher">
+                    <button type="submit" aria-label="Lancer la recherche">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner Block -->
+        <section class="hero-banner" style="background-image: url('img/cameroon-landscape.jpg');">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Découvrez le Cameroun Authentique</h2>
+                    <p>Excursions guidées dans les plus beaux paysages d'Afrique</p>
+                    <a href="#excursions" class="cta-button">Voir les excursions</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Month Slider Block -->
+        <section class="month-slider-section">
+            <div class="container">
+                <h2 class="section-title">Prochains départs</h2>
+                <div class="month-slider">
+                    <div class="month-nav">
+                        <button class="prev-month">&lt;</button>
+                        <div class="current-month">Avril 2025</div>
+                        <button class="next-month">&gt;</button>
+                    </div>
+                    <div class="excursion-items">
+                        <div class="excursion-card">
+                            <div class="excursion-date">5 - 7 Avril</div>
+                            <h3 class="excursion-title">Mont Cameroun</h3>
+                            <div class="excursion-meta">
+                                <span class="difficulty">Modéré</span>
+                                <span class="price">85.000 FCFA</span>
+                            </div>
+                            <a href="#" class="button">Réserver</a>
+                        </div>
+                        <div class="excursion-card">
+                            <div class="excursion-date">12 - 15 Avril</div>
+                            <h3 class="excursion-title">Chutes de la Lobé</h3>
+                            <div class="excursion-meta">
+                                <span class="difficulty">Facile</span>
+                                <span class="price">65.000 FCFA</span>
+                            </div>
+                            <a href="#" class="button">Réserver</a>
+                        </div>
+                        <div class="excursion-card">
+                            <div class="excursion-date">22 - 25 Avril</div>
+                            <h3 class="excursion-title">Réserve du Dja</h3>
+                            <div class="excursion-meta">
+                                <span class="difficulty">Difficile</span>
+                                <span class="price">120.000 FCFA</span>
+                            </div>
+                            <a href="#" class="button">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendar Block -->
+        <section class="calendar-section">
+            <div class="container">
+                <h2 class="section-title">Calendrier des excursions</h2>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="month-selector">
+                            <button class="prev-month">&lt;</button>
+                            <h3>Avril 2025</h3>
+                            <button class="next-month">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-names">
+                            <div>Lu</div>
+                            <div>Ma</div>
+                            <div>Me</div>
+                            <div>Je</div>
+                            <div>Ve</div>
+                            <div>Sa</div>
+                            <div>Di</div>
+                        </div>
+                        <div class="calendar-days">
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day">1</div>
+                            <div class="calendar-day">2</div>
+                            <div class="calendar-day">3</div>
+                            <div class="calendar-day">4</div>
+                            <div class="calendar-day has-event">5</div>
+                            <div class="calendar-day has-event">6</div>
+                            <div class="calendar-day has-event">7</div>
+                            <div class="calendar-day">8</div>
+                            <div class="calendar-day">9</div>
+                            <div class="calendar-day">10</div>
+                            <div class="calendar-day">11</div>
+                            <div class="calendar-day has-event">12</div>
+                            <div class="calendar-day has-event">13</div>
+                            <div class="calendar-day has-event">14</div>
+                            <div class="calendar-day has-event">15</div>
+                            <div class="calendar-day">16</div>
+                            <div class="calendar-day">17</div>
+                            <div class="calendar-day">18</div>
+                            <div class="calendar-day">19</div>
+                            <div class="calendar-day">20</div>
+                            <div class="calendar-day">21</div>
+                            <div class="calendar-day has-event">22</div>
+                            <div class="calendar-day has-event">23</div>
+                            <div class="calendar-day has-event">24</div>
+                            <div class="calendar-day has-event">25</div>
+                            <div class="calendar-day">26</div>
+                            <div class="calendar-day">27</div>
+                            <div class="calendar-day">28</div>
+                            <div class="calendar-day">29</div>
+                            <div class="calendar-day">30</div>
+                        </div>
+                    </div>
+                    <div class="calendar-events">
+                        <div class="event-item">
+                            <div class="event-date">5 - 7 Avril</div>
+                            <h4 class="event-title">Mont Cameroun</h4>
+                            <div class="event-details">
+                                <p>Ascension du plus haut sommet d'Afrique de l'Ouest</p>
+                                <a href="#" class="button">Détails</a>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">12 - 15 Avril</div>
+                            <h4 class="event-title">Chutes de la Lobé</h4>
+                            <div class="event-details">
+                                <p>Découverte des chutes qui se jettent directement dans l'océan</p>
+                                <a href="#" class="button">Détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vote Module -->        
+        <section class="vote-module-section">
+            <div class="container">
+                <h2 class="section-title">Votez pour les prochaines destinations</h2>
+                <p class="section-description">Aidez-nous à choisir les destinations des prochains mois. Votre avis compte !</p>
+                
+                <div class="vote-options">
+                    <div class="vote-option">
+                        <h3>Parc National de Waza</h3>
+                        <div class="vote-progress">
+                            <div class="progress-bar" style="width: 45%;"></div>
+                        </div>
+                        <div class="vote-meta">
+                            <span class="vote-count">45%</span>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vote-option">
+                        <h3>Plages de Kribi</h3>
+                        <div class="vote-progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <div class="vote-meta">
+                            <span class="vote-count">30%</span>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vote-option">
+                        <h3>Chutes de Mami Wata</h3>
+                        <div class="vote-progress">
+                            <div class="progress-bar" style="width: 25%;"></div>
+                        </div>
+                        <div class="vote-meta">
+                            <span class="vote-count">25%</span>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Excursions -->
+        <section class="featured-excursions">
+            <div class="container">
+                <h2 class="section-title">Excursions populaires</h2>
+                <div class="excursions-grid">
+                    <div class="excursion-card">
+                        <div class="excursion-image">
+                            <img src="img/mont-cameroun.jpg" alt="Mont Cameroun">
+                            <div class="excursion-badge">Bestseller</div>
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Mont Cameroun</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Sud-Ouest</span>
+                                <span class="difficulty">Modéré</span>
+                                <span class="duration">3 jours</span>
+                            </div>
+                            <p>Ascension du plus haut sommet d'Afrique de l'Ouest avec des guides expérimentés.</p>
+                            <div class="excursion-footer">
+                                <span class="price">85.000 FCFA</span>
+                                <a href="#" class="button">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="excursion-card">
+                        <div class="excursion-image">
+                            <img src="img/chutes-lobe.jpg" alt="Chutes de la Lobé">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Chutes de la Lobé</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Sud</span>
+                                <span class="difficulty">Facile</span>
+                                <span class="duration">4 jours</span>
+                            </div>
+                            <p>Découverte des chutes uniques au monde qui se jettent directement dans l'océan.</p>
+                            <div class="excursion-footer">
+                                <span class="price">65.000 FCFA</span>
+                                <a href="#" class="button">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="excursion-card">
+                        <div class="excursion-image">
+                            <img src="img/dja-reserve.jpg" alt="Réserve du Dja">
+                        </div>
+                        <div class="excursion-content">
+                            <h3>Réserve du Dja</h3>
+                            <div class="excursion-meta">
+                                <span class="region">Est</span>
+                                <span class="difficulty">Difficile</span>
+                                <span class="duration">4 jours</span>
+                            </div>
+                            <p>Exploration de la forêt équatoriale et observation des gorilles et de la faune locale.</p>
+                            <div class="excursion-footer">
+                                <span class="price">120.000 FCFA</span>
+                                <a href="#" class="button">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vote Module Block -->
+        <section class="vote-module-section">
+            <div class="container">
+                <h2 class="section-title">Votez pour la prochaine destination</h2>
+                <div class="vote-module">
+                    <div class="vote-options">
+                        <div class="vote-option">
+                            <div class="vote-image">
+                                <img src="img/kribi-beach.jpg" alt="Plages de Kribi">
+                            </div>
+                            <h3>Plages de Kribi</h3>
+                            <div class="vote-progress">
+                                <div class="progress-bar" style="width: 65%;"></div>
+                                <span class="vote-count">65%</span>
+                            </div>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                        <div class="vote-option">
+                            <div class="vote-image">
+                                <img src="img/rhumsiki.jpg" alt="Rhumsiki">
+                            </div>
+                            <h3>Rhumsiki</h3>
+                            <div class="vote-progress">
+                                <div class="progress-bar" style="width: 35%;"></div>
+                                <span class="vote-count">35%</span>
+                            </div>
+                            <button class="vote-button">Voter</button>
+                        </div>
+                    </div>
+                    <div class="vote-info">
+                        <p>Le vote se termine dans: <span class="countdown">5 jours</span></p>
+                        <p>La destination gagnante sera programmée en Juin 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Preview -->
+        <section class="blog-section">
+            <div class="container">
+                <h2 class="section-title">Carnet de Voyages</h2>
+                <div class="blog-posts">
+                    <article class="blog-post">
+                        <div class="post-thumbnail">
+                            <img src="img/mont-cameroun-blog.jpg" alt="Mont Cameroun">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Excursion</span>
+                                <span class="post-date">10 Mars 2025</span>
+                            </div>
+                            <h3 class="post-title">À la conquête du Mont Cameroun</h3>
+                            <p class="post-excerpt">Récit de notre dernière excursion au sommet du Mont Cameroun, avec des paysages à couper le souffle...</p>
+                            <a href="blog-detail.html" class="read-more">Lire la suite</a>
+                        </div>
+                    </article>
+                    <article class="blog-post">
+                        <div class="post-thumbnail">
+                            <img src="img/lobe-blog.jpg" alt="Chutes de la Lobé">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Excursion</span>
+                                <span class="post-date">2 Février 2025</span>
+                            </div>
+                            <h3 class="post-title">Magie aux Chutes de la Lobé</h3>
+                            <p class="post-excerpt">Notre aventure aux Chutes de la Lobé, où l'eau rencontre l'océan dans un spectacle naturel unique...</p>
+                            <a href="blog-detail.html" class="read-more">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-widgets">
+                <div class="footer-widget">
+                    <h3 class="widget-title">Life Travel</h3>
+                    <p>Votre partenaire d'aventures au Cameroun depuis 2015.</p>
+                    <p>Quartier Bonapriso<br>Douala, Cameroun</p>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3 class="widget-title">Contact</h3>
+                    <ul class="contact-info">
+                        <li><a href="tel:+237600000000">+237 600 000 000</a></li>
+                        <li><a href="mailto:info@life-travel.org">info@life-travel.org</a></li>
+                        <li><a href="https://wa.me/237600000000" class="whatsapp-link" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3 class="widget-title">Liens rapides</h3>
+                    <ul class="footer-menu">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#excursions">Excursions</a></li>
+                        <li><a href="#sur-mesure">Sur Mesure</a></li>
+                        <li><a href="#carnet">Carnet de Voyages</a></li>
+                        <li><a href="#a-propos">À Propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3 class="widget-title">Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" class="social-link">Facebook</a>
+                        <a href="#" target="_blank" class="social-link">Instagram</a>
+                        <a href="#" target="_blank" class="social-link">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Life Travel. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">CGV</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/237600000000?text=Bonjour%20Life%20Travel,%20je%20souhaite%20des%20informations%20sur%20vos%20excursions." class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+            <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.196-.57-.345m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+    
+    <script src="js/main.js"></script>
+    <script src="js/image-handler.js"></script>
+    
+    <!-- Script pour le sélecteur de langue -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sélecteur de langue
+        const languageLinks = document.querySelectorAll('.language-dropdown a');
+        const currentLangDisplay = document.querySelector('.current-language .language-flag');
+        
+        // Simuler le changement de langue (prototype)
+        languageLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                
+                // Mettre à jour l'affichage du sélecteur
+                languageLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                currentLangDisplay.className = 'language-flag ' + lang + ' active';
+                currentLangDisplay.textContent = lang.toUpperCase();
+                
+                // Stocker la préférence de langue
+                localStorage.setItem('lifetravel_language', lang);
+                
+                // Dans une implémentation réelle, TranslatePress gérerait la redirection
+                console.log('Langue changée pour: ' + lang);
+                
+                // Simuler un rechargement de page (dans TranslatePress, cela serait un vrai changement)
+                // Pour le prototype: changer quelques textes à titre d'exemple
+                if (lang === 'en') {
+                    document.querySelector('.hero-content h2').innerText = 'Discover Authentic Cameroon';
+                    document.querySelector('.hero-content p').innerText = 'Guided tours in Africa\'s most beautiful landscapes';
+                    document.querySelector('.hero-content .cta-button').innerText = 'View Tours';
+                    document.querySelector('.section-title').innerText = 'Upcoming Departures';
+                } else {
+                    document.querySelector('.hero-content h2').innerText = 'Découvrez le Cameroun Authentique';
+                    document.querySelector('.hero-content p').innerText = 'Excursions guidées dans les plus beaux paysages d\'Afrique';
+                    document.querySelector('.hero-content .cta-button').innerText = 'Voir les excursions';
+                    document.querySelector('.section-title').innerText = 'Prochains départs';
+                }
+            });
+        });
+        
+        // Charger la langue précédemment choisie
+        const savedLang = localStorage.getItem('lifetravel_language');
+        if (savedLang) {
+            const langLink = document.querySelector(`.language-dropdown a[data-lang="${savedLang}"]`);
+            if (langLink) langLink.click();
+        }
+    });
+    </script>
+    
+    <!-- Meta Pixel Code - À activer avec votre ID Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    // Remplacer VOTRE_PIXEL_ID par l'ID réel lors de l'intégration
+    fbq('init', 'VOTRE_PIXEL_ID'); 
+    fbq('track', 'PageView');
+    
+    // Événements de conversion pour excursions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tracker les clics sur les boutons de réservation
+      const reservationButtons = document.querySelectorAll('.booking-button, .cta-button');
+      if (reservationButtons) {
+        reservationButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            // Récupérer les informations du produit
+            const productName = this.getAttribute('data-product-name') || 'Excursion';
+            const productValue = this.getAttribute('data-product-value') || '0';
+            
+            // Tracker l'événement dans Meta Pixel
+            fbq('track', 'InitiateCheckout', {
+              content_name: productName,
+              value: productValue,
+              currency: 'XAF'
+            });
+            
+            console.log('Conversion Facebook: InitiateCheckout', productName, productValue);
+          });
+        });
+      }
+    });
+    </script>
+    <!-- End Meta Pixel Code -->
+</body>
+</html>

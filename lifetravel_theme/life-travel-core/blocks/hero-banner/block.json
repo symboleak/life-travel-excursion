@@ -1,0 +1,92 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "life-travel-core/hero-banner",
+  "version": "1.0.0",
+  "title": "Bannière Héro",
+  "category": "life-travel",
+  "icon": "cover-image",
+  "description": "Bannière principale avec image de fond, texte et bouton d'action",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "life-travel-core",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Découvrez le Cameroun authentique"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Des excursions uniques au cœur de l'Afrique"
+    },
+    "description": {
+      "type": "string",
+      "default": "Life Travel vous propose des aventures inoubliables, guidées par des passionnés qui connaissent chaque recoin du Cameroun."
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Réserver une excursion"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "secondaryCtaText": {
+      "type": "string",
+      "default": "En savoir plus"
+    },
+    "secondaryCtaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundId": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 50
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "height": {
+      "type": "string",
+      "default": "75vh"
+    },
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    }
+  },
+  "example": {
+    "attributes": {
+      "title": "Découvrez le Cameroun authentique",
+      "subtitle": "Des excursions uniques au cœur de l'Afrique",
+      "preview": true
+    }
+  }
+}

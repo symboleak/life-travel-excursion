@@ -1,0 +1,415 @@
+/**
+ * Calendar Block Styles
+ * 
+ * @package Life_Travel_Core
+ */
+
+.excursion-calendar {
+  margin: 2rem 0;
+  padding: 2rem 1rem;
+  position: relative;
+  --accent-color: #E19D4C;
+
+  /* Header styles */
+  .calendar-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .calendar-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .calendar-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+
+  /* Loading state */
+  .calendar-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+    min-height: 300px;
+    
+    span {
+      display: inline-block;
+      position: relative;
+      color: #888;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, currentColor, transparent);
+        bottom: -5px;
+        left: 0;
+        animation: loading 1.5s ease-in-out infinite;
+      }
+    }
+  }
+
+  /* Month navigation */
+  .calendar-month-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+
+    .current-month {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .month-nav {
+      background: none;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: inherit;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--accent-color);
+      }
+    }
+  }
+
+  /* Day names (Mon-Sun) */
+  .calendar-day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 0.5rem;
+
+    .day-name {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      text-transform: uppercase;
+    }
+  }
+
+  /* Days grid */
+  .calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+
+    .calendar-day {
+      min-height: 100px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+
+      /* Day number */
+      .day-number {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        width: 1.8rem;
+        height: 1.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+      }
+
+      /* Empty day */
+      &.empty {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Day with excursions */
+      &.has-excursions {
+        background-color: rgba(255, 255, 255, 0.9);
+        transform: scale(1.05);
+        z-index: 5;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+        .day-number {
+          background-color: var(--accent-color);
+          color: #fff;
+        }
+
+        &:hover {
+          transform: scale(1.08);
+        }
+      }
+
+      /* Empty day message */
+      .day-empty-message {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #999;
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0 0.5rem;
+
+        .empty-day-text {
+          opacity: 0.7;
+        }
+      }
+
+      /* Excursion preview */
+      .day-excursions {
+        padding: 0.5rem;
+        height: 100%;
+
+        .excursion-preview {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .excursion-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 4px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .excursion-info {
+            padding: 0.5rem 0;
+
+            .excursion-title {
+              font-size: 0.85rem;
+              font-weight: 600;
+              margin-bottom: 0.25rem;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .excursion-price {
+              font-size: 0.8rem;
+              color: var(--accent-color);
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Voting section */
+  .calendar-voting-section {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .voting-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .voting-option {
+      display: flex;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .option-image {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .option-details {
+        flex: 1;
+        padding: 1rem;
+
+        h4 {
+          margin: 0 0 0.5rem;
+          font-size: 1.1rem;
+        }
+
+        .option-meta {
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 0.5rem;
+        }
+
+        .option-votes {
+          position: relative;
+          height: 8px;
+          background-color: #f0f0f0;
+          border-radius: 4px;
+          overflow: hidden;
+          margin-top: 0.75rem;
+
+          .votes-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+          }
+
+          .votes-count {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .voting-action {
+      text-align: center;
+      margin-top: 1rem;
+
+      button {
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem;
+
+    .calendar-title {
+      font-size: 1.5rem;
+    }
+
+    .calendar-subtitle {
+      font-size: 1rem;
+    }
+
+    .calendar-day-names {
+      .day-name {
+        font-size: 0.7rem;
+        padding: 0.25rem 0;
+      }
+    }
+
+    .calendar-days-grid {
+      gap: 2px;
+
+      .calendar-day {
+        min-height: 70px;
+
+        .day-number {
+          font-size: 0.7rem;
+          width: 1.4rem;
+          height: 1.4rem;
+          top: 0.25rem;
+          right: 0.25rem;
+        }
+
+        &.has-excursions {
+          transform: scale(1.03);
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+
+        .day-excursions {
+          padding: 0.25rem;
+
+          .excursion-info {
+            .excursion-title {
+              font-size: 0.7rem;
+            }
+
+            .excursion-price {
+              font-size: 0.65rem;
+            }
+          }
+        }
+      }
+    }
+
+    .calendar-voting-section {
+      .voting-options {
+        grid-template-columns: 1fr;
+      }
+
+      .voting-option {
+        .option-image {
+          width: 80px;
+          height: 80px;
+        }
+
+        .option-details {
+          padding: 0.5rem;
+
+          h4 {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Loading animation */
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
