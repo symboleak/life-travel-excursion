@@ -1,10 +1,22 @@
 # Script de test pour vérifier les exclusions
 # Ce script simule la synchronisation sans copier les fichiers
+# Encodage: UTF-8 avec BOM
 
 param (
     [Parameter(Mandatory = $false)]
     [switch]$ShowDetails
 )
+
+# Forcer l'encodage de sortie en UTF-8 pour éviter les problèmes d'affichage
+$OutputEncoding = [System.Text.Encoding]::UTF8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# Vérifier la version PowerShell et adapter en conséquence
+$isPSCore = $PSVersionTable.PSEdition -eq "Core"
+if (-not $isPSCore) {
+    # Pour Windows PowerShell 5.1, changer la page de code
+    chcp 65001 >$null  # Change la page de code à UTF-8
+}
 
 # Chemins de base
 $sourceDir = "C:\Users\symbo\Documents\Projets\SiteVoyage"
@@ -128,6 +140,15 @@ foreach ($pluginName in $plugins.Keys) {
     Test-SyncSimulation -Source $source -Destination $target -PluginName $pluginName -Excludes $excludes
 }
 
-Write-Host "======================================" -ForegroundColor Cyan
-Write-Host "   TEST TERMINÉ" -ForegroundColor Cyan
-Write-Host "======================================" -ForegroundColor Cyan
+# Fermer le script test-sync.ps1 avec un message clair et un code de retour approprié
+if ($hasErrors) {
+    Write-Host "`n======================================" -ForegroundColor Red
+    Write-Host "   TEST TERMINÉ AVEC ERREURS" -ForegroundColor Red
+    Write-Host "======================================" -ForegroundColor Red
+    exit 1  # Code de sortie d'échec
+} else {
+    Write-Host "`n======================================" -ForegroundColor Green
+    Write-Host "   TEST TERMINÉ AVEC SUCCÈS" -ForegroundColor Green
+    Write-Host "======================================" -ForegroundColor Green
+    exit 0  # Code de sortie de succès
+}

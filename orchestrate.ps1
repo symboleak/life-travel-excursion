@@ -1,36 +1,97 @@
 # Script d'orchestration pour exécuter automatiquement toutes les tâches requises
 # Ce script est conçu pour être exécuté en mode administrateur
+# Encodage: UTF-8 avec BOM
+
 param (
     [switch]$TestOnly,
     [switch]$SyncOnly,
     [switch]$GitOnly,
-    [switch]$All
+    [switch]$All,
+    [switch]$Debug
 )
+
+# Configuration de l'encodage
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
+# Pour Windows PowerShell 5.1, changer la page de code
+$isPSCore = $PSVersionTable.PSEdition -eq "Core"
+if (-not $isPSCore) {
+    # Changer la page de code à UTF-8
+    chcp 65001 >$null
+}
+
+# Activer le mode debug si demandé
+if ($Debug) {
+    $DebugPreference = "Continue"
+    $VerbosePreference = "Continue"
+    Write-Host "Mode DEBUG activé - Affichage détaillé" -ForegroundColor Yellow
+}
+
+# Si aucun paramètre n'est spécifié, exécuter toutes les opérations par défaut
+if (-not ($TestOnly -or $SyncOnly -or $GitOnly -or $All)) {
+    $All = $true
+    Write-Host "Aucun paramètre spécifié, exécution de toutes les opérations par défaut" -ForegroundColor Yellow
+}
 
 function Start-Process-And-Wait {
     param (
         [string]$FilePath,
         [string]$Arguments,
-        [string]$Description
+        [string]$Description,
+        [int]$TimeoutSeconds = 300
     )
     
     Write-Host "Démarrage: $Description..." -ForegroundColor Cyan
-    
-    # Démarrer le processus
-    $process = Start-Process -FilePath $FilePath -ArgumentList $Arguments -PassThru -NoNewWindow
-    
-    Write-Host "  Processus démarré avec PID: $($process.Id)" -ForegroundColor Yellow
-    Write-Host "  Attente de la fin du processus..." -ForegroundColor Yellow
-    
-    # Attendre que le processus se termine
-    $process.WaitForExit()
-    
-    # Vérifier le code de sortie
-    if ($process.ExitCode -eq 0) {
-        Write-Host "  Terminé avec succès: $Description" -ForegroundColor Green
-        return $true
-    } else {
-        Write-Host "  Erreur lors de l'exécution de: $Description (Code: $($process.ExitCode))" -ForegroundColor Red
+    try {
+        $psi = New-Object System.Diagnostics.ProcessStartInfo
+        $psi.FileName = $FilePath
+        $psi.Arguments = $Arguments
+        $psi.UseShellExecute = $false
+        $psi.RedirectStandardOutput = $true
+        $psi.RedirectStandardError = $true
+        $psi.CreateNoWindow = $false
+        $psi.StandardOutputEncoding = [System.Text.Encoding]::UTF8
+        $psi.StandardErrorEncoding = [System.Text.Encoding]::UTF8
+        
+        $process = [System.Diagnostics.Process]::Start($psi)
+        Write-Host "  Processus démarré avec PID: $($process.Id)" -ForegroundColor DarkGray
+        Write-Host "  Attente de la fin du processus..." -ForegroundColor DarkGray
+        
+        # Capturer la sortie en temps réel
+        $stdoutTask = $process.StandardOutput.ReadToEndAsync()
+        $stderrTask = $process.StandardError.ReadToEndAsync()
+        
+        # Attendre la fin du processus avec timeout
+        if (!$process.WaitForExit($TimeoutSeconds * 1000)) {
+            Write-Host "ERREUR: Timeout après $TimeoutSeconds secondes!" -ForegroundColor Red
+            try { $process.Kill() } catch {}
+            return $false
+        }
+        
+        $stdout = $stdoutTask.Result
+        $stderr = $stderrTask.Result
+        
+        # Afficher la sortie si nécessaire
+        if ($stdout -and $stdout.Trim() -ne "") {
+            Write-Host "--- SORTIE STANDARD ---" -ForegroundColor DarkCyan
+            Write-Host "$stdout" -ForegroundColor DarkGray
+            Write-Host "---------------------" -ForegroundColor DarkCyan
+        }
+        
+        if ($stderr -and $stderr.Trim() -ne "") {
+            Write-Host "--- ERREUR STANDARD ---" -ForegroundColor Yellow
+            Write-Host "$stderr" -ForegroundColor Red
+            Write-Host "----------------------" -ForegroundColor Yellow
+        }
+        
+        $exitCode = $process.ExitCode
+        Write-Host "  Code de sortie: $exitCode" -ForegroundColor $(if($exitCode -eq 0) { "Green" } else { "Red" })
+        
+        return ($exitCode -eq 0)
+    }
+    catch {
+        Write-Host "ERREUR lors du démarrage du processus: $($_.Exception.Message)" -ForegroundColor Red
         return $false
     }
 }
@@ -63,12 +124,34 @@ function Sync-Files {
     }
     
     # Synchroniser le plugin principal en excluant payment-gateways
-    $success1 = Start-Process-And-Wait -FilePath "powershell.exe" -Arguments "-ExecutionPolicy Bypass -File `"$syncPath`" -Mode push -Plugin life-travel-excursion" -Description "Synchronisation de life-travel-excursion"
+    Write-Host "Démarrage de la synchronisation du plugin principal life-travel-excursion..." -ForegroundColor Cyan
+    $success1 = Start-Process-And-Wait -FilePath "powershell.exe" -Arguments "-ExecutionPolicy Bypass -File `"$syncPath`" -Mode push -Plugin life-travel-excursion -ShowDetails" -Description "Synchronisation de life-travel-excursion"
+    
+    if (-not $success1) {
+        Write-Host "ERREUR: La synchronisation de life-travel-excursion a échoué!" -ForegroundColor Red
+        return $false
+    } else {
+        Write-Host "La synchronisation de life-travel-excursion a réussi" -ForegroundColor Green
+    }
     
     # Synchroniser payment-gateways séparément
-    $success2 = Start-Process-And-Wait -FilePath "powershell.exe" -Arguments "-ExecutionPolicy Bypass -File `"$syncPath`" -Mode push -Plugin payment-gateways" -Description "Synchronisation de payment-gateways"
+    Write-Host "Démarrage de la synchronisation de payment-gateways..." -ForegroundColor Cyan
+    $success2 = Start-Process-And-Wait -FilePath "powershell.exe" -Arguments "-ExecutionPolicy Bypass -File `"$syncPath`" -Mode push -Plugin payment-gateways -ShowDetails" -Description "Synchronisation de payment-gateways"
     
-    return ($success1 -and $success2)
+    if (-not $success2) {
+        Write-Host "ERREUR: La synchronisation de payment-gateways a échoué!" -ForegroundColor Red
+        return $false
+    } else {
+        Write-Host "La synchronisation de payment-gateways a réussi" -ForegroundColor Green
+    }
+    
+    if ($success1 -and $success2) {
+        Write-Host "Synchronisation complète réussie!" -ForegroundColor Green
+        return $true
+    } else {
+        Write-Host "Certaines étapes de synchronisation ont échoué." -ForegroundColor Red
+        return $false
+    }
 }
 
 function Update-Git {
@@ -89,13 +172,20 @@ function Update-Git {
             return $false
         }
         
-        # Créer un commit
-        Write-Host "Création d'un commit..." -ForegroundColor Yellow
-        git commit -m "$message"
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Erreur lors de la création du commit" -ForegroundColor Red
-            Pop-Location
-            return $false
+        # Vérifier s'il y a des modifications à committer
+        $status = git status --porcelain
+        
+        if ($status) {
+            # Créer un commit seulement s'il y a des modifications
+            Write-Host "Création d'un commit..." -ForegroundColor Yellow
+            git commit -m "$message"
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "Erreur lors de la création du commit" -ForegroundColor Red
+                Pop-Location
+                return $false
+            }
+        } else {
+            Write-Host "Aucune modification à committer" -ForegroundColor Yellow
         }
         
         # Pousser les modifications
@@ -120,7 +210,7 @@ function Update-Git {
     }
 }
 
-function Verify-NoDoublons {
+function Test-NoDoublons {
     Write-Host "`n=== VÉRIFICATION DES DOUBLONS ===" -ForegroundColor Magenta
     
     $sourcePaymentGateways = "$PSScriptRoot\life-travel-excursion\payment-gateways"
@@ -140,22 +230,36 @@ function Verify-NoDoublons {
         return $false
     }
     
-    # Obtenir la liste des fichiers/dossiers dans le dossier source
-    $sourceItems = Get-ChildItem -Path $sourcePaymentGateways -Force
+    # Obtenir la liste des fichiers/dossiers dans le dossier source (en excluant les fichiers IDE)
+    $sourceItems = Get-ChildItem -Path $sourcePaymentGateways -Force | Where-Object { $_.Name -notlike ".*" }
     
     # Obtenir la liste des fichiers/dossiers dans le dossier cible
-    $targetItems = Get-ChildItem -Path $targetPaymentGateways -Force
+    $targetItems = Get-ChildItem -Path $targetPaymentGateways -Force | Where-Object { $_.Name -notlike ".*" }
     
-    # Comparer les nombres d'éléments
+    # Comparer les nombres d'éléments (uniquement les éléments pertinents)
     if ($sourceItems.Count -ne $targetItems.Count) {
-        Write-Host "ATTENTION: Le nombre d'éléments diffère entre source ($($sourceItems.Count)) et cible ($($targetItems.Count))" -ForegroundColor Red
+        Write-Host "ATTENTION: Le nombre d'éléments pertinents diffère entre source ($($sourceItems.Count)) et cible ($($targetItems.Count))" -ForegroundColor Red
+        
+        # Identifier les différences
+        $sourceNames = $sourceItems | ForEach-Object { $_.Name }
+        $targetNames = $targetItems | ForEach-Object { $_.Name }
+        
+        $onlyInSource = $sourceNames | Where-Object { $_ -notin $targetNames }
+        $onlyInTarget = $targetNames | Where-Object { $_ -notin $sourceNames }
+        
+        if ($onlyInSource.Count -gt 0) {
+            Write-Host "Eléments uniquement dans la source: $($onlyInSource -join ', ')" -ForegroundColor Yellow
+        }
+        
+        if ($onlyInTarget.Count -gt 0) {
+            Write-Host "Eléments uniquement dans la cible: $($onlyInTarget -join ', ')" -ForegroundColor Yellow
+        }
     } else {
-        Write-Host "Nombre d'éléments identique entre source et cible: $($sourceItems.Count)" -ForegroundColor Green
+        Write-Host "Nombre d'éléments pertinents identique entre source et cible: $($sourceItems.Count)" -ForegroundColor Green
     }
     
     # Vérifier si payment-gateways est dupliqué dans le plugin principal
     $mainPluginDir = "C:\wamp64\www\life-travel\wp-content\plugins\life-travel-excursion"
-    $mainPluginItems = Get-ChildItem -Path $mainPluginDir -Force | Where-Object { $_.Name -ne "payment-gateways" }
     
     # Vérifier si payment-gateways existe dans le plugin principal
     $paymentGatewaysExists = Test-Path "$mainPluginDir\payment-gateways"
@@ -198,7 +302,7 @@ if ($SyncOnly -or $All) {
     $overallSuccess = $overallSuccess -and $syncSuccess
     if (-not $syncSuccess) { Write-Host "Synchronisation échouée!" -ForegroundColor Red }
     
-    $verifySuccess = Verify-NoDoublons
+    $verifySuccess = Test-NoDoublons # Correction du nom de fonction (était Verify-NoDoublons)
     $overallSuccess = $overallSuccess -and $verifySuccess
     if (-not $verifySuccess) { Write-Host "Vérification des doublons échouée!" -ForegroundColor Red }
 }

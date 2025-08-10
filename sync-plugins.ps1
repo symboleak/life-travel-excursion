@@ -1,4 +1,6 @@
 # Script de synchronisation des plugins
+# Encodage: UTF-8 avec BOM - Corrigé pour résoudre les problèmes d'encodage des caractères accentués
+
 param (
     [Parameter(Mandatory = $true)]
     [ValidateSet("push", "pull")]
@@ -11,6 +13,9 @@ param (
     
     [switch]$Force
 )
+
+# Forcer l'encodage de sortie en UTF-8 pour éviter les problèmes d'affichage
+$OutputEncoding = [System.Text.Encoding]::UTF8
 
 # Configuration
 $sourceDir = "C:\Users\symbo\Documents\Projets\SiteVoyage"
@@ -202,11 +207,21 @@ function Sync-Files {
     }
     
     # Effectuer la synchronisation
-    Write-Log "Synchronisation $Direction de $PluginName..." -Type "Info"
+    Write-Log "Début de synchronisation $Direction de $PluginName" -Type "Info"
+    Write-Log "Source: $Source" -Type "Info"
+    Write-Log "Destination: $Destination" -Type "Info"
     
     try {
+        # Vérification d'existence des dossiers avant copie
+        if (-not (Test-Path -Path $Source)) {
+            Write-Log "ERREUR CRITIQUE: Le dossier source $Source n'existe pas!" -Type "Error"
+            return $false
+        }
+        
+        Write-Log "Validation pré-copie: Dossier source vérifié $Source" -Type "Success"
+        
         # Pour les fichiers volumineux ou nombreux, utiliser robocopy qui est plus fiable
-        $robocopyOptions = "/E /COPY:DAT /DCOPY:T /R:2 /W:5 /MT:4"
+        $robocopyOptions = "/E /COPY:DAT /DCOPY:T /R:3 /W:5 /MT:4 /LOG+:$PSScriptRoot\robocopy_log.txt"
         
         # Gérer les exclusions si spécifiées
         if ($Excludes -and $Excludes.Count -gt 0) {
@@ -230,10 +245,36 @@ function Sync-Files {
             $destForRobocopy += '\'
         }
         
+        Write-Log "Exécution de robocopy avec options: $robocopyOptions" -Type "Info"
+        Write-Log "De: $sourceForRobocopy vers: $destForRobocopy" -Type "Info"
+
         $timeout, $result = Test-OperationTimeout -Operation { 
-            & robocopy $sourceForRobocopy $destForRobocopy * $robocopyOptions
+            # Exécuter robocopy avec capture de la sortie
+            $output = & robocopy $sourceForRobocopy $destForRobocopy * $robocopyOptions 2>&1
+            
+            # Afficher la sortie pour débogage
+            if ($global:VerboseOutput) {
+                $output | ForEach-Object { Write-Host $_ }
+            }
+            
+            # Capturer le code de sortie et l'analyser
+            $exitCode = $LASTEXITCODE
+            Write-Log "Robocopy terminé avec code: $exitCode" -Type "Info"
+            
             # Robocopy a des codes de sortie spéciaux, 0-7 sont des succès
-            if ($LASTEXITCODE -lt 8) { return $true } else { return $false }
+            # 0 = Aucun fichier copié
+            # 1 = Fichiers copiés avec succès
+            # 2 = Fichiers supplémentaires ou dossiers détectés
+            # 3 = Fichiers modifiés + supplémentaires
+            # 4 = Fichiers mal assortis
+            # 5-7 = Combinaisons de 4 avec 1-3
+            if ($exitCode -lt 8) { 
+                Write-Log "Robocopy a réussi (code $exitCode)" -Type "Success"
+                return $true 
+            } else { 
+                Write-Log "Robocopy a échoué (code $exitCode)" -Type "Error"
+                return $false 
+            }
         } -TimeoutSeconds $maxWaitTime -OperationName "Synchronisation de $PluginName"
         
         if (-not $timeout) {
