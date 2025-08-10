@@ -25,10 +25,11 @@ $global:VerboseOutput = $ShowDetails
 # Définition des plugins et leurs chemins
 $plugins = @{}
 
-# Déclaration des chemins pour life-travel-excursion
+# Déclaration des chemins pour life-travel-excursion (exclut payment-gateways pour éviter la duplication)
 $plugins.Add("life-travel-excursion", @{
     "source" = "$sourceDir\life-travel-excursion"
     "target" = "$wpContentDir\plugins\life-travel-excursion"
+    "excludes" = @("payment-gateways")  # Exclusion du dossier payment-gateways pour éviter les doublons
 })
 
 # Déclaration des chemins pour life-travel-payment-adapters
@@ -37,19 +38,25 @@ $plugins.Add("life-travel-payment-adapters", @{
     "target" = "$wpContentDir\plugins\life-travel-payment-adapters"
 })
 
-# Déclaration des chemins pour iwomipay-momo-woocommerce
+# Déclaration des chemins pour payment-gateways (source depuis SiteVoyage)
+$plugins.Add("payment-gateways", @{
+    "source" = "$sourceDir\life-travel-excursion\payment-gateways"
+    "target" = "$wpContentDir\plugins\life-travel-excursion\payment-gateways"
+})
+
+# Déclaration des chemins pour iwomipay-momo-woocommerce (dépôt tiers)
 $plugins.Add("iwomipay-momo-woocommerce", @{
     "source" = "$sourceDir\third-party-plugins\iwomipay-momo-woocommerce"
     "target" = "$wpContentDir\plugins\life-travel-excursion\payment-gateways\iwomipay-momo-woocommerce"
 })
 
-# Déclaration des chemins pour iwomipay-om-woocommerce
+# Déclaration des chemins pour iwomipay-om-woocommerce (dépôt tiers)
 $plugins.Add("iwomipay-om-woocommerce", @{
     "source" = "$sourceDir\third-party-plugins\iwomipay-om-woocommerce"
     "target" = "$wpContentDir\plugins\life-travel-excursion\payment-gateways\iwomipay-om-woocommerce"
 })
 
-# Déclaration des chemins pour iwomipay-card-woocommerce
+# Déclaration des chemins pour iwomipay-card-woocommerce (dépôt tiers)
 $plugins.Add("iwomipay-card-woocommerce", @{
     "source" = "$sourceDir\third-party-plugins\iwomipay-card-woocommerce"
     "target" = "$wpContentDir\plugins\life-travel-excursion\payment-gateways\iwomipay-card-woocommerce"
@@ -156,7 +163,8 @@ function Sync-Files {
         [string]$Source,
         [string]$Destination,
         [string]$PluginName,
-        [string]$Direction
+        [string]$Direction,
+        [array]$Excludes = @()
     )
     
     if (-not (Test-Path $Source)) {
@@ -200,7 +208,15 @@ function Sync-Files {
         # Pour les fichiers volumineux ou nombreux, utiliser robocopy qui est plus fiable
         $robocopyOptions = "/E /COPY:DAT /DCOPY:T /R:2 /W:5 /MT:4"
         
-        if ($Verbose) {
+        # Gérer les exclusions si spécifiées
+        if ($Excludes -and $Excludes.Count -gt 0) {
+            Write-Log "Exclusion des dossiers: $($Excludes -join ', ')" -Type "Info"
+            # Ajouter chaque dossier à exclure avec l'option /XD (exclude directory)
+            $excludeParams = $Excludes | ForEach-Object { "/XD `"$sourceForRobocopy$_`"" }
+            $robocopyOptions += " $($excludeParams -join ' ')"
+        }
+        
+        if ($global:VerboseOutput) {
             $robocopyOptions += " /V"
         }
         
@@ -284,12 +300,18 @@ foreach ($pluginName in $pluginsToSync.Keys) {
     $source = $pluginInfo["source"]
     $target = $pluginInfo["target"]
     
+    # Récupérer les exclusions si définies
+    $excludes = @()
+    if ($pluginInfo.ContainsKey("excludes")) {
+        $excludes = $pluginInfo["excludes"]
+    }
+    
     if ($Mode -eq "push") {
         # Source -> Target (développement vers WordPress)
-        $success = Sync-Files -Source $source -Destination $target -PluginName $pluginName -Direction "vers WordPress"
+        $success = Sync-Files -Source $source -Destination $target -PluginName $pluginName -Direction "vers WordPress" -Excludes $excludes
     } else {
         # Target -> Source (WordPress vers développement)
-        $success = Sync-Files -Source $target -Destination $source -PluginName $pluginName -Direction "depuis WordPress"
+        $success = Sync-Files -Source $target -Destination $source -PluginName $pluginName -Direction "depuis WordPress" -Excludes $excludes
     }
     
     if ($success) {
