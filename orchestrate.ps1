@@ -28,6 +28,32 @@ if ($Debug) {
     Write-Host "Mode DEBUG activé - Affichage détaillé" -ForegroundColor Yellow
 }
 
+# Fonction de journalisation - ajoutée pour corriger l'erreur "Write-Log is not recognized"
+function Write-Log {
+    param (
+        [string]$Message,
+        [ValidateSet("Info", "Warning", "Error", "Success")]
+        [string]$Type = "Info"
+    )
+    
+    $color = switch ($Type) {
+        "Info" { "White" }
+        "Warning" { "Yellow" }
+        "Error" { "Red" }
+        "Success" { "Green" }
+    }
+    
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logMessage = "[$timestamp] $Message"
+    
+    if ($Type -eq "Info" -and (-not $Debug)) {
+        # Ne pas afficher les infos en mode non-debug
+        return
+    }
+    
+    Write-Host $logMessage -ForegroundColor $color
+}
+
 # Si aucun paramètre n'est spécifié, exécuter toutes les opérations par défaut
 if (-not ($TestOnly -or $SyncOnly -or $GitOnly -or $All)) {
     $All = $true
