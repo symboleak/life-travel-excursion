@@ -28,30 +28,36 @@ if ($Debug) {
     Write-Host "Mode DEBUG activé - Affichage détaillé" -ForegroundColor Yellow
 }
 
-# Fonction de journalisation - ajoutée pour corriger l'erreur "Write-Log is not recognized"
-function Write-Log {
-    param (
-        [string]$Message,
-        [ValidateSet("Info", "Warning", "Error", "Success")]
-        [string]$Type = "Info"
-    )
-    
-    $color = switch ($Type) {
-        "Info" { "White" }
-        "Warning" { "Yellow" }
-        "Error" { "Red" }
-        "Success" { "Green" }
+# Importer les fonctions communes
+$commonFunctionsPath = "$PSScriptRoot\common-functions.ps1"
+if (Test-Path $commonFunctionsPath) {
+    . $commonFunctionsPath
+} else {
+    # Fonction de journalisation de secours si le fichier commun n'existe pas
+    function Write-Log {
+        param (
+            [string]$Message,
+            [ValidateSet("Info", "Warning", "Error", "Success")]
+            [string]$Type = "Info"
+        )
+        
+        $color = switch ($Type) {
+            "Info" { "White" }
+            "Warning" { "Yellow" }
+            "Error" { "Red" }
+            "Success" { "Green" }
+        }
+        
+        $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        $logMessage = "[$timestamp] $Message"
+        
+        if ($Type -eq "Info" -and (-not $Debug)) {
+            # Ne pas afficher les infos en mode non-debug
+            return
+        }
+        
+        Write-Host $logMessage -ForegroundColor $color
     }
-    
-    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    $logMessage = "[$timestamp] $Message"
-    
-    if ($Type -eq "Info" -and (-not $Debug)) {
-        # Ne pas afficher les infos en mode non-debug
-        return
-    }
-    
-    Write-Host $logMessage -ForegroundColor $color
 }
 
 # Si aucun paramètre n'est spécifié, exécuter toutes les opérations par défaut
@@ -69,6 +75,14 @@ function Start-Process-And-Wait {
     )
     
     Write-Host "Démarrage: $Description..." -ForegroundColor Cyan
+    
+    # Détecter si nous devons ajouter le paramètre pour le fichier de fonctions communes
+    $commonFunctionsPath = "$PSScriptRoot\common-functions.ps1"
+    if ((Test-Path $commonFunctionsPath) -and ($Arguments -notlike "*-CommonFunctionsPath*")) {
+        $Arguments = "$Arguments -CommonFunctionsPath `"$commonFunctionsPath`""
+        Write-Log "Ajout du chemin vers les fonctions communes: $commonFunctionsPath" -Type "Info"
+    }
+    
     try {
         $psi = New-Object System.Diagnostics.ProcessStartInfo
         $psi.FileName = $FilePath

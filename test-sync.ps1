@@ -4,18 +4,18 @@
 
 param (
     [Parameter(Mandatory = $false)]
-    [switch]$ShowDetails
+    [switch]$ShowDetails,
+    
+    [string]$CommonFunctionsPath = ""
 )
 
-# Forcer l'encodage de sortie en UTF-8 pour éviter les problèmes d'affichage
-$OutputEncoding = [System.Text.Encoding]::UTF8
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-
-# Vérifier la version PowerShell et adapter en conséquence
-$isPSCore = $PSVersionTable.PSEdition -eq "Core"
-if (-not $isPSCore) {
-    # Pour Windows PowerShell 5.1, changer la page de code
-    chcp 65001 >$null  # Change la page de code à UTF-8
+# Importer les fonctions communes
+$commonFunctionsPath = "$PSScriptRoot\common-functions.ps1"
+if (Test-Path $commonFunctionsPath) {
+    . $commonFunctionsPath
+} else {
+    Write-Host "ERREUR CRITIQUE: Fichier de fonctions communes introuvable: $commonFunctionsPath" -ForegroundColor Red
+    exit 1
 }
 
 # Chemins de base

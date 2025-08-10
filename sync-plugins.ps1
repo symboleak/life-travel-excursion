@@ -11,11 +11,19 @@ param (
     
     [switch]$ShowDetails,
     
-    [switch]$Force
+    [switch]$Force,
+    
+    [string]$CommonFunctionsPath = ""
 )
 
-# Forcer l'encodage de sortie en UTF-8 pour éviter les problèmes d'affichage
-$OutputEncoding = [System.Text.Encoding]::UTF8
+# Importer les fonctions communes
+$commonFunctionsPath = "$PSScriptRoot\common-functions.ps1"
+if (Test-Path $commonFunctionsPath) {
+    . $commonFunctionsPath
+} else {
+    Write-Host "ERREUR CRITIQUE: Fichier de fonctions communes introuvable: $commonFunctionsPath" -ForegroundColor Red
+    exit 1
+}
 
 # Configuration
 $sourceDir = "C:\Users\symbo\Documents\Projets\SiteVoyage"
